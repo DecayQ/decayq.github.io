@@ -307,7 +307,7 @@ div {
     text-align: center; }
     .page-navigator a:hover, .page-navigator span:hover {
       background: #F8F8F8;
-      border-bottom-color: #D26911; }
+      border-bottom-color: #0580af; }
     .page-navigator a.prev, .page-navigator span.prev {
       float: left; }
       .page-navigator a.prev:before, .page-navigator span.prev:before {
@@ -322,7 +322,7 @@ div {
         padding-left: 0.3em; }
   .page-navigator .current {
     background: #F8F8F8;
-    border-bottom-color: #D26911; }
+    border-bottom-color: #0580af; }
   .page-navigator .space {
     border: none;
     padding: 5px 5px; }
@@ -744,7 +744,7 @@ pre {
     padding-left: 0.3em; }
   .readmore a:hover {
     background: #F8F8F8;
-    border-bottom-color: #D26911; }
+    border-bottom-color: #0580af; }
 
 /* syntax highlight*/
 figure.highlight,
