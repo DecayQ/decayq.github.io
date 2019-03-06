@@ -242,7 +242,8 @@ div {
       .post .post-content p a {
         color: #01579f;
         padding-bottom: 2px;
-        word-break: normal; }
+        word-break: normal;
+        word-break: break-all; }
         .post .post-content p a:hover {
           text-decoration: underline; }
     .post .post-content .caption {
