@@ -60,6 +60,9 @@ a:focus {
 div {
   box-sizing: border-box; }
 
+.hidden-logo {
+  display: none; }
+
 #header {
   padding: 58px 0 0;
   text-align: left;
