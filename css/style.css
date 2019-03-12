@@ -128,6 +128,8 @@ div {
       #sidebar .widget .tagcloud a {
         line-height: 1.5;
         padding: 5px; }
+        #sidebar .widget .tagcloud a:first-child {
+          padding-left: 0; }
     #sidebar .widget ul {
       list-style: none;
       padding: 0; }
@@ -190,6 +192,12 @@ div {
       font-family: "FontAwesome";
       content: "\f07c";
       padding-right: 0.3em; }
+    .post .post-meta .category a:after {
+      content: ",";
+      margin-right: 2px; }
+    .post .post-meta .category a:last-child:after {
+      content: "";
+      margin-right: 0; }
     .post .post-meta #busuanzi_value_page_pv:before {
       font-family: "FontAwesome";
       content: "\f024";
