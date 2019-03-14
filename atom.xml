@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/"/>
-  <updated>2019-03-12T07:36:56.409Z</updated>
+  <updated>2019-03-14T08:16:18.583Z</updated>
   <id>https://blog.decay.fun/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>给 Ant Design Vue 中的弹窗内的表单动态赋值的一种方法</title>
+    <link href="https://blog.decay.fun/2019/03/14/ant-design-vue-dynamic-form-in-the-modal/"/>
+    <id>https://blog.decay.fun/2019/03/14/ant-design-vue-dynamic-form-in-the-modal/</id>
+    <published>2019-03-14T07:37:21.000Z</published>
+    <updated>2019-03-14T08:16:18.583Z</updated>
+    
+    <content type="html"><![CDATA[<p>刚刚解决了 <code>Ant Design Vue</code> 中，出现弹窗内的表单动态赋值的问题。</p><p>需求大概是这样，页面中的 <code>Table</code> 放置了 <code>Key</code> 与 <code>Value</code> 对应的列表。每行的右侧有个编辑按钮，点击『编辑』后弹出编辑窗口，并把该行的 <code>Key</code>, <code>Value</code> 赋值到弹窗中相对应的表单项中。</p><p>按照 <code>Ant Design Vue</code> 的文档写好了弹窗的结构：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-modal</span> <span class="attr">title</span>=<span class="string">"Edit"</span> <span class="attr">:visible</span>=<span class="string">"visible"</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-form</span> <span class="attr">:form</span>=<span class="string">"form"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-form-item</span> <span class="attr">label</span>=<span class="string">"Key"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-input</span> <span class="attr">placeholder</span>=<span class="string">"Key name"</span> <span class="attr">required</span> <span class="attr">v-decorator</span>=<span class="string">"formConfig.key"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-form-item</span> <span class="attr">label</span>=<span class="string">"Value"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-input</span> <span class="attr">placeholder</span>=<span class="string">"Value name"</span> <span class="attr">required</span> <span class="attr">v-decorator</span>=<span class="string">"formConfig.value"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-form-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-modal</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>与处理逻辑：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  watch: &#123;</span><br><span class="line">    visible(isShow) &#123;</span><br><span class="line">      <span class="keyword">if</span> (isShow) &#123;</span><br><span class="line">        <span class="keyword">this</span>.form.setFieldsValue(&#123;</span><br><span class="line">          [<span class="string">"key"</span>]: <span class="keyword">this</span>.key,</span><br><span class="line">          [<span class="string">"value"</span>]: <span class="keyword">this</span>.value</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>但是每次点击按钮后弹出窗口后，相对应的值并没有设置进表单中，而且控制台报了这个错：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: You cannot set a form field before rendering a field associated with the value.</span><br></pre></td></tr></table></figure><p>查看 DOM 树后发现，当 <code>visible</code> 第一次为 <code>true</code> 时，<code>&lt;a-modal&gt;</code> 运用单例模式被渲染为 <code>&lt;body&gt;</code> 的最后一个子元素。所以怀疑是在 <code>form</code> 还没被渲染的时候，就已经调用了 <code>setFieldsValue</code> 的方法。</p><p>所以把方法调整为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line">  visible(isShow) &#123;</span><br><span class="line">    <span class="keyword">if</span> (isShow) &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.isRendered)&#123;</span><br><span class="line">        <span class="keyword">this</span>.setValue(<span class="keyword">this</span>.key, <span class="keyword">this</span>.value);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.isRendered = <span class="literal">true</span>;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">          <span class="keyword">this</span>.setValue(<span class="keyword">this</span>.key, <span class="keyword">this</span>.value);</span><br><span class="line">        &#125;,<span class="number">100</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">methods:&#123;</span><br><span class="line">  setValue(k,v)&#123;</span><br><span class="line">    <span class="keyword">this</span>.form.setFieldsValue(&#123;</span><br><span class="line">      [<span class="string">"key"</span>]: k,</span><br><span class="line">      [<span class="string">"value"</span>]: v</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>这样一来，通过使用 <code>setTimeout</code> 的方式转化为异步赋值。其中这个 <code>100ms</code> 的时间差是一开始为了验证“是不是由于渲染时序的原因导致的无法赋值”的问题。验证通过后，发现去掉时间也是可以的。至于 <code>setTimeout(fn, 0)</code> 之所以有效，先放两篇链接。</p><ol><li><a href="https://www.quora.com/What-does-setTimeout-with-a-0ms-delay-do-Is-this-some-trick-to-spawn-a-new-thread-but-why" target="_blank" rel="noopener">What does setTimeout with a 0ms delay do? Is this some trick to spawn a new thread, but why?</a></li><li><a href="https://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful" target="_blank" rel="noopener">Why is setTimeout(fn, 0) sometimes useful?</a></li></ol><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;刚刚解决了 &lt;code&gt;Ant Design Vue&lt;/code&gt; 中，出现弹窗内的表单动态赋值的问题。&lt;/p&gt;
+&lt;p&gt;需求大概是这样，页面中的 &lt;code&gt;Table&lt;/code&gt; 放置了 &lt;code&gt;Key&lt;/code&gt; 与 &lt;code&gt;Value&lt;/code&gt; 对应的
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Vue" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Vue/Ant-Design/"/>
+    
+    
+      <category term="Vue" scheme="https://blog.decay.fun/tags/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/tags/Ant-Design/"/>
+    
+  </entry>
   
   <entry>
     <title>《小岛经济学》</title>
