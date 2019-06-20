@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/"/>
-  <updated>2019-03-22T06:08:21.791Z</updated>
+  <updated>2019-06-20T10:01:42.352Z</updated>
   <id>https://blog.decay.fun/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>上线了一个优惠券网站：趣优选</title>
+    <link href="https://blog.decay.fun/2019/06/20/new-site-called-you-xuan-fun/"/>
+    <id>https://blog.decay.fun/2019/06/20/new-site-called-you-xuan-fun/</id>
+    <published>2019-06-20T08:37:59.000Z</published>
+    <updated>2019-06-20T10:01:42.352Z</updated>
+    
+    <content type="html"><![CDATA[<p>我曾在这个网站的第一篇文章《<a href="https://blog.decay.fun/2019/03/06/Init/">Init()</a>》中就这么写道：</p><blockquote><p>…现在微博和朋友圈也发得很少，更不用说我的那个公众号了。现在居然还人模人样地弄了一个专门的博客网站，想顺上个时代的大潮好像晚的也太过分了些……可能需要考虑风格、面向的读者等等杂七杂八的琐事，想要记录零零碎碎的一些东西可能因为这些的原因，刚开热的“新建文章”页面就关了下来。</p></blockquote><p>果不其然，影响我更新的最主要因素并不是这些七七八八，而单纯只是因为我懒……得记录，干活的时候还是很愿意花时间的。这次就做了一个新网站：<a href="http://youxuan.fun?utm_source=blog_decay_fun" target="_blank" rel="noopener">趣优选</a>。</p><a id="more"></a><hr><p><a href="http://youxuan.fun?utm_source=blog_decay_fun" target="_blank" rel="noopener">趣优选</a>的所有商品数据都来自于<a href="https://www.taobao.com/" target="_blank" rel="noopener">淘宝官方</a>，我们是一个中立的、为广大网友消费者提供丰富优质优惠券的网站 😁。</p><hr><p>其实以前被这类网站的微博广告刷得心烦，当时还好奇过这类的优惠是怎么来的，但并没有深究。直到去年年底参加大学舍友的婚礼，现场和另外一个舍友聊了几句说到这个，发现他也在做而且好像做的还不错我才知道这些都是有 API 可以取的，只不过等级不同能拿到的优惠力度也不一样罢了。但是当时刚忙完『戏词』新版本的我也没想过往这方面“拓展业务”，只是提议说如果他愿意的话我可以开个广告位入驻进来，之后便不了了之了。</p><p>后来在家里跟州官说起这件事，她说之前有个账号，但是一直没怎么用。我一想，诶这机会（账号也不是什么难事……只是因为我懒）不就在身边吗？就准备自己动手做一个，但是一没经验，二没方向，只凭着一腔激动无处发泄。跟州官讨论了好久起啥名字好，最后买了个 youxuan.fun 的域名后不知道该干啥就搁置了。再次证明了那句话：</p><blockquote><p>万事起名难，然后中间难，然后后面难</p></blockquote><p>搁置之后因为和朋友有另外一个项目开工，这件事就无限期的往后推迟了。真正动手做也就 6 月 17 号那天。</p><p>因为 618 铺天盖地的广告宣传，我觉得是时候开始了解一下流程了。正好项目阶段性完成，留出了个小空挡，当做是放松自己的一种方式，我决定开始进行尝试。原本的预想是现在先了解，为之后双 11 做好准备（企业家的深谋远虑【笑，结果接口对接起来比我想象中的要容易，没想到一个小半天就搭了个大概起来。</p><p>当天晚上 11 点多，着着急急地部署了第一个版本的网站，只有搜索和领券的功能。Express 做后台 API 处理，前台用 Vue-AntD 直接搭建，快速搭建不愁人。现在完善了类目推荐，感觉像模像样，算是阶段性完工啦！（意思是可以放着不用怎么管了嘻嘻）</p><p>分销是个挺好的商业模式，可以大幅度的降低获客成本。最近微博上特别火的大 V 广告某某家的电动牙刷用的其实也是这种模式。尤其是后者，通过更精确地入口定位，更能判断出微博大 V 分别的价值，以方便下一步的营销计划（参考自：<a href="https://weibo.com/ttarticle/p/show?id=2309404368612675687376" target="_blank" rel="noopener">《没有一个大 V，逃得过电动牙刷》</a>）。我在新的项目中也加入这个思考，希望能帮助到接下来的工作。</p><p>之前有看到别人说过“自动化获客脚本”的事情，我估计下一步的计划就是了解一下这个，然后还有了解 SEO 和在双十一前的版本里加入 SSR。</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我曾在这个网站的第一篇文章《&lt;a href=&quot;https://blog.decay.fun/2019/03/06/Init/&quot;&gt;Init()&lt;/a&gt;》中就这么写道：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;…现在微博和朋友圈也发得很少，更不用说我的那个公众号了。现在居然还人模人样地弄了一个专门的博客网站，想顺上个时代的大潮好像晚的也太过分了些……可能需要考虑风格、面向的读者等等杂七杂八的琐事，想要记录零零碎碎的一些东西可能因为这些的原因，刚开热的“新建文章”页面就关了下来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;果不其然，影响我更新的最主要因素并不是这些七七八八，而单纯只是因为我懒……得记录，干活的时候还是很愿意花时间的。这次就做了一个新网站：&lt;a href=&quot;http://youxuan.fun?utm_source=blog_decay_fun&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;趣优选&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
+    
+      <category term="项目" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+      <category term="建站" scheme="https://blog.decay.fun/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+      <category term="优惠券" scheme="https://blog.decay.fun/tags/%E4%BC%98%E6%83%A0%E5%88%B8/"/>
+    
+      <category term="趣优选" scheme="https://blog.decay.fun/tags/%E8%B6%A3%E4%BC%98%E9%80%89/"/>
+    
+  </entry>
   
   <entry>
     <title>解决了在 Ant Design Pro Vue 中使用 vuedraggable 时的 bug</title>
