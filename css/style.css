@@ -172,7 +172,8 @@ div {
   color: #888; }
 
 .post {
-  padding: 25px 0 15px; }
+  padding: 25px 0 15px;
+  margin-bottom: 40px; }
   .post .post-title {
     margin: 0;
     color: #555;
