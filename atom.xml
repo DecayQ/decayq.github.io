@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/"/>
-  <updated>2019-06-20T10:01:42.352Z</updated>
+  <updated>2019-06-26T02:01:55.317Z</updated>
   <id>https://blog.decay.fun/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新站興隆，开张</title>
+    <link href="https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/"/>
+    <id>https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/</id>
+    <published>2019-06-25T14:39:59.000Z</published>
+    <updated>2019-06-26T02:01:55.317Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/06/25/new-site-called-sing-long-fun/sing-long-logo.jpg" title="興隆LOGO"><p>自从重新熟悉了 nginx 和服务器配置后，上线新网站成了轻而易举的事情。</p><p>这不，介绍一下我站点群（哈哈哈哈哈哈哈）今天的新成员：『<a href="http://tool.singlong.fun" target="_blank" rel="noopener">興隆工具</a>』。</p><a id="more"></a><p>去年底的时候接了外单后，由于客户域名方面的问题导致上线过程中被卡住了。所以我就有了“先注册个域名，测试或者上线前可以先临时顶替一下”的想法。想到这个域名负责的业务场景主要是用在商单上，所以名字想要“喜庆”一些（哈哈哈），于是就有了这个读音为“兴隆”，写法为“Sing Long（传唱久远）”的域名，也照着这个名字的感觉顺便做了一下 Logo。<del>可真是个全能的小天才呢哈哈哈哈。</del></p><hr><p>说到这儿刚想起来，当前这个域名 decay.fun 和 singlong.fun 这俩从单词上看两者的意思完全相反的域名，居然是差不多时间注册的，也不知道当初是怎么想的。</p><hr><p>这次上线的是一个“高频词分析”的工具。前台依旧是用 <a href="https://vue.ant.design/" target="_blank" rel="noopener">Ant Design Vue</a> 框架进行搭建（说实话我已经爱上它了，实现速度真的是快，在这里再次诚心安利），功能是统计和分析输入的段落中，英文单词的出现次数与频率。</p><p>老实说并没什么难点，思路是先把多段落合利用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STRING = STRING.split(<span class="string">"\n"</span>).join(<span class="string">" "</span>);</span><br></pre></td></tr></table></figure><p>合并成一行字符串，再通过</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">STRING.split(<span class="string">" "</span>).forEach(<span class="function"><span class="params">word</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (word.trim()) &#123;</span><br><span class="line">    word = word.toLowerCase();</span><br><span class="line">    <span class="keyword">if</span> (result[word]) &#123;</span><br><span class="line">      result[word] = ++result[word];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result[word] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>方法，以每个单词（这边的例子没有大小写敏感）为对象的一个 key，值为该单词的出现次数，这样就可以获取输入内容的单词和次数的关系 <code>Object</code>，再之后根据自己需要转换成 <code>Array</code> 即可。</p><p>这个项目最早的客户是我美丽可爱的女票（虽然现在正在和她闹变扭）。她在做亚马逊运营的时候有些关键词要进行分析，问我有没有什么方法可以统计她收集的关键词的出现次数，我想了想挺容易的东西，就花半小时做了个最简单（陋）的版本，就发给了她：</p><img src="/2019/06/25/new-site-called-sing-long-fun/ver-1.jpg" title="高频词统计第一版"><p>前两天她说和她的同事安利了这个工具，同事都想要，她就把文件发给了他们。我想，用发文件这么原始的方式还不如我上线到线上方便，而且之后如果会出问题修改的话也好解决。所以就有了第一个版本的興隆工具。也顺便改了一下界面：</p><img src="/2019/06/25/new-site-called-sing-long-fun/ver-2.jpg" title="高频词统计第二版"><p>Feeling Better~</p><p>我对『興隆』一开始的构想是在上面实现一些跟商业有关的东西，无论是外单也好，服务、工具也罢。比如上文提到的为客户挂的网站；用 hexo 搭建这个站点后想到可以实现一套 CMS；在日常项目中做成的一些工具服务可以开放到这个域名下等等等等。当然构想不需要花费力气，罗马也不是一天就建成的，积跬步以致千里就好。</p><p>从这个工具开始，慢慢整理总结自己的一些小轮子也是一个不错的开始。希望和各位一起“興隆”，哈哈哈！</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2019/06/25/new-site-called-sing-long-fun/sing-long-logo.jpg&quot; title=&quot;興隆LOGO&quot;&gt;
+&lt;p&gt;自从重新熟悉了 nginx 和服务器配置后，上线新网站成了轻而易举的事情。&lt;/p&gt;
+&lt;p&gt;这不，介绍一下我站点群（哈哈哈哈哈哈哈）今天的新成员：『&lt;a href=&quot;http://tool.singlong.fun&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;興隆工具&lt;/a&gt;』。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Vue" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Vue/Ant-Design/"/>
+    
+      <category term="项目" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Vue/Ant-Design/%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+      <category term="Vue" scheme="https://blog.decay.fun/tags/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/tags/Ant-Design/"/>
+    
+      <category term="建站" scheme="https://blog.decay.fun/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+  </entry>
   
   <entry>
     <title>上线了一个优惠券网站：趣优选</title>
@@ -98,9 +132,9 @@
       <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
-    
       <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+    
+      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="SDK" scheme="https://blog.decay.fun/tags/SDK/"/>
     
