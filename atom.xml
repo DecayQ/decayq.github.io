@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/"/>
-  <updated>2019-06-26T09:01:00.755Z</updated>
+  <updated>2019-06-26T09:14:26.940Z</updated>
   <id>https://blog.decay.fun/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://blog.decay.fun/2019/06/26/amazon-operation-tool-1/"/>
     <id>https://blog.decay.fun/2019/06/26/amazon-operation-tool-1/</id>
     <published>2019-06-26T07:16:02.000Z</published>
-    <updated>2019-06-26T09:01:00.755Z</updated>
+    <updated>2019-06-26T09:14:26.940Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/06/26/amazon-operation-tool-1/banner.jpg"><p><a href="https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/">上文</a>提到，“高频词分析工具”是为了我那美丽可爱的女友做的。然而昨天生气的她今天好像并没有消太多的气，今天又提出了新问题。这是致命且危险的一分。</p><blockquote><p>怎样才能快速保存亚马逊页面中买家秀的图</p></blockquote><p>在给出的<code>直接右键保存/复制图片</code>操作无效、<code>通过在控制台输入选择器</code>觉得要背诵太过麻烦，这两个我最常用的方案都被否决后，我在思考还有什么更方便的方法吗？</p><a id="more"></a><p>有，肯定有，到底用哪个只不过是一个时间成本问题。</p><img src="/2019/06/26/amazon-operation-tool-1/1.jpg" title="无法保存图片"><p>最快捷的右键保存，由于点击的时候是作用到亚马逊的轮播控件而不是图片，所以无效。那么在页面上如何还能控制到页面的元素呢，我第一想法是 Chrome 的扩展插件。但因为暂时还没点这部分的技能树，所以从零开始的写的话到发送给她用我估计这一分也早已远去了。这个方案也被排除。那么我所知道的剩下的方法就只剩一个了。</p><h2 id="通过书签栏的快捷方式操控页面！"><a href="#通过书签栏的快捷方式操控页面！" class="headerlink" title="通过书签栏的快捷方式操控页面！"></a>通过书签栏的快捷方式操控页面！</h2><p>书签栏听上去就和操控页面内容风马牛不相及，那如何用它来达成我的目的呢？答案在于修改书签的地址。先随便收藏一个页面之后，右键修改网址栏为:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">javascript: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// logic goes here</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><img src="/2019/06/26/amazon-operation-tool-1/2.jpg" title="修改书签"><p>这样一来，我们在页面中点击这个书签的按钮后，刚才写在网址栏中的脚本就会在当前网页执行。只要在脚本内控制好操作的逻辑，就可以实现想要的功能。为了快速解决领导的问题，简陋地写了插入打开当前图片的超链接。打开弹窗后，点击一下书签栏，按钮就会自动添加到代码中所制定的位置，点击后即可快速打开当前图片：</p><img src="/2019/06/26/amazon-operation-tool-1/3.gif" title="操作演示"><p>点击后再调节 DOM 结构的方式意味着，重新打开弹窗显示新图片后，按钮的跳转地址仍然是旧图片，需要重新点击书签才能生成新地址的按钮。虽然这步的用户体验还是差，但是能快速解决需求比什么都来的重要。</p><img src="/2019/06/26/amazon-operation-tool-1/4.jpg"><p>以上。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Photo by Hello I&apos;m Nik 🇬🇧 on Unsplash</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/06/26/amazon-operation-tool-1/banner.jpg"><p><a href="https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/">上文</a>提到，“高频词分析工具”是为了我那美丽可爱的女友做的。然而昨天生气的她今天好像并没有消太多的气，今天又提出了新问题。这是致命且危险的一分。</p><blockquote><p>怎样才能快速保存亚马逊页面中买家秀的图</p></blockquote><p>在给出的<code>直接右键保存/复制图片</code>操作无效、<code>通过在控制台输入选择器</code>觉得要背诵太过麻烦，这两个我最常用的方案都被否决后，我在思考还有什么更方便的方法吗？</p><a id="more"></a><p>有，肯定有，到底用哪个只不过是一个时间成本问题。</p><img src="/2019/06/26/amazon-operation-tool-1/1.jpg" title="无法保存图片"><p>最快捷的右键保存，由于点击的时候是作用到亚马逊的轮播控件而不是图片，所以无效。那么在页面上如何还能控制到页面的元素呢，我第一想法是 Chrome 的扩展插件。但因为暂时还没点这部分的技能树，所以从零开始的写的话到发送给她用我估计这一分也早已远去了。这个方案也被排除。那么我所知道的剩下的方法就只剩一个了。</p><h2 id="通过书签栏的快捷方式操控页面！"><a href="#通过书签栏的快捷方式操控页面！" class="headerlink" title="通过书签栏的快捷方式操控页面！"></a>通过书签栏的快捷方式操控页面！</h2><p>书签栏听上去就和操控页面内容风马牛不相及，那如何用它来达成我的目的呢？答案在于修改书签的地址。先随便收藏一个页面之后，右键修改网址栏为:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">javascript: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// logic goes here</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><img src="/2019/06/26/amazon-operation-tool-1/2.jpg" title="修改书签"><p>这样一来，我们在页面中点击这个书签的按钮后，刚才写在网址栏中的脚本就会在当前网页执行。只要在脚本内控制好操作的逻辑，就可以实现想要的功能。为了快速解决领导的问题，简陋地写了插入打开当前图片的超链接。打开弹窗后，点击一下书签栏，按钮就会自动添加到代码中所制定的位置，点击后即可快速打开当前图片：</p><img src="/2019/06/26/amazon-operation-tool-1/3.gif" title="操作演示"><p>点击后再调节 DOM 结构的方式意味着，重新打开弹窗显示新图片后，按钮的跳转地址仍然是旧图片，需要重新点击书签才能生成新地址的按钮。虽然这步的用户体验还是差，但是能快速解决需求比什么都来的重要。</p><img src="/2019/06/26/amazon-operation-tool-1/4.jpg"><p>以上。</p><blockquote><p>头图来自 <a href="https://unsplash.com/@helloimnik?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener">Hello I’m Nik 🇬🇧</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p></blockquote>]]></content>
     
     <summary type="html">
     
@@ -76,9 +76,9 @@
     
       <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
     
-      <category term="工具" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B7%A5%E5%85%B7/"/>
-    
       <category term="Vue" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/"/>
+    
+      <category term="工具" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="Ant Design" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/Ant-Design/"/>
     
