@@ -76,9 +76,9 @@
     
       <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
     
-      <category term="Vue" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/"/>
-    
       <category term="工具" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="Vue" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/"/>
     
       <category term="Ant Design" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/Ant-Design/"/>
     
