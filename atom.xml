@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/"/>
-  <updated>2019-07-02T07:41:26.332Z</updated>
+  <updated>2019-07-02T07:48:45.779Z</updated>
   <id>https://blog.decay.fun/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.decay.fun/2019/07/02/new-wechat-offcial-account-logo/"/>
     <id>https://blog.decay.fun/2019/07/02/new-wechat-offcial-account-logo/</id>
     <published>2019-07-02T07:31:01.000Z</published>
-    <updated>2019-07-02T07:41:26.332Z</updated>
+    <updated>2019-07-02T07:48:45.779Z</updated>
     
     <content type="html"><![CDATA[<img src="/2019/07/02/new-wechat-offcial-account-logo/logo.jpg"><p>给公众号做了一个新 LOGO，名字也换成了『DecayQ』。</p><p>微信搜索『decayq』即可。</p><p>至于啥时候会更新，我也不知道。</p>]]></content>
     
@@ -55,9 +55,9 @@
     <link href="https://blog.decay.fun/2019/06/28/some-thoughts-about-sing-long-cms/"/>
     <id>https://blog.decay.fun/2019/06/28/some-thoughts-about-sing-long-cms/</id>
     <published>2019-06-28T09:11:05.000Z</published>
-    <updated>2019-06-28T10:43:01.372Z</updated>
+    <updated>2019-07-02T07:48:45.320Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/06/28/some-thoughts-about-sing-long-cms/sing-long-cms.jpg" title="关于兴隆 CMS 的一些想法"><p>我在微博的小号里面发了条：</p><blockquote><p>接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。</p></blockquote><p>本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。</p><p>作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。</p><a id="more"></a><h2 id="CMS-Content-Management-System"><a href="#CMS-Content-Management-System" class="headerlink" title="CMS (Content Management System)"></a>CMS (Content Management System)</h2><h3 id="RBAC"><a href="#RBAC" class="headerlink" title="RBAC"></a>RBAC</h3><p>内容管理系统的核心在<strong>管理</strong>上。那么由谁来管理？自然就是管理员了。但是当所有的操作权限都集中在一个管理员手中的时候，就是一个巨大的安全隐患。所以，我们会将不同的操作独立开来，按不同的角色进行分类，最后再给用户分配对应的角色。不同的用户拥有自己的角色；不同的角色有对应着不同的操作权限。那么由管理引出了该系统子系统——用户角色权限控制系统（RBAC: Role-Based Access Control）：<strong>用户</strong>-<strong>角色</strong>-<strong>权限</strong>。</p><p>一般来说，站点会有一个拥有所有权限的管理员。用于管理所有用户和角色。但作为一个目标是通用性 CMS，只有一个管理员来维护权限和角色似乎效率过低。我从这篇<a href="https://mp.weixin.qq.com/s/MKljuxfDMmopr_MrnYljGw" target="_blank" rel="noopener">《角色权限设计的 100 种解法》</a>中知道了：可以通过添加某个角色的子管理员，由 ta 来管理自身权限下的角色和权限，并且操作的范围不超过自身权限范围即可。</p>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/06/28/some-thoughts-about-sing-long-cms/sing-long-cms.jpg" title="关于兴隆 CMS 的一些想法"><p>我在微博的小号里面发了条：</p><blockquote><p>接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。</p></blockquote><p>本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。</p><p>作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款通用型 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。</p><a id="more"></a><h2 id="兴隆-CMS-将会是一个基于组件开发的框架系统。"><a href="#兴隆-CMS-将会是一个基于组件开发的框架系统。" class="headerlink" title="兴隆 CMS 将会是一个基于组件开发的框架系统。"></a>兴隆 CMS 将会是一个基于组件开发的框架系统。</h2><p>设计中会有：页面设计器、组件市场、关联数据管理。</p><p>[未完成]</p><!-- ## CMS (Content Management System)内容管理系统（英语：content management system，缩写为 CMS）是指在一个合作模式下，用于管理工作流程的一套制度。该系统可应用于手工操作中，也可以应用到计算机或网络里。作为一种中央储存器（central repository），内容管理系统可将相关内容集中储存并具有群组管理、版本控制等功能。版本控制是内容管理系统的一个主要优势。[2]### 权限内容管理系统的核心在**管理**上。那么由谁来管理？自然就是管理员了。但是当所有的操作权限都集中在一个管理员手中的时候，就是一个巨大的安全隐患。所以，我们会将不同的操作独立开来，按不同的角色进行分类，最后再给用户分配对应的角色。不同的用户拥有自己的角色；不同的角色有对应着不同的操作权限。那么由管理引出了该系统子系统——用户角色权限控制系统（RBAC: Role-Based Access Control）：**用户**-**角色**-**权限**。一般来说，站点会有一个拥有所有权限的管理员。用于管理所有用户和角色。但作为一个目标是通用型 CMS，只有一个管理员来维护权限和角色似乎效率过低。我从这篇[《角色权限设计的 100 种解法》][1]中知道了：可以通过添加某个角色的子管理员，由 ta 来管理自身权限下的角色和权限，并且操作的范围不超过自身权限范围即可。### 用户界面设计界面[1]: https://mp.weixin.qq.com/s/MKljuxfDMmopr_MrnYljGw[2]: https://zh.wikipedia.org/wiki/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F -->]]></content>
     
     <summary type="html">
     
@@ -67,7 +67,7 @@
 &lt;p&gt;接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。&lt;/p&gt;
-&lt;p&gt;作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。&lt;/p&gt;
+&lt;p&gt;作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款通用型 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。&lt;/p&gt;
     
     </summary>
     
@@ -91,9 +91,9 @@
     <link href="https://blog.decay.fun/2019/06/26/amazon-operation-tool-1/"/>
     <id>https://blog.decay.fun/2019/06/26/amazon-operation-tool-1/</id>
     <published>2019-06-26T07:16:02.000Z</published>
-    <updated>2019-07-02T07:23:38.749Z</updated>
+    <updated>2019-07-02T09:05:07.189Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/06/26/amazon-operation-tool-1/banner.jpg"><p><a href="https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/">上文</a>提到，“高频词分析工具”是为了我那美丽可爱的女友做的。然而昨天生气的她今天好像并没有消太多的气，今天又提出了新问题。这是致命且危险的一分。</p><blockquote><p>怎样才能快速保存亚马逊页面中买家秀的图</p></blockquote><p>在给出的<code>直接右键保存/复制图片</code>操作无效、<code>通过在控制台输入选择器</code>觉得要背诵太过麻烦，这两个我最常用的方案都被否决后，我在思考还有什么更方便的方法吗？</p><a id="more"></a><p>有，肯定有，到底用哪个只不过是一个时间成本问题。</p><img src="/2019/06/26/amazon-operation-tool-1/1.jpg" title="无法保存图片"><p>最快捷的右键保存，由于点击的时候是作用到亚马逊的轮播控件而不是图片，所以无效。那么在页面上如何还能控制到页面的元素呢，我第一想法是 Chrome 的扩展插件。但因为暂时还没点这部分的技能树，所以从零开始的写的话到发送给她用我估计这一分也早已远去了。这个方案也被排除。那么我所知道的剩下的方法就只剩一个了。</p><h2 id="通过书签栏的快捷方式操控页面！"><a href="#通过书签栏的快捷方式操控页面！" class="headerlink" title="通过书签栏的快捷方式操控页面！"></a>通过书签栏的快捷方式操控页面！</h2><p>书签栏听上去就和操控页面内容风马牛不相及，那如何用它来达成我的目的呢？答案在于修改书签的地址。先随便收藏一个页面之后，右键修改网址栏为:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">javascript: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// logic goes here</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><img src="/2019/06/26/amazon-operation-tool-1/2.jpg" title="修改书签"><p>这样一来，我们在页面中点击这个书签的按钮后，刚才写在网址栏中的脚本就会在当前网页执行。只要在脚本内控制好操作的逻辑，就可以实现想要的功能。为了快速解决领导的问题，简陋地写了插入打开当前图片的超链接。打开弹窗后，点击一下书签栏，按钮就会自动添加到代码中所制定的位置，点击后即可快速打开当前图片：</p><img src="/2019/06/26/amazon-operation-tool-1/3.gif" title="操作演示"><p>点击后再调节 DOM 结构的方式意味着，重新打开弹窗显示新图片后，按钮的跳转地址仍然是旧图片，需要重新点击书签才能生成新地址的按钮。虽然这步的用户体验还是差，但是能快速解决需求比什么都来的重要。</p><img src="/2019/06/26/amazon-operation-tool-1/4.jpg"><p>以上。</p><blockquote><p>头图来自 <a href="https://unsplash.com/@helloimnik?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener">Hello I’m Nik 🇬🇧</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p></blockquote>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/06/26/amazon-operation-tool-1/banner.jpg"><p><a href="https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/">上文</a>提到，“高频词分析工具”是为了我那美丽可爱的女友做的。然而昨天生气的她今天好像并没有消太多的气，今天又提出了新问题。这是致命且危险的一分。</p><blockquote><p>怎样才能快速保存亚马逊页面中买家秀的图</p></blockquote><p>在给出的<code>直接右键保存/复制图片</code>操作无效、<code>通过在控制台输入选择器</code>觉得要背诵太过麻烦，这两个我最常用的方案都被否决后，我在思考还有什么更方便的方法吗？</p><a id="more"></a><p>有，肯定有，到底用哪个只不过是一个时间成本问题。</p><img src="/2019/06/26/amazon-operation-tool-1/1.jpg" title="无法保存图片"><p>最快捷的右键保存，由于点击的时候是作用到亚马逊的轮播控件而不是图片，所以无效。那么在页面上如何还能控制到页面的元素呢，我第一想法是 Chrome 的扩展插件。但因为暂时还没点这部分的技能树，所以从零开始的写的话到发送给她用我估计这一分也早已远去了。这个方案也被排除。那么我所知道的剩下的方法就只剩一个了。</p><h2 id="通过书签栏的快捷方式操控页面！"><a href="#通过书签栏的快捷方式操控页面！" class="headerlink" title="通过书签栏的快捷方式操控页面！"></a>通过书签栏的快捷方式操控页面！</h2><p>书签栏听上去就和操控页面内容风马牛不相及，那如何用它来达成我的目的呢？答案在于修改书签的地址。先随便收藏一个页面之后，右键修改网址栏为:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">javascript: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// logic goes here</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><img src="/2019/06/26/amazon-operation-tool-1/2.jpg" title="修改书签"><p>这样一来，我们在页面中点击这个书签的按钮后，刚才写在网址栏中的脚本就会在当前网页执行。只要在脚本内控制好操作的逻辑，就可以实现想要的功能。为了快速解决领导的问题，简陋地写了插入打开当前图片的超链接。打开弹窗后，点击一下书签栏，按钮就会自动添加到代码中所制定的位置，点击后即可快速打开当前图片：</p><img src="/2019/06/26/amazon-operation-tool-1/3.gif" title="操作演示"><p>点击后再调节 DOM 结构的方式意味着，重新打开弹窗显示新图片后，按钮的跳转地址仍然是旧图片，需要重新点击书签才能生成新地址的按钮。虽然这步的用户体验还是差，但是能快速解决需求比什么都来的重要。</p><img src="/2019/06/26/amazon-operation-tool-1/4.jpg"><p>以上。</p><p>=========</p><p><strong>2019年7月2日 更新：</strong> 傻了，当初为啥要生成按钮再点击打开呢？获取到当前图片的地址后直接在新页面打开就可以啦😂</p><img src="/2019/06/26/amazon-operation-tool-1/5.gif"><blockquote><p>头图来自 <a href="https://unsplash.com/@helloimnik?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener">Hello I’m Nik 🇬🇧</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p></blockquote>]]></content>
     
     <summary type="html">
     
@@ -155,11 +155,11 @@
       <category term="项目" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E9%A1%B9%E7%9B%AE/"/>
     
     
-      <category term="建站" scheme="https://blog.decay.fun/tags/%E5%BB%BA%E7%AB%99/"/>
-    
       <category term="Vue" scheme="https://blog.decay.fun/tags/Vue/"/>
     
       <category term="Ant Design" scheme="https://blog.decay.fun/tags/Ant-Design/"/>
+    
+      <category term="建站" scheme="https://blog.decay.fun/tags/%E5%BB%BA%E7%AB%99/"/>
     
   </entry>
   
