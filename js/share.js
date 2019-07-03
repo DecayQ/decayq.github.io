@@ -1,67 +1,92 @@
-(function ($) {
-
+(function($) {
   // article-share
-  $('body').on('click', function () {
-    $('.article-share-box.on').removeClass('on');
-  }).on('click', '.article-share-link', function (e) {
-    e.stopPropagation();
+  $("body")
+    .on("click", function() {
+      $(".article-share-box.on").removeClass("on");
+    })
+    .on("click", ".article-share-link", function(e) {
+      e.stopPropagation();
 
-    var $this = $(this),
-      url = $this.attr('data-url'),
-      qrcode_img = $this.attr('data-qrcode'),
-      encodedUrl = encodeURIComponent(url),
-      id = 'article-share-box-' + $this.attr('data-id'),
-      title = document.title,
-      offset = $this.offset();
+      var $this = $(this),
+        url = $this.attr("data-url"),
+        qrcode_img = $this.attr("data-qrcode"),
+        encodedUrl = encodeURIComponent(url),
+        id = "article-share-box-" + $this.attr("data-id"),
+        title = document.title,
+        offset = $this.offset();
+      debugger;
 
-    var weiboUrl = url;
-    if (weiboUrl.indexOf('?') > -1) {
-      weiboUrl += '&utm_source=weibo'
-    } else {
-      weiboUrl += '?utm_source=weibo'
-    }
+      var weiboUrl = url;
 
-    if ($('#' + id).length) {
-      var box = $('#' + id);
-
-      if (box.hasClass('on')) {
-        box.removeClass('on');
-        return;
+      let contentFirstChild = $(".post-content").children()[0];
+      let picUrl = "";
+      if (
+        contentFirstChild.tagName == "A" &&
+        contentFirstChild.getAttribute("class").indexOf("fancybox") > -1
+      ) {
+        picUrl = contentFirstChild.href;
       }
-    } else {
-      var html = [
-        '<div id="' + id + '" class="article-share-box">',
-        '<input class="article-share-input" value="' + url + '">',
-        '<div class="article-share-links">',
-        '<a href="//twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-        '<a href="//www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-        '<a href="//service.weibo.com/share/share.php?title=' + title + '&url=' + encodeURIComponent(weiboUrl) + '&searchPic=true&style=number' + '" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-        '<a href="' + qrcode_img + '" class="article-share-qrcode" target="_blank" title="QR code"></a>',
-        '<div class="qrcode"><img src=' + qrcode_img + '></div>',
-        '</div>',
-        '</div>'
-      ].join('');
 
-      var box = $(html);
+      if ($("#" + id).length) {
+        var box = $("#" + id);
 
-      $('body').append(box);
-    }
+        if (box.hasClass("on")) {
+          box.removeClass("on");
+          return;
+        }
+      } else {
+        var html = [
+          '<div id="' + id + '" class="article-share-box">',
+          '<input class="article-share-input" value="' + url + '">',
+          '<div class="article-share-links">',
+          '<a href="//twitter.com/intent/tweet?url=' +
+            encodedUrl +
+            '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+          '<a href="//www.facebook.com/sharer.php?u=' +
+            encodedUrl +
+            '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+          '<a href="//service.weibo.com/share/share.php?appkey=&searchPic=false&title=' +
+            title +
+            "&url=" +
+            encodeURIComponent(weiboUrl) +
+            (picUrl ? "&pic=" + picUrl : "") +
+            '" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+          '<a href="' +
+            qrcode_img +
+            '" class="article-share-qrcode" target="_blank" title="QR code"></a>',
+          '<div class="qrcode"><img src=' + qrcode_img + "></div>",
+          "</div>",
+          "</div>"
+        ].join("");
 
-    $('.article-share-box.on').hide();
+        var box = $(html);
 
-    box.css({
-      top: offset.top + 25,
-      left: offset.left
-    }).addClass('on');
-  }).on('click', '.article-share-box', function (e) {
-    e.stopPropagation();
-  }).on('click', '.article-share-box-input', function () {
-    $(this).select();
-  }).on('click', '.article-share-box-link', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+        $("body").append(box);
+      }
 
-    window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-  });
+      $(".article-share-box.on").hide();
 
+      box
+        .css({
+          top: offset.top + 25,
+          left: offset.left
+        })
+        .addClass("on");
+    })
+    .on("click", ".article-share-box", function(e) {
+      e.stopPropagation();
+    })
+    .on("click", ".article-share-box-input", function() {
+      $(this).select();
+    })
+    .on("click", ".article-share-box-link", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      window.open(
+        this.href,
+        "article-share-box-window-" + Date.now(),
+        "width=500,height=450"
+      );
+    });
 })(jQuery);
