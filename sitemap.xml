@@ -2,16 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.decay.fun/2019/07/24/introducing-xici-in-qq-mini-program/</loc>
+    <loc>https://blog.decay.fun/2019/06/28/some-thoughts-about-sing-long-cms/</loc>
     
-    <lastmod>2019-07-25T02:26:25.155Z</lastmod>
+    <lastmod>2019-07-25T10:27:00.475Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.decay.fun/2019/07/02/new-wechat-offcial-account-logo/</loc>
+    
+    <lastmod>2019-07-25T10:26:46.839Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.decay.fun/2019/06/20/new-site-called-you-xuan-fun/</loc>
+    
+    <lastmod>2019-07-25T10:26:14.707Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/</loc>
+    
+    <lastmod>2019-07-25T10:25:58.889Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.decay.fun/2019/07/09/lighto-logo/</loc>
+    
+    <lastmod>2019-07-25T10:25:39.076Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.decay.fun/2019/07/17/migrating-xici-to-qq-mini-program/</loc>
     
-    <lastmod>2019-07-25T02:01:16.194Z</lastmod>
+    <lastmod>2019-07-25T10:24:34.333Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.decay.fun/2019/07/24/introducing-xici-in-qq-mini-program/</loc>
+    
+    <lastmod>2019-07-25T02:26:25.155Z</lastmod>
     
   </url>
   
@@ -23,13 +58,6 @@
   </url>
   
   <url>
-    <loc>https://blog.decay.fun/2019/07/09/lighto-logo/</loc>
-    
-    <lastmod>2019-07-19T10:48:54.524Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.decay.fun/2019/06/26/amazon-operation-tool-1/</loc>
     
     <lastmod>2019-07-02T09:57:22.978Z</lastmod>
@@ -37,35 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.decay.fun/2019/07/02/new-wechat-offcial-account-logo/</loc>
-    
-    <lastmod>2019-07-02T07:48:45.779Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.decay.fun/2019/06/28/some-thoughts-about-sing-long-cms/</loc>
-    
-    <lastmod>2019-07-02T07:48:45.320Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.decay.fun/2019/06/20/new-site-called-you-xuan-fun/</loc>
-    
-    <lastmod>2019-06-28T08:16:29.261Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.decay.fun/2019/03/22/fixed-a-weird-bug-when-using-ant-design-pro-vue-with-vue-draggable/</loc>
-    
-    <lastmod>2019-06-26T08:46:05.828Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/</loc>
     
     <lastmod>2019-06-26T08:46:05.828Z</lastmod>
     

@@ -58,17 +58,14 @@
     <link href="https://blog.decay.fun/2019/07/17/migrating-xici-to-qq-mini-program/"/>
     <id>https://blog.decay.fun/2019/07/17/migrating-xici-to-qq-mini-program/</id>
     <published>2019-07-17T15:23:35.000Z</published>
-    <updated>2019-07-25T02:01:16.194Z</updated>
+    <updated>2019-07-25T10:24:34.333Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/07/17/migrating-xici-to-qq-mini-program/banner.jpg"><p>上周五的时候，我的微信小程序『戏词』收到了来自<a href="http://aldzs.com/" target="_blank" rel="noopener">阿拉丁指数</a>关于 QQ 小程序的内测邀请，虽说已经好久没用 QQ 了不知道现在上面的生态是怎么样的，但觉得新平台的话还是可以试试的，于是周末就看了下文档做了修改。</p><h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><p>改起来其实挺容易的，目录结构部分只要把后缀名 <code>.wxml</code> 改成 <code>.qml</code>、<code>.wxss</code> 改成 <code>.qss</code> 就好。QQ 小程序内用全局对象 <code>qq</code> 取代了 <code>wx</code>，<code>.qml</code> 和 <code>.js</code> 部分中含有 wx 的部分都改成 qq 即可。不过 QQ 小程序的开发者工具不提供代码编辑功能，用 vscode 全局搜一下替换调就完事。【这个不提供编辑器功能让我一开始以为自己下错安装包了，卸了一次重装发现还是这样就放弃了……</p><p>转换的过程也不算麻烦，但是好歹是自家的程序迁移，都不做个一键迁移的功能。你看看人家百度，开发工具做的那么烂还不是有个一键迁移微信小程序的功能？希望官方能重视一下。</p><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="文档不全"><a href="#文档不全" class="headerlink" title="文档不全"></a>文档不全</h3><p>过程中比较糟糕的体验是分包部分。这部分官方的文档并不全，而且也只是草草的给个接口，示例代码都没有。直接从微信小程序迁移过来的<code>app.json</code>格式无法正确加载，导致我只能把『戏词』较为无关的功能删除，并对页面结构进行修改。</p><blockquote><p>刚去看了一眼，发现文档已经更新了，现在跟微信的大致相同，唉，又是修改的一天，不过也算是好事儿。<br>07-24 更新，文档是一样了，但是还是不行。</p></blockquote><h3 id="生态暂不完善"><a href="#生态暂不完善" class="headerlink" title="生态暂不完善"></a>生态暂不完善</h3><p>因为目前 QQ 小程序还处于起步阶段，生态环境还没有完全成型，很多在微信平台上的小程序并没有迁移过来，程序间跳转无法和微信保持一致——例如『戏词』内用户接受用户赞赏的“给赞”——还有很多微信上用到的第三方插件在 QQ 这里没法用，页面上调用相关组件的时候无法直接使用——比如用到的富文本显示的 wxParser。这些都需要在迁移的时候做相对应的调整。</p><h2 id="后台服务"><a href="#后台服务" class="headerlink" title="后台服务"></a>后台服务</h2><p>『戏词』的后台使用的是<a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">知晓云</a>提供的 BaaS 服务。他们的接口提供包括微信、QQ 小程序在内的全平台 SDK，这部分的迁移并没有多少难度，只要根据他们的文档在初始化的时候配置一下就可以了。</p><h2 id="用？发电"><a href="#用？发电" class="headerlink" title="用？发电"></a>用？发电</h2><p>『戏词』目前的支出主要是后台服务的费用，收入的大部分是靠小程序内的流量主。现在在微信上的收益基本能维持基础版的运行。新增了平台入口之后，流量请求也会增加，但是 QQ 内的还没有看到对开发者比较友好的措施。从客服提供的文档中看到了，现在 QQ 小程序的流量主是需要通过自己申请才可能获得资格。希望后期能慢慢完善，毕竟靠爱发电总是不会长久。如果能匹配这部分的资格的话，我也愿意在上面投入更多的时间实现更多的功能。</p><p>『戏词』QQ 版已经提交审核，应该 1-3 天内就能知道结果。看似简单的迁移过程也是路上皆坑，不过也希望 QQ 小程序也能越做越好。</p><p>以上。</p>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/07/17/migrating-xici-to-qq-mini-program/banner.jpg"><p>上周五的时候，我的微信小程序『戏词』收到了来自<a href="http://aldzs.com/" target="_blank" rel="noopener">阿拉丁指数</a>关于 QQ 小程序的内测邀请，虽说已经好久没用 QQ 了不知道现在上面的生态是怎么样的，但觉得新平台的话还是可以试试的，于是周末就看了下文档做了修改。</p><a id="more"></a><h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><p>改起来其实挺容易的，目录结构部分只要把后缀名 <code>.wxml</code> 改成 <code>.qml</code>、<code>.wxss</code> 改成 <code>.qss</code> 就好。QQ 小程序内用全局对象 <code>qq</code> 取代了 <code>wx</code>，<code>.qml</code> 和 <code>.js</code> 部分中含有 wx 的部分都改成 qq 即可。不过 QQ 小程序的开发者工具不提供代码编辑功能，用 vscode 全局搜一下替换调就完事。【这个不提供编辑器功能让我一开始以为自己下错安装包了，卸了一次重装发现还是这样就放弃了……</p><p>转换的过程也不算麻烦，但是好歹是自家的程序迁移，都不做个一键迁移的功能。你看看人家百度，开发工具做的那么烂还不是有个一键迁移微信小程序的功能？希望官方能重视一下。</p><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="文档不全"><a href="#文档不全" class="headerlink" title="文档不全"></a>文档不全</h3><p>过程中比较糟糕的体验是分包部分。这部分官方的文档并不全，而且也只是草草的给个接口，示例代码都没有。直接从微信小程序迁移过来的<code>app.json</code>格式无法正确加载，导致我只能把『戏词』较为无关的功能删除，并对页面结构进行修改。</p><blockquote><p>刚去看了一眼，发现文档已经更新了，现在跟微信的大致相同，唉，又是修改的一天，不过也算是好事儿。<br>07-24 更新，文档是一样了，但是还是不行。</p></blockquote><h3 id="生态暂不完善"><a href="#生态暂不完善" class="headerlink" title="生态暂不完善"></a>生态暂不完善</h3><p>因为目前 QQ 小程序还处于起步阶段，生态环境还没有完全成型，很多在微信平台上的小程序并没有迁移过来，程序间跳转无法和微信保持一致——例如『戏词』内用户接受用户赞赏的“给赞”——还有很多微信上用到的第三方插件在 QQ 这里没法用，页面上调用相关组件的时候无法直接使用——比如用到的富文本显示的 wxParser。这些都需要在迁移的时候做相对应的调整。</p><h2 id="后台服务"><a href="#后台服务" class="headerlink" title="后台服务"></a>后台服务</h2><p>『戏词』的后台使用的是<a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">知晓云</a>提供的 BaaS 服务。他们的接口提供包括微信、QQ 小程序在内的全平台 SDK，这部分的迁移并没有多少难度，只要根据他们的文档在初始化的时候配置一下就可以了。</p><h2 id="用？发电"><a href="#用？发电" class="headerlink" title="用？发电"></a>用？发电</h2><p>『戏词』目前的支出主要是后台服务的费用，收入的大部分是靠小程序内的流量主。现在在微信上的收益基本能维持基础版的运行。新增了平台入口之后，流量请求也会增加，但是 QQ 内的还没有看到对开发者比较友好的措施。从客服提供的文档中看到了，现在 QQ 小程序的流量主是需要通过自己申请才可能获得资格。希望后期能慢慢完善，毕竟靠爱发电总是不会长久。如果能匹配这部分的资格的话，我也愿意在上面投入更多的时间实现更多的功能。</p><p>『戏词』QQ 版已经提交审核，应该 1-3 天内就能知道结果。看似简单的迁移过程也是路上皆坑，不过也希望 QQ 小程序也能越做越好。</p><p>以上。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;img src=&quot;/2019/07/17/migrating-xici-to-qq-mini-program/banner.jpg&quot;&gt;
-&lt;p&gt;上周五的时候，我的微信小程序『戏词』收到了来自&lt;a href=&quot;http://aldzs.com/&quot; target=&quot;_blank&quot; r
-      
+      &lt;img src=&quot;/2019/07/17/migrating-xici-to-qq-mini-program/banner.jpg&quot;&gt;
+&lt;p&gt;上周五的时候，我的微信小程序『戏词』收到了来自&lt;a href=&quot;http://aldzs.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;阿拉丁指数&lt;/a&gt;关于 QQ 小程序的内测邀请，虽说已经好久没用 QQ 了不知道现在上面的生态是怎么样的，但觉得新平台的话还是可以试试的，于是周末就看了下文档做了修改。&lt;/p&gt;
     
     </summary>
     
@@ -89,9 +86,9 @@
     
       <category term="小程序" scheme="https://blog.decay.fun/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="微信小程序" scheme="https://blog.decay.fun/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
       <category term="QQ 小程序" scheme="https://blog.decay.fun/tags/QQ-%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="微信小程序" scheme="https://blog.decay.fun/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -100,13 +97,13 @@
     <link href="https://blog.decay.fun/2019/07/09/lighto-logo/"/>
     <id>https://blog.decay.fun/2019/07/09/lighto-logo/</id>
     <published>2019-07-09T14:27:24.000Z</published>
-    <updated>2019-07-19T10:48:54.524Z</updated>
+    <updated>2019-07-25T10:25:39.076Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/07/09/lighto-logo/lighto.jpg" title="Lighto LOGO"><p>宝贝做的是亚马逊的运营，所以之前的工具也多半是为她写的。生活中经常吐槽她们公司美工如何如何的不靠谱，图我看了，确实做得很糟糕。但是因为那个美工也算是他们公司的老员工了，老板非常地欣赏他。各种丑图在他面前都能挑出优点，仿佛看着的是自己刚出生的亲儿子。</p><p>而她负责的类目又是那个品类最好的，导致同行们纷纷模仿这“第一”……不禁感慨，这么丑还能这么吃香，这个世界真的是不以人的意志为转移的。</p><p>所以时常在想，如果是我来做这个产品的相关设计的话，我会怎么去做这样的设计呢？</p><a id="more"></a><p>要跟现在的“直接、粗犷”的风格分隔开的话，我的设想是“精致、优雅”。所以线条的粗细和字体的选择都在这方面做了调整，用更细的线条来体现“精致”，用大量的留白来表现“优雅”。因为他们的类目和“光”有关系，所以起了个“Lighto”的名字（念起来像是日语 hhh），再结合上相关的图像，这个 LOGO 也算像模像样的做出来了。因为对它还算是满意，也想到之前说的在兴隆下搭建的电商平台，一时兴起把 LOGO 放到了页面上想作为之后电商网站的效果图。但是做的匆匆忙忙，所以并没有理想中的那么成功，所以效果图就不放了。</p><p>把 LOGO 发给宝贝看后她也觉得好看哈哈哈哈（相对于之前每次都会说一下“我觉得那个还要再调整一下”），而且不小心被她们主管看到了，胡扯了是友商的 LOGO 后，主管表示“还蛮好看的”。唉，你有这眼神，怎么就看不出自家的东西哪里不对劲呢？</p><p>电商这块我还没有接触，兴趣倒是一直都有。只知道网站的搭建方法，其他的还是一无所知。尤其是跨境电商，总感觉这里面竞争十分激烈，却蕴含着更多的机会。知道学习的东西还需要很多，选品、支付、物流，每一块单独拆出来都是一个大课题。支付的话因为看到前段时间 Facebook 出的 Libra，我觉得跨境电商是个非常合适的使用场景，所以也想趁着这个机会好好学习一下这些内容。</p><p>有机会的话，独立商城见~</p>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/07/09/lighto-logo/banner.jpg" title="Lighto LOGO"><p>宝贝做的是亚马逊的运营，所以之前的工具也多半是为她写的。生活中经常吐槽她们公司美工如何如何的不靠谱，图我看了，确实做得很糟糕。但是因为那个美工也算是他们公司的老员工了，老板非常地欣赏他。各种丑图在他面前都能挑出优点，仿佛看着的是自己刚出生的亲儿子。</p><p>而她负责的类目又是那个品类最好的，导致同行们纷纷模仿这“第一”……不禁感慨，这么丑还能这么吃香，这个世界真的是不以人的意志为转移的。</p><p>所以时常在想，如果是我来做这个产品的相关设计的话，我会怎么去做这样的设计呢？</p><a id="more"></a><p>要跟现在的“直接、粗犷”的风格分隔开的话，我的设想是“精致、优雅”。所以线条的粗细和字体的选择都在这方面做了调整，用更细的线条来体现“精致”，用大量的留白来表现“优雅”。因为他们的类目和“光”有关系，所以起了个“Lighto”的名字（念起来像是日语 hhh），再结合上相关的图像，这个 LOGO 也算像模像样的做出来了。因为对它还算是满意，也想到之前说的在兴隆下搭建的电商平台，一时兴起把 LOGO 放到了页面上想作为之后电商网站的效果图。但是做的匆匆忙忙，所以并没有理想中的那么成功，所以效果图就不放了。</p><p>把 LOGO 发给宝贝看后她也觉得好看哈哈哈哈（相对于之前每次都会说一下“我觉得那个还要再调整一下”），而且不小心被她们主管看到了，胡扯了是友商的 LOGO 后，主管表示“还蛮好看的”。唉，你有这眼神，怎么就看不出自家的东西哪里不对劲呢？</p><p>电商这块我还没有接触，兴趣倒是一直都有。只知道网站的搭建方法，其他的还是一无所知。尤其是跨境电商，总感觉这里面竞争十分激烈，却蕴含着更多的机会。知道学习的东西还需要很多，选品、支付、物流，每一块单独拆出来都是一个大课题。支付的话因为看到前段时间 Facebook 出的 Libra，我觉得跨境电商是个非常合适的使用场景，所以也想趁着这个机会好好学习一下这些内容。</p><p>有机会的话，独立商城见~</p>]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2019/07/09/lighto-logo/lighto.jpg&quot; title=&quot;Lighto LOGO&quot;&gt;
+      &lt;img src=&quot;/2019/07/09/lighto-logo/banner.jpg&quot; title=&quot;Lighto LOGO&quot;&gt;
 &lt;p&gt;宝贝做的是亚马逊的运营，所以之前的工具也多半是为她写的。生活中经常吐槽她们公司美工如何如何的不靠谱，图我看了，确实做得很糟糕。但是因为那个美工也算是他们公司的老员工了，老板非常地欣赏他。各种丑图在他面前都能挑出优点，仿佛看着的是自己刚出生的亲儿子。&lt;/p&gt;
 &lt;p&gt;而她负责的类目又是那个品类最好的，导致同行们纷纷模仿这“第一”……不禁感慨，这么丑还能这么吃香，这个世界真的是不以人的意志为转移的。&lt;/p&gt;
 &lt;p&gt;所以时常在想，如果是我来做这个产品的相关设计的话，我会怎么去做这样的设计呢？&lt;/p&gt;
@@ -143,18 +140,18 @@
     <link href="https://blog.decay.fun/2019/07/02/new-wechat-offcial-account-logo/"/>
     <id>https://blog.decay.fun/2019/07/02/new-wechat-offcial-account-logo/</id>
     <published>2019-07-02T07:31:01.000Z</published>
-    <updated>2019-07-02T07:48:45.779Z</updated>
+    <updated>2019-07-25T10:26:46.839Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/07/02/new-wechat-offcial-account-logo/logo.jpg"><p>给公众号做了一个新 LOGO，名字也换成了『DecayQ』。</p><p>微信搜索『decayq』即可。</p><p>至于啥时候会更新，我也不知道。</p>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/07/02/new-wechat-offcial-account-logo/banner.jpg"><p>给公众号做了一个新 LOGO，名字也换成了『DecayQ』。</p><p>微信搜索『decayq』即可。</p><p>至于啥时候会更新，我也不知道。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;img src=&quot;/2019/07/02/new-wechat-offcial-account-logo/logo.jpg&quot;&gt;
+        &lt;img src=&quot;/2019/07/02/new-wechat-offcial-account-logo/banner.jpg&quot;&gt;
 &lt;p&gt;给公众号做了一个新 LOGO，名字也换成了『DecayQ』。&lt;/p&gt;
 &lt;p&gt;微信搜索『decayq』即可。&lt;/p&gt;
-&lt;p&gt;至于啥时候会更新，我也
+&lt;p&gt;至于啥时候会更新，
       
     
     </summary>
@@ -177,13 +174,13 @@
     <link href="https://blog.decay.fun/2019/06/28/some-thoughts-about-sing-long-cms/"/>
     <id>https://blog.decay.fun/2019/06/28/some-thoughts-about-sing-long-cms/</id>
     <published>2019-06-28T09:11:05.000Z</published>
-    <updated>2019-07-02T07:48:45.320Z</updated>
+    <updated>2019-07-25T10:27:00.475Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/06/28/some-thoughts-about-sing-long-cms/sing-long-cms.jpg" title="关于兴隆 CMS 的一些想法"><p>我在微博的小号里面发了条：</p><blockquote><p>接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。</p></blockquote><p>本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。</p><p>作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款通用型 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。</p><a id="more"></a><h2 id="兴隆-CMS-将会是一个基于组件开发的框架系统。"><a href="#兴隆-CMS-将会是一个基于组件开发的框架系统。" class="headerlink" title="兴隆 CMS 将会是一个基于组件开发的框架系统。"></a>兴隆 CMS 将会是一个基于组件开发的框架系统。</h2><p>设计中会有：页面设计器、组件市场、关联数据管理。</p><p>[未完成]</p><!-- ## CMS (Content Management System)内容管理系统（英语：content management system，缩写为 CMS）是指在一个合作模式下，用于管理工作流程的一套制度。该系统可应用于手工操作中，也可以应用到计算机或网络里。作为一种中央储存器（central repository），内容管理系统可将相关内容集中储存并具有群组管理、版本控制等功能。版本控制是内容管理系统的一个主要优势。[2]### 权限内容管理系统的核心在**管理**上。那么由谁来管理？自然就是管理员了。但是当所有的操作权限都集中在一个管理员手中的时候，就是一个巨大的安全隐患。所以，我们会将不同的操作独立开来，按不同的角色进行分类，最后再给用户分配对应的角色。不同的用户拥有自己的角色；不同的角色有对应着不同的操作权限。那么由管理引出了该系统子系统——用户角色权限控制系统（RBAC: Role-Based Access Control）：**用户**-**角色**-**权限**。一般来说，站点会有一个拥有所有权限的管理员。用于管理所有用户和角色。但作为一个目标是通用型 CMS，只有一个管理员来维护权限和角色似乎效率过低。我从这篇[《角色权限设计的 100 种解法》][1]中知道了：可以通过添加某个角色的子管理员，由 ta 来管理自身权限下的角色和权限，并且操作的范围不超过自身权限范围即可。### 用户界面设计界面[1]: https://mp.weixin.qq.com/s/MKljuxfDMmopr_MrnYljGw[2]: https://zh.wikipedia.org/wiki/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F -->]]></content>
+    <content type="html"><![CDATA[<img src="/2019/06/28/some-thoughts-about-sing-long-cms/banner.jpg" title="关于兴隆 CMS 的一些想法"><p>我在微博的小号里面发了条：</p><blockquote><p>接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。</p></blockquote><p>本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。</p><p>作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款通用型 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。</p><a id="more"></a><h2 id="兴隆-CMS-将会是一个基于组件开发的框架系统。"><a href="#兴隆-CMS-将会是一个基于组件开发的框架系统。" class="headerlink" title="兴隆 CMS 将会是一个基于组件开发的框架系统。"></a>兴隆 CMS 将会是一个基于组件开发的框架系统。</h2><p>设计中会有：页面设计器、组件市场、关联数据管理。</p><p>[未完成]</p><!-- ## CMS (Content Management System)内容管理系统（英语：content management system，缩写为 CMS）是指在一个合作模式下，用于管理工作流程的一套制度。该系统可应用于手工操作中，也可以应用到计算机或网络里。作为一种中央储存器（central repository），内容管理系统可将相关内容集中储存并具有群组管理、版本控制等功能。版本控制是内容管理系统的一个主要优势。[2]### 权限内容管理系统的核心在**管理**上。那么由谁来管理？自然就是管理员了。但是当所有的操作权限都集中在一个管理员手中的时候，就是一个巨大的安全隐患。所以，我们会将不同的操作独立开来，按不同的角色进行分类，最后再给用户分配对应的角色。不同的用户拥有自己的角色；不同的角色有对应着不同的操作权限。那么由管理引出了该系统子系统——用户角色权限控制系统（RBAC: Role-Based Access Control）：**用户**-**角色**-**权限**。一般来说，站点会有一个拥有所有权限的管理员。用于管理所有用户和角色。但作为一个目标是通用型 CMS，只有一个管理员来维护权限和角色似乎效率过低。我从这篇[《角色权限设计的 100 种解法》][1]中知道了：可以通过添加某个角色的子管理员，由 ta 来管理自身权限下的角色和权限，并且操作的范围不超过自身权限范围即可。### 用户界面设计界面[1]: https://mp.weixin.qq.com/s/MKljuxfDMmopr_MrnYljGw[2]: https://zh.wikipedia.org/wiki/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F -->]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2019/06/28/some-thoughts-about-sing-long-cms/sing-long-cms.jpg&quot; title=&quot;关于兴隆 CMS 的一些想法&quot;&gt;
+      &lt;img src=&quot;/2019/06/28/some-thoughts-about-sing-long-cms/banner.jpg&quot; title=&quot;关于兴隆 CMS 的一些想法&quot;&gt;
 &lt;p&gt;我在微博的小号里面发了条：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。&lt;/p&gt;
@@ -252,13 +249,13 @@
     <link href="https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/"/>
     <id>https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/</id>
     <published>2019-06-25T14:39:59.000Z</published>
-    <updated>2019-06-26T08:46:05.828Z</updated>
+    <updated>2019-07-25T10:25:58.889Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/06/25/new-site-called-sing-long-fun/sing-long-logo.jpg" title="興隆LOGO"><p>自从重新熟悉了 nginx 和服务器配置后，上线新网站成了轻而易举的事情。</p><p>这不，介绍一下我站点群（哈哈哈哈哈哈哈）今天的新成员：『<a href="http://tool.singlong.fun" target="_blank" rel="noopener">興隆工具</a>』。</p><a id="more"></a><p>去年底的时候接了外单后，由于客户域名方面的问题导致上线过程中被卡住了。所以我就有了“先注册个域名，测试或者上线前可以先临时顶替一下”的想法。想到这个域名负责的业务场景主要是用在商单上，所以名字想要“喜庆”一些（哈哈哈），于是就有了这个读音为“兴隆”，写法为“Sing Long（传唱久远）”的域名，也照着这个名字的感觉顺便做了一下 Logo。<del>可真是个全能的小天才呢哈哈哈哈。</del></p><hr><p>说到这儿刚想起来，当前这个域名 decay.fun 和 singlong.fun 这俩从单词上看两者的意思完全相反的域名，居然是差不多时间注册的，也不知道当初是怎么想的。</p><hr><p>这次上线的是一个“高频词分析”的工具。前台依旧是用 <a href="https://vue.ant.design/" target="_blank" rel="noopener">Ant Design Vue</a> 框架进行搭建（说实话我已经爱上它了，实现速度真的是快，在这里再次诚心安利），功能是统计和分析输入的段落中，英文单词的出现次数与频率。</p><p>老实说并没什么难点，思路是先把多段落合利用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STRING = STRING.split(<span class="string">"\n"</span>).join(<span class="string">" "</span>);</span><br></pre></td></tr></table></figure><p>合并成一行字符串，再通过</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">STRING.split(<span class="string">" "</span>).forEach(<span class="function"><span class="params">word</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (word.trim()) &#123;</span><br><span class="line">    word = word.toLowerCase();</span><br><span class="line">    <span class="keyword">if</span> (result[word]) &#123;</span><br><span class="line">      result[word] = ++result[word];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result[word] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>方法，以每个单词（这边的例子没有大小写敏感）为对象的一个 key，值为该单词的出现次数，这样就可以获取输入内容的单词和次数的关系 <code>Object</code>，再之后根据自己需要转换成 <code>Array</code> 即可。</p><p>这个项目最早的客户是我美丽可爱的女票（虽然现在正在和她闹变扭）。她在做亚马逊运营的时候有些关键词要进行分析，问我有没有什么方法可以统计她收集的关键词的出现次数，我想了想挺容易的东西，就花半小时做了个最简单（陋）的版本，就发给了她：</p><img src="/2019/06/25/new-site-called-sing-long-fun/ver-1.jpg" title="高频词统计第一版"><p>前两天她说和她的同事安利了这个工具，同事都想要，她就把文件发给了他们。我想，用发文件这么原始的方式还不如我上线到线上方便，而且之后如果会出问题修改的话也好解决。所以就有了第一个版本的興隆工具。也顺便改了一下界面：</p><img src="/2019/06/25/new-site-called-sing-long-fun/ver-2.jpg" title="高频词统计第二版"><p>Feeling Better~</p><p>我对『興隆』一开始的构想是在上面实现一些跟商业有关的东西，无论是外单也好，服务、工具也罢。比如上文提到的为客户挂的网站；用 hexo 搭建这个站点后想到可以实现一套 CMS；在日常项目中做成的一些工具服务可以开放到这个域名下等等等等。当然构想不需要花费力气，罗马也不是一天就建成的，积跬步以致千里就好。</p><p>从这个工具开始，慢慢整理总结自己的一些小轮子也是一个不错的开始。希望和各位一起“興隆”，哈哈哈！</p><p>以上。</p>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/06/25/new-site-called-sing-long-fun/banner.jpg" title="興隆LOGO"><p>自从重新熟悉了 nginx 和服务器配置后，上线新网站成了轻而易举的事情。</p><p>这不，介绍一下我站点群（哈哈哈哈哈哈哈）今天的新成员：『<a href="http://tool.singlong.fun" target="_blank" rel="noopener">興隆工具</a>』。</p><a id="more"></a><p>去年底的时候接了外单后，由于客户域名方面的问题导致上线过程中被卡住了。所以我就有了“先注册个域名，测试或者上线前可以先临时顶替一下”的想法。想到这个域名负责的业务场景主要是用在商单上，所以名字想要“喜庆”一些（哈哈哈），于是就有了这个读音为“兴隆”，写法为“Sing Long（传唱久远）”的域名，也照着这个名字的感觉顺便做了一下 Logo。<del>可真是个全能的小天才呢哈哈哈哈。</del></p><hr><p>说到这儿刚想起来，当前这个域名 decay.fun 和 singlong.fun 这俩从单词上看两者的意思完全相反的域名，居然是差不多时间注册的，也不知道当初是怎么想的。</p><hr><p>这次上线的是一个“高频词分析”的工具。前台依旧是用 <a href="https://vue.ant.design/" target="_blank" rel="noopener">Ant Design Vue</a> 框架进行搭建（说实话我已经爱上它了，实现速度真的是快，在这里再次诚心安利），功能是统计和分析输入的段落中，英文单词的出现次数与频率。</p><p>老实说并没什么难点，思路是先把多段落合利用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STRING = STRING.split(<span class="string">"\n"</span>).join(<span class="string">" "</span>);</span><br></pre></td></tr></table></figure><p>合并成一行字符串，再通过</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">STRING.split(<span class="string">" "</span>).forEach(<span class="function"><span class="params">word</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (word.trim()) &#123;</span><br><span class="line">    word = word.toLowerCase();</span><br><span class="line">    <span class="keyword">if</span> (result[word]) &#123;</span><br><span class="line">      result[word] = ++result[word];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result[word] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>方法，以每个单词（这边的例子没有大小写敏感）为对象的一个 key，值为该单词的出现次数，这样就可以获取输入内容的单词和次数的关系 <code>Object</code>，再之后根据自己需要转换成 <code>Array</code> 即可。</p><p>这个项目最早的客户是我美丽可爱的女票（虽然现在正在和她闹变扭）。她在做亚马逊运营的时候有些关键词要进行分析，问我有没有什么方法可以统计她收集的关键词的出现次数，我想了想挺容易的东西，就花半小时做了个最简单（陋）的版本，就发给了她：</p><img src="/2019/06/25/new-site-called-sing-long-fun/ver-1.jpg" title="高频词统计第一版"><p>前两天她说和她的同事安利了这个工具，同事都想要，她就把文件发给了他们。我想，用发文件这么原始的方式还不如我上线到线上方便，而且之后如果会出问题修改的话也好解决。所以就有了第一个版本的興隆工具。也顺便改了一下界面：</p><img src="/2019/06/25/new-site-called-sing-long-fun/ver-2.jpg" title="高频词统计第二版"><p>Feeling Better~</p><p>我对『興隆』一开始的构想是在上面实现一些跟商业有关的东西，无论是外单也好，服务、工具也罢。比如上文提到的为客户挂的网站；用 hexo 搭建这个站点后想到可以实现一套 CMS；在日常项目中做成的一些工具服务可以开放到这个域名下等等等等。当然构想不需要花费力气，罗马也不是一天就建成的，积跬步以致千里就好。</p><p>从这个工具开始，慢慢整理总结自己的一些小轮子也是一个不错的开始。希望和各位一起“興隆”，哈哈哈！</p><p>以上。</p>]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2019/06/25/new-site-called-sing-long-fun/sing-long-logo.jpg&quot; title=&quot;興隆LOGO&quot;&gt;
+      &lt;img src=&quot;/2019/06/25/new-site-called-sing-long-fun/banner.jpg&quot; title=&quot;興隆LOGO&quot;&gt;
 &lt;p&gt;自从重新熟悉了 nginx 和服务器配置后，上线新网站成了轻而易举的事情。&lt;/p&gt;
 &lt;p&gt;这不，介绍一下我站点群（哈哈哈哈哈哈哈）今天的新成员：『&lt;a href=&quot;http://tool.singlong.fun&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;興隆工具&lt;/a&gt;』。&lt;/p&gt;
     
@@ -290,13 +287,13 @@
     <link href="https://blog.decay.fun/2019/06/20/new-site-called-you-xuan-fun/"/>
     <id>https://blog.decay.fun/2019/06/20/new-site-called-you-xuan-fun/</id>
     <published>2019-06-20T08:37:59.000Z</published>
-    <updated>2019-06-28T08:16:29.261Z</updated>
+    <updated>2019-07-25T10:26:14.707Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/06/20/new-site-called-you-xuan-fun/LOGO.jpg" title="趣优选 LOGO"><p>我曾在这个网站的第一篇文章《<a href="https://blog.decay.fun/2019/03/06/Init/">Init()</a>》中就这么写道：</p><blockquote><p>…现在微博和朋友圈也发得很少，更不用说我的那个公众号了。现在居然还人模人样地弄了一个专门的博客网站，想顺上个时代的大潮好像晚的也太过分了些……可能需要考虑风格、面向的读者等等杂七杂八的琐事，想要记录零零碎碎的一些东西可能因为这些的原因，刚开热的“新建文章”页面就关了下来。</p></blockquote><p>果不其然，影响我更新的最主要因素并不是这些七七八八，而单纯只是因为我懒……得记录，干活的时候还是很愿意花时间的。这次就做了一个新网站：<a href="http://youxuan.fun?utm_source=blog_decay_fun" target="_blank" rel="noopener">趣优选</a>。</p><a id="more"></a><hr><p><a href="http://youxuan.fun?utm_source=blog_decay_fun" target="_blank" rel="noopener">趣优选</a>的所有商品数据都来自于<a href="https://www.taobao.com/" target="_blank" rel="noopener">淘宝官方</a>，我们是一个中立的、为广大网友消费者提供丰富优质优惠券的网站 😁。</p><hr><p>其实以前被这类网站的微博广告刷得心烦，当时还好奇过这类的优惠是怎么来的，但并没有深究。直到去年年底参加大学舍友的婚礼，现场和另外一个舍友聊了几句说到这个，发现他也在做而且好像做的还不错我才知道这些都是有 API 可以取的，只不过等级不同能拿到的优惠力度也不一样罢了。但是当时刚忙完『戏词』新版本的我也没想过往这方面“拓展业务”，只是提议说如果他愿意的话我可以开个广告位入驻进来，之后便不了了之了。</p><p>后来在家里跟州官说起这件事，她说之前有个账号，但是一直没怎么用。我一想，诶这机会（账号也不是什么难事……只是因为我懒）不就在身边吗？就准备自己动手做一个，但是一没经验，二没方向，只凭着一腔激动无处发泄。跟州官讨论了好久起啥名字好，最后买了个 youxuan.fun 的域名后不知道该干啥就搁置了。再次证明了那句话：</p><blockquote><p>万事起名难，然后中间难，然后后面难</p></blockquote><p>搁置之后因为和朋友有另外一个项目开工，这件事就无限期的往后推迟了。真正动手做也就 6 月 17 号那天。</p><p>因为 618 铺天盖地的广告宣传，我觉得是时候开始了解一下流程了。正好项目阶段性完成，留出了个小空挡，当做是放松自己的一种方式，我决定开始进行尝试。原本的预想是现在先了解，为之后双 11 做好准备（企业家的深谋远虑【笑，结果接口对接起来比我想象中的要容易，没想到一个小半天就搭了个大概起来。</p><p>当天晚上 11 点多，着着急急地部署了第一个版本的网站，只有搜索和领券的功能。Express 做后台 API 处理，前台用 Vue-AntD 直接搭建，快速搭建不愁人。现在完善了类目推荐，感觉像模像样，算是阶段性完工啦！（意思是可以放着不用怎么管了嘻嘻）</p><p>分销是个挺好的商业模式，可以大幅度的降低获客成本。最近微博上特别火的大 V 广告某某家的电动牙刷用的其实也是这种模式。尤其是后者，通过更精确地入口定位，更能判断出微博大 V 分别的价值，以方便下一步的营销计划（参考自：<a href="https://weibo.com/ttarticle/p/show?id=2309404368612675687376" target="_blank" rel="noopener">《没有一个大 V，逃得过电动牙刷》</a>）。我在新的项目中也加入这个思考，希望能帮助到接下来的工作。</p><p>之前有看到别人说过“自动化获客脚本”的事情，我估计下一步的计划就是了解一下这个，然后还有了解 SEO 和在双十一前的版本里加入 SSR。</p><p>以上。</p>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/06/20/new-site-called-you-xuan-fun/banner.jpg" title="趣优选 LOGO"><p>我曾在这个网站的第一篇文章《<a href="https://blog.decay.fun/2019/03/06/Init/">Init()</a>》中就这么写道：</p><blockquote><p>…现在微博和朋友圈也发得很少，更不用说我的那个公众号了。现在居然还人模人样地弄了一个专门的博客网站，想顺上个时代的大潮好像晚的也太过分了些……可能需要考虑风格、面向的读者等等杂七杂八的琐事，想要记录零零碎碎的一些东西可能因为这些的原因，刚开热的“新建文章”页面就关了下来。</p></blockquote><p>果不其然，影响我更新的最主要因素并不是这些七七八八，而单纯只是因为我懒……得记录，干活的时候还是很愿意花时间的。这次就做了一个新网站：<a href="http://youxuan.fun?utm_source=blog_decay_fun" target="_blank" rel="noopener">趣优选</a>。</p><a id="more"></a><hr><p><a href="http://youxuan.fun?utm_source=blog_decay_fun" target="_blank" rel="noopener">趣优选</a>的所有商品数据都来自于<a href="https://www.taobao.com/" target="_blank" rel="noopener">淘宝官方</a>，我们是一个中立的、为广大网友消费者提供丰富优质优惠券的网站 😁。</p><hr><p>其实以前被这类网站的微博广告刷得心烦，当时还好奇过这类的优惠是怎么来的，但并没有深究。直到去年年底参加大学舍友的婚礼，现场和另外一个舍友聊了几句说到这个，发现他也在做而且好像做的还不错我才知道这些都是有 API 可以取的，只不过等级不同能拿到的优惠力度也不一样罢了。但是当时刚忙完『戏词』新版本的我也没想过往这方面“拓展业务”，只是提议说如果他愿意的话我可以开个广告位入驻进来，之后便不了了之了。</p><p>后来在家里跟州官说起这件事，她说之前有个账号，但是一直没怎么用。我一想，诶这机会（账号也不是什么难事……只是因为我懒）不就在身边吗？就准备自己动手做一个，但是一没经验，二没方向，只凭着一腔激动无处发泄。跟州官讨论了好久起啥名字好，最后买了个 youxuan.fun 的域名后不知道该干啥就搁置了。再次证明了那句话：</p><blockquote><p>万事起名难，然后中间难，然后后面难</p></blockquote><p>搁置之后因为和朋友有另外一个项目开工，这件事就无限期的往后推迟了。真正动手做也就 6 月 17 号那天。</p><p>因为 618 铺天盖地的广告宣传，我觉得是时候开始了解一下流程了。正好项目阶段性完成，留出了个小空挡，当做是放松自己的一种方式，我决定开始进行尝试。原本的预想是现在先了解，为之后双 11 做好准备（企业家的深谋远虑【笑，结果接口对接起来比我想象中的要容易，没想到一个小半天就搭了个大概起来。</p><p>当天晚上 11 点多，着着急急地部署了第一个版本的网站，只有搜索和领券的功能。Express 做后台 API 处理，前台用 Vue-AntD 直接搭建，快速搭建不愁人。现在完善了类目推荐，感觉像模像样，算是阶段性完工啦！（意思是可以放着不用怎么管了嘻嘻）</p><p>分销是个挺好的商业模式，可以大幅度的降低获客成本。最近微博上特别火的大 V 广告某某家的电动牙刷用的其实也是这种模式。尤其是后者，通过更精确地入口定位，更能判断出微博大 V 分别的价值，以方便下一步的营销计划（参考自：<a href="https://weibo.com/ttarticle/p/show?id=2309404368612675687376" target="_blank" rel="noopener">《没有一个大 V，逃得过电动牙刷》</a>）。我在新的项目中也加入这个思考，希望能帮助到接下来的工作。</p><p>之前有看到别人说过“自动化获客脚本”的事情，我估计下一步的计划就是了解一下这个，然后还有了解 SEO 和在双十一前的版本里加入 SSR。</p><p>以上。</p>]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2019/06/20/new-site-called-you-xuan-fun/LOGO.jpg&quot; title=&quot;趣优选 LOGO&quot;&gt;
+      &lt;img src=&quot;/2019/06/20/new-site-called-you-xuan-fun/banner.jpg&quot; title=&quot;趣优选 LOGO&quot;&gt;
 &lt;p&gt;我曾在这个网站的第一篇文章《&lt;a href=&quot;https://blog.decay.fun/2019/03/06/Init/&quot;&gt;Init()&lt;/a&gt;》中就这么写道：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;…现在微博和朋友圈也发得很少，更不用说我的那个公众号了。现在居然还人模人样地弄了一个专门的博客网站，想顺上个时代的大潮好像晚的也太过分了些……可能需要考虑风格、面向的读者等等杂七杂八的琐事，想要记录零零碎碎的一些东西可能因为这些的原因，刚开热的“新建文章”页面就关了下来。&lt;/p&gt;
@@ -305,9 +302,9 @@
     
     </summary>
     
-      <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
-    
       <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
+    
+      <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="项目" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E9%A1%B9%E7%9B%AE/"/>
     
@@ -371,16 +368,16 @@
     
       <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
-    
       <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
+    
+      <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
     
       <category term="戏词" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E6%88%8F%E8%AF%8D/"/>
     
     
-      <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
-    
       <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
+    
+      <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
     
       <category term="SDK" scheme="https://blog.decay.fun/tags/SDK/"/>
     
