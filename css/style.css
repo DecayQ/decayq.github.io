@@ -291,6 +291,8 @@ div {
       margin: auto;
       display: block;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.15); }
+      .post .post-content img.no-shadow {
+        box-shadow: none; }
     .post .post-content ul,
     .post .post-content ol {
       border-radius: 3px;

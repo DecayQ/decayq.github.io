@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/"/>
-  <updated>2019-07-25T02:16:47.192Z</updated>
+  <updated>2019-07-25T02:26:25.155Z</updated>
   <id>https://blog.decay.fun/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="https://blog.decay.fun/2019/07/24/introducing-xici-in-qq-mini-program/"/>
     <id>https://blog.decay.fun/2019/07/24/introducing-xici-in-qq-mini-program/</id>
     <published>2019-07-24T15:28:20.000Z</published>
-    <updated>2019-07-25T02:16:47.192Z</updated>
+    <updated>2019-07-25T02:26:25.155Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/07/24/introducing-xici-in-qq-mini-program/banner.jpg"><p><a href="https://blog.decay.fun/">上文</a>末说到『戏词』已提交审核已经是一个礼拜前的事儿了，过了一个礼拜，经过了 5 次修改，终于过审了。各位可以下方的 QQ 小程序码打开体验。审了那么多次，不通过的理由，也顺便在这儿汇总一下：</p><a id="more"></a><img src="/2019/07/24/introducing-xici-in-qq-mini-program/xici-qq.jpg"><ol><li>名称不能是通用词汇；（戏词 -&gt; 戏词丨台词字幕拼图制作器（与微信同名，说中间的丨(shu)是特殊字符再次被拒 -&gt; 戏词拼台词（成功））</li><li>不能含有微信的联系方式；（之前微信小程序版因为客服系统时效不高，所以统一换成了个人微信，移植过去 QQ 后没有做修改。取消获取入口后，成功）</li><li>页面需要含有 button[type=share] 类型的分享出口；（其实有，但在第二级页面，提醒审核人员后成功）</li></ol><p>不知道其他人会不会有这种感受：**，我在微信弄的好好的，怎么你们这儿那么多事啊，还让我改名字？做的又没微信好，审核条件还一大堆，而且感觉 QQ 小程序这边人审多于机审。比如名称中的丨，这个是汉字，音同树。在微信中如果是符号：| 页面上就会报错，提示说不合法的字符，能正常提交的一般没有什么大问题就都过了。QQ 这边已经正常提交了，然后审核再告诉你说这个是非法字符，我就很？？？？？还有一个是上面的第三点，机器跑测试的话直接就可以判断出小程序内包不包含分享的按钮组件，但是需要我提醒他们才有注意到，这说明这部分的检查还是主要靠人眼。唉，兴，开发苦，换，开发苦啊。</p><p>新平台有新平台的好，也有新平台的糟，不知道后续会怎么发展，还有，广告接入的权限不知道什么时候才可以通过。求求了，这边还有服务费要养着呢。</p>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/07/24/introducing-xici-in-qq-mini-program/banner.jpg"><p><a href="https://blog.decay.fun/">上文</a>末说到『戏词』已提交审核已经是一个礼拜前的事儿了，过了一个礼拜，经过了 5 次修改，终于过审了。审了那么多次，不通过的理由，也顺便在这儿汇总一下：</p><a id="more"></a><ol><li>名称不能是通用词汇；（戏词 -&gt; 戏词丨台词字幕拼图制作器（与微信同名，说中间的丨(shu)是特殊字符再次被拒 -&gt; 戏词拼台词（成功））</li><li>不能含有微信的联系方式；（之前微信小程序版因为客服系统时效不高，所以统一换成了个人微信，移植过去 QQ 后没有做修改。取消获取入口后，成功）</li><li>页面需要含有 button[type=share] 类型的分享出口；（其实有，但在第二级页面，提醒审核人员后成功）</li></ol><p>不知道其他人会不会有这种感受：**，我在微信弄的好好的，怎么你们这儿那么多事啊，还让我改名字？做的又没微信好，审核条件还一大堆，而且感觉 QQ 小程序这边人审多于机审。比如名称中的丨，这个是汉字，音同树。在微信中如果是符号：| 页面上就会报错，提示说不合法的字符，能正常提交的一般没有什么大问题就都过了。QQ 这边已经正常提交了，然后审核再告诉你说这个是非法字符，我就很？？？？？还有一个是上面的第三点，机器跑测试的话直接就可以判断出小程序内包不包含分享的按钮组件，但是需要我提醒他们才有注意到，这说明这部分的检查还是主要靠人眼。唉，兴，开发苦，换，开发苦啊。</p><p>新平台有新平台的好，也有新平台的糟，不知道后续会怎么发展，还有，广告接入的权限不知道什么时候才可以通过。求求了，这边还有服务费要养着呢。</p><p>最后，各位可以下方的 QQ 小程序码打开体验。</p><p><img src="./xici-qq.jpg" class="nofancybox no-shadow" title="戏词QQ小程序码" alt="戏词QQ小程序码"></p><p>以上。</p>]]></content>
     
     <summary type="html">
     
       &lt;img src=&quot;/2019/07/24/introducing-xici-in-qq-mini-program/banner.jpg&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;https://blog.decay.fun/&quot;&gt;上文&lt;/a&gt;末说到『戏词』已提交审核已经是一个礼拜前的事儿了，过了一个礼拜，经过了 5 次修改，终于过审了。各位可以下方的 QQ 小程序码打开体验。审了那么多次，不通过的理由，也顺便在这儿汇总一下：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.decay.fun/&quot;&gt;上文&lt;/a&gt;末说到『戏词』已提交审核已经是一个礼拜前的事儿了，过了一个礼拜，经过了 5 次修改，终于过审了。审了那么多次，不通过的理由，也顺便在这儿汇总一下：&lt;/p&gt;
     
     </summary>
     
@@ -117,9 +117,9 @@
     
       <category term="电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/"/>
     
-      <category term="跨境电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/%E8%B7%A8%E5%A2%83%E7%94%B5%E5%95%86/"/>
-    
       <category term="亚马逊" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/%E4%BA%9A%E9%A9%AC%E9%80%8A/"/>
+    
+      <category term="跨境电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/%E8%B7%A8%E5%A2%83%E7%94%B5%E5%95%86/"/>
     
     
       <category term="电商" scheme="https://blog.decay.fun/tags/%E7%94%B5%E5%95%86/"/>
@@ -130,11 +130,11 @@
     
       <category term="想法" scheme="https://blog.decay.fun/tags/%E6%83%B3%E6%B3%95/"/>
     
-      <category term="设计" scheme="https://blog.decay.fun/tags/%E8%AE%BE%E8%AE%A1/"/>
-    
       <category term="思考" scheme="https://blog.decay.fun/tags/%E6%80%9D%E8%80%83/"/>
     
       <category term="思路" scheme="https://blog.decay.fun/tags/%E6%80%9D%E8%B7%AF/"/>
+    
+      <category term="设计" scheme="https://blog.decay.fun/tags/%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
@@ -162,11 +162,11 @@
       <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
     
     
-      <category term="LOGO" scheme="https://blog.decay.fun/tags/LOGO/"/>
-    
       <category term="微信" scheme="https://blog.decay.fun/tags/%E5%BE%AE%E4%BF%A1/"/>
     
       <category term="公众号" scheme="https://blog.decay.fun/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
+    
+      <category term="LOGO" scheme="https://blog.decay.fun/tags/LOGO/"/>
     
       <category term="decayq" scheme="https://blog.decay.fun/tags/decayq/"/>
     
@@ -232,9 +232,9 @@
     
       <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
     
-      <category term="电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/"/>
-    
       <category term="工具" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/"/>
     
       <category term="亚马逊" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/%E4%BA%9A%E9%A9%AC%E9%80%8A/"/>
     
@@ -272,9 +272,9 @@
     
       <category term="Vue" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/"/>
     
-      <category term="项目" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E9%A1%B9%E7%9B%AE/"/>
-    
       <category term="Ant Design" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/Ant-Design/"/>
+    
+      <category term="项目" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E9%A1%B9%E7%9B%AE/"/>
     
     
       <category term="Vue" scheme="https://blog.decay.fun/tags/Vue/"/>
