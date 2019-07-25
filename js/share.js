@@ -39,7 +39,9 @@
           '<div id="' + id + '" class="article-share-box">',
           '<input class="article-share-input" value="' + url + '">',
           '<div class="article-share-links">',
-          '<a href="//twitter.com/intent/tweet?url=' +
+          '<a href="//twitter.com/share?text=' +
+            encodeURI(title) +
+            "&url=" +
             encodedUrl +
             '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
           '<a href="//www.facebook.com/sharer.php?u=' +
