@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Log</title>
+  
+  <subtitle>by DecayQ</subtitle>
+  <link href="/en/atom.xml" rel="self"/>
+  
+  <link href="https://blog.decay.fun/en/"/>
+  <updated>2019-09-24T08:49:36.321Z</updated>
+  <id>https://blog.decay.fun/en/</id>
+  
+  <author>
+    <name>DecayQ</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Creating continuous array of natural numbers by using Array.from</title>
+    <link href="https://blog.decay.fun/en/2019/09/24/learning-javascript-api-array-from/"/>
+    <id>https://blog.decay.fun/en/2019/09/24/learning-javascript-api-array-from/</id>
+    <published>2019-09-24T08:23:28.000Z</published>
+    <updated>2019-09-24T08:49:36.321Z</updated>
+    
+    <content type="html"><![CDATA[<p>It’s a month that I don’t write anything because my busyness almost drive me crazy. Today there is a small demand to creat a continuous array of natural numbers that it’s items are all less than current hour. I think it a good idea to write it down.</p><a id="more"></a><p>It’s easy to generate a array starts from 0 and contains n consecutive natural numbers by using <code>for</code>:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  arr.push(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> arr;</span><br></pre></td></tr></table></figure><p>But the code is too long for me. After checking the documentation, I noticed the interface <code>Array.from</code> can do the same thing and SHORTER.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: n &#125;, (item, idx) =&gt; idx);</span><br></pre></td></tr></table></figure><p>Fixed in ONE line.</p><p>The idea is using <code>Array</code> to generate the very length array, then we take item’s index as final result.</p><p>Fist of all, we use <code>Array.form({ length: n })</code> to create a array which length is n, items are all <code>undefined</code>. Then we pass a function to the interface’s second parameter which is a map function, now we can get the item’s index.</p><p>After getting the array, the last part is simple:</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">24</span> &#125;, (item, idx) =&gt; idx).filter(<span class="function"><span class="params">hour</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> hour &lt; now.getHours();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>EOF.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;It’s a month that I don’t write anything because my busyness almost drive me crazy. Today there is a small demand to creat a continuous array of natural numbers that it’s items are all less than current hour. I think it a good idea to write it down.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
+    
+    
+      <category term="Javascript" scheme="https://blog.decay.fun/en/tags/Javascript/"/>
+    
+      <category term="Learning note" scheme="https://blog.decay.fun/en/tags/Learning-note/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Implementing multilingual in Hexo</title>
+    <link href="https://blog.decay.fun/en/2019/08/21/implementing-multilingual-in-hexo/"/>
+    <id>https://blog.decay.fun/en/2019/08/21/implementing-multilingual-in-hexo/</id>
+    <published>2019-08-21T14:06:22.000Z</published>
+    <updated>2019-09-24T08:21:44.447Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/08/21/implementing-multilingual-in-hexo/banner.jpg"><p>I want to do my multilingual site in a sudden, so I search for the simple and appropriate way to achieve that but I failed. However in Mr.TSTR’s blog I found this particular article <a href="https://tstrs.me/en/1448.html?utm_source=blog_decay_fun" target="_blank" rel="noopener">Hexo adds multi-language support「internationalized i18n」</a>, and figure it out.</p><a id="more"></a><p>The idea is simple. First, using hexo to generate my main-lang site, then generate the sub-lang site. Third, copy the generated-sub-resource-folder to main-resourece-folder, and deploy it! That’all.</p><p>For example, I created my <code>en</code> folder to hold my sub-lang site content. Then I copy all the files &amp; folders except the one in <code>.gitignore</code> in the original folder to this folder, and there is what I’ve done after.</p><h2 id="First-Modifying-config-to-genereate-each-sites"><a href="#First-Modifying-config-to-genereate-each-sites" class="headerlink" title="First: Modifying config to genereate each sites"></a>First: Modifying config to genereate each sites</h2><p>There is just a little to edit with config files. Since my choice of hexo’s theme is <code>maupassant</code> and what I’ve to do is to add a entrance(as you can see in the up-right corner of this page) of another multilingual-site. I need to add a config to each <code>_config.yml</code> files in each theme folder:</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">  - page:</span> <span class="string">中文</span> <span class="comment">## If in en folder. English for main folder</span></span><br><span class="line"><span class="attr">    directory:</span> <span class="attr">https://blog.decay.fun</span> <span class="comment">## same reason</span></span><br><span class="line"><span class="attr">    icon:</span> <span class="string">fa-language</span></span><br></pre></td></tr></table></figure><p>finally, we should modify the right path to our new lang-site. Going to the Hexo’s config file(NOT THEME) and change these three attributes:</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="comment"># original zh-CN</span></span><br><span class="line"><span class="attr">url:</span> <span class="attr">https://blog.decay.fun/en</span> <span class="comment">## original https://blog.decay.fun</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/en/</span> <span class="comment">## original /</span></span><br></pre></td></tr></table></figure><h2 id="Second-Creating-script-to-generating-blog-files-automatically"><a href="#Second-Creating-script-to-generating-blog-files-automatically" class="headerlink" title="Second: Creating script to generating blog files automatically"></a>Second: Creating script to generating blog files automatically</h2><p>Content is the essential part to our blog. After we finished the config part, we should think about in what way we make our file?</p><p>I used to use hexo’s command to help me generating article.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new article-name</span><br></pre></td></tr></table></figure><p>However, in our new circumstance we should use that command twice! No one wants that. So the first thought came to my mind was creating a new command that do it for me. That’s why I write this js file:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; exec &#125; = <span class="built_in">require</span>(<span class="string">"child_process"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> title = process.argv.splice(<span class="number">2</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Creating Post: "</span>, title);</span><br><span class="line"></span><br><span class="line">exec(<span class="string">`hexo new <span class="subst">$&#123;title&#125;</span>`</span>, (err, out) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"zh_CN File Created: "</span>, out);</span><br><span class="line">    exec(<span class="string">`cd ./en &amp;&amp; hexo new <span class="subst">$&#123;title&#125;</span>`</span>, (err, out) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"en File Created: "</span>, out);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>and give it a npm script to run. Now I can use</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run create article-name</span><br></pre></td></tr></table></figure><p>to generate files automatically for me.(This blog was generated by the method BTW.)</p><p>Now you have your config &amp; articles ready, the next step is to</p><h2 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h2><p>The process is simple</p><blockquote><p>Generate main-site &gt; Generate sub-site &gt; copy sub-site to main-site &gt; deploy</p></blockquote><p>But I’m using Windows now, so there was no shell for me to save my time. Node’s fs module is my only savior.</p><p>So I write this js file to do the copy and deploy for me:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; exec &#125; = <span class="built_in">require</span>(<span class="string">"child_process"</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> totalCount = <span class="number">0</span>,</span><br><span class="line">  finishedCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">exec(<span class="string">"hexo clean &amp;&amp; hexo g"</span>, (err, out) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"CN_SITE_GENERATED"</span>);</span><br><span class="line">    exec(<span class="string">"cd ./en &amp;&amp; npm run g"</span>, (err, out) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"EN_SITE_GENERATED"</span>);</span><br><span class="line">        exec(<span class="string">"cd ../"</span>, () =&gt; &#123;</span><br><span class="line">          totalCount = getTotalPathCount(<span class="string">"./en/public/"</span>);</span><br><span class="line">          copyDir(<span class="string">"./en/public"</span>, <span class="string">"./public/en"</span>, err =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">              <span class="keyword">if</span> (totalCount == finishedCount) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">"DEPLOYING..."</span>);</span><br><span class="line">                exec(<span class="string">"hexo deploy"</span>, (err, out) =&gt; &#123;</span><br><span class="line">                  <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(out);</span><br><span class="line">                  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(err);</span><br><span class="line">                  &#125;</span><br><span class="line">                  exec(<span class="string">"exit"</span>);</span><br><span class="line">                &#125;);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>and give it a npm script, now I can use</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run d(eploy)</span><br></pre></td></tr></table></figure><p>to deploy my blog!</p><p>Hope you enjoy it.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/08/21/implementing-multilingual-in-hexo/banner.jpg&quot;&gt;
+&lt;p&gt;I want to do my multilingual site in a sudden, so I search for the simple and appropriate way to achieve that but I failed. However in Mr.TSTR’s blog I found this particular article &lt;a href=&quot;https://tstrs.me/en/1448.html?utm_source=blog_decay_fun&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo adds multi-language support「internationalized i18n」&lt;/a&gt;, and figure it out.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
+    
+      <category term="Log" scheme="https://blog.decay.fun/en/categories/Product/Log/"/>
+    
+    
+      <category term="Hexo" scheme="https://blog.decay.fun/en/tags/Hexo/"/>
+    
+      <category term="Blog" scheme="https://blog.decay.fun/en/tags/Blog/"/>
+    
+      <category term="Multilingual" scheme="https://blog.decay.fun/en/tags/Multilingual/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Exercise record in August</title>
+    <link href="https://blog.decay.fun/en/2019/08/20/exercise-record-in-august/"/>
+    <id>https://blog.decay.fun/en/2019/08/20/exercise-record-in-august/</id>
+    <published>2019-08-20T01:50:23.000Z</published>
+    <updated>2019-09-24T08:21:44.327Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/08/20/exercise-record-in-august/banner.jpg"><p>My weight grows fast and my body condition is getting bad these days, so my girl and I decide to do some excercise everyday. I was required to keep a record after daily excercise.</p><a id="more"></a><p>So I will update here after 8.19 and will give a ✔ when I do have a excercise.</p><table><thead><tr><th style="text-align:center">Sun</th><th style="text-align:center">Mon</th><th style="text-align:center">Tue</th><th style="text-align:center">Wed</th><th style="text-align:center">Thu</th><th style="text-align:center">Fri</th><th style="text-align:center">Sat</th></tr></thead><tbody><tr><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center">1</td><td style="text-align:center">2</td><td style="text-align:center">3</td></tr><tr><td style="text-align:center">4</td><td style="text-align:center">5</td><td style="text-align:center">6</td><td style="text-align:center">7</td><td style="text-align:center">8</td><td style="text-align:center">9</td><td style="text-align:center">10</td></tr><tr><td style="text-align:center">11</td><td style="text-align:center">12</td><td style="text-align:center">13</td><td style="text-align:center">14</td><td style="text-align:center">15</td><td style="text-align:center">16</td><td style="text-align:center">17</td></tr><tr><td style="text-align:center">18</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">23</td><td style="text-align:center">24</td></tr><tr><td style="text-align:center">25</td><td style="text-align:center">26</td><td style="text-align:center">27</td><td style="text-align:center">28</td><td style="text-align:center">29</td><td style="text-align:center">30</td><td style="text-align:center">31</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/08/20/exercise-record-in-august/banner.jpg&quot;&gt;
+&lt;p&gt;My weight grows fast and my body condition is getting bad these days, so my girl and I decide to do some excercise everyday. I was required to keep a record after daily excercise.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+      <category term="Life" scheme="https://blog.decay.fun/en/categories/Life/"/>
+    
+      <category term="Excercise" scheme="https://blog.decay.fun/en/categories/Life/Excercise/"/>
+    
+    
+      <category term="Excercise" scheme="https://blog.decay.fun/en/tags/Excercise/"/>
+    
+      <category term="Keep record" scheme="https://blog.decay.fun/en/tags/Keep-record/"/>
+    
+      <category term="Lose weight" scheme="https://blog.decay.fun/en/tags/Lose-weight/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Enhance hexo with PWA in three steps</title>
+    <link href="https://blog.decay.fun/en/2019/08/19/enhance-hexo-with-pwa-in-three-steps/"/>
+    <id>https://blog.decay.fun/en/2019/08/19/enhance-hexo-with-pwa-in-three-steps/</id>
+    <published>2019-08-19T08:15:10.000Z</published>
+    <updated>2019-09-24T08:21:44.229Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/08/19/enhance-hexo-with-pwa-in-three-steps/banner.jpg"><p>In previous article I mention about reviewing issue and my PWA plan will be advanced. I want to learn fist and do some experiment about PWA, so this blog became the first tester.</p><a id="more"></a><blockquote><p>PWA needs HTTPS supports for the whole site. Luckily this site is hosted in Github Pages, is means Github does all the HTTPS things for me so that I don’t need to worry about. So in the blog, HTTPS section is not in the scope of this discussion.</p></blockquote><h2 id="1-Installing-dependency"><a href="#1-Installing-dependency" class="headerlink" title="1. Installing dependency"></a>1. Installing dependency</h2><p>What I’m using here is a node package called <code>hexo-pwa</code>, install it with this command:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-pwa --save</span><br></pre></td></tr></table></figure><h2 id="2-Createing-Config"><a href="#2-Createing-Config" class="headerlink" title="2. Createing Config"></a>2. Createing Config</h2><p>Now we need to add some config to your hexo config file (not the theme config).</p><p>Open <code>_config.yml</code> and add these lines:</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pwa:</span></span><br><span class="line"><span class="attr">  manifest:</span></span><br><span class="line"><span class="attr">    path:</span> <span class="string">/manifest.json</span></span><br><span class="line"><span class="attr">    body:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">Log</span> <span class="string">By</span> <span class="string">DecayQ</span></span><br><span class="line"><span class="attr">      short_name:</span> <span class="string">DecayQ</span></span><br><span class="line"><span class="attr">      theme_color:</span> <span class="string">white</span></span><br><span class="line"><span class="attr">      background_color:</span> <span class="string">white</span></span><br><span class="line"><span class="attr">      display:</span> <span class="string">standalone</span></span><br><span class="line"><span class="attr">      orientation:</span> <span class="string">portrait</span></span><br><span class="line"><span class="attr">      scope:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">      start_url:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">      icons:</span></span><br><span class="line"><span class="attr">        - src:</span> <span class="string">/logo.png</span></span><br><span class="line"><span class="attr">          type:</span> <span class="string">image/png</span></span><br><span class="line"><span class="attr">          sizes:</span> <span class="number">144</span><span class="string">x144</span></span><br><span class="line"><span class="attr">  serviceWorker:</span></span><br><span class="line"><span class="attr">    path:</span> <span class="string">/sw.js</span></span><br><span class="line"><span class="attr">    preload:</span></span><br><span class="line"><span class="attr">      urls:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">/</span></span><br><span class="line"><span class="attr">      posts:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    opts:</span></span><br><span class="line"><span class="attr">      networkTimeoutSeconds:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    routes:</span></span><br><span class="line"><span class="attr">      - pattern:</span> <span class="type">!!js</span><span class="string">/regexp</span> <span class="string">/hm.baidu.com/</span></span><br><span class="line"><span class="attr">        strategy:</span> <span class="string">networkOnly</span></span><br><span class="line"><span class="attr">      - pattern:</span> <span class="type">!!js</span><span class="string">/regexp</span> <span class="string">/www.google-analytics.com/</span></span><br><span class="line"><span class="attr">        strategy:</span> <span class="string">networkOnly</span></span><br><span class="line"><span class="attr">      - pattern:</span> <span class="type">!!js</span><span class="string">/regexp</span> <span class="string">/pagead2.googlesyndication.com/</span></span><br><span class="line"><span class="attr">        strategy:</span> <span class="string">networkOnly</span></span><br><span class="line"><span class="attr">      - pattern:</span> <span class="type">!!js</span><span class="string">/regexp</span> <span class="string">/cdn.jsdelivr.net/</span></span><br><span class="line"><span class="attr">        strategy:</span> <span class="string">cacheFirst</span></span><br><span class="line"><span class="attr">      - pattern:</span> <span class="type">!!js</span><span class="string">/regexp</span> <span class="string">/.*\.(js|css|jpg|jpeg|png|gif)$/</span></span><br><span class="line"><span class="attr">        strategy:</span> <span class="string">cacheFirst</span></span><br><span class="line"><span class="attr">      - pattern:</span> <span class="type">!!js</span><span class="string">/regexp</span> <span class="string">/\//</span></span><br><span class="line"><span class="attr">        strategy:</span> <span class="string">networkFirst</span></span><br><span class="line"><span class="attr">  priority:</span> <span class="number">5</span></span><br></pre></td></tr></table></figure><p>You can look up <code>hexo-pwa</code>‘s <a href="https://github.com/lavas-project/hexo-pwa" target="_blank" rel="noopener">documentation</a> for more information.</p><h2 id="3-Deploying"><a href="#3-Deploying" class="headerlink" title="3. Deploying"></a>3. Deploying</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure><p>And see how it become:</p><h3 id="Mobile"><a href="#Mobile" class="headerlink" title="Mobile"></a>Mobile</h3><img src="/en/2019/08/19/enhance-hexo-with-pwa-in-three-steps/mobile.jpg"><h3 id="Desktop"><a href="#Desktop" class="headerlink" title="Desktop"></a>Desktop</h3><img src="/en/2019/08/19/enhance-hexo-with-pwa-in-three-steps/desktop.jpg"><p>Now you can use your browser (Chrome/Firefox) to view this site. Clicking the up-right menu and add this site to your home screen.</p><p>Hope you enjoy.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/08/19/enhance-hexo-with-pwa-in-three-steps/banner.jpg&quot;&gt;
+&lt;p&gt;In previous article I mention about reviewing issue and my PWA plan will be advanced. I want to learn fist and do some experiment about PWA, so this blog became the first tester.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Log" scheme="https://blog.decay.fun/en/categories/Product/Log/"/>
+    
+      <category term="PWA" scheme="https://blog.decay.fun/en/categories/Front-End/PWA/"/>
+    
+    
+      <category term="PWA" scheme="https://blog.decay.fun/en/tags/PWA/"/>
+    
+      <category term="Hexo" scheme="https://blog.decay.fun/en/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>To Wechat mini program reviewer: Fuck you</title>
+    <link href="https://blog.decay.fun/en/2019/08/18/fuck-u-wechat/"/>
+    <id>https://blog.decay.fun/en/2019/08/18/fuck-u-wechat/</id>
+    <published>2019-08-18T14:12:46.000Z</published>
+    <updated>2019-09-24T08:21:44.411Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/08/18/fuck-u-wechat/banner.jpg"><p>Since everyone knows Wechat mini program has very very limited categories, you could do less when your program is categorized as “personal”. Form early 2018 when I launch my mini program, I obey the operation rules and developing code, it always passed after first review.</p><p>But I don’t know the wrong with that guys now, they unapproved my code for FOURTH tims. WHAT? The unapproved reason says: your contents involve with “Entertainment - News” which does allow in personal category. NEWS? Excuse me? The contents show in the index page are the content generated form my program with the pictures form movie or series, they are DEMONSTRATION. It has nothing to do with NEWS.</p><p>WTF? Same code, Same behavior, just fixed some bugs and it says no. The last version with the NEWS contents they think has runing for half a year, now they told me no? I have my patience lost entirely, FUCK u reviewer!</p><a id="more"></a><p>PWA will be put on the agenda ASAP, I sick with “REVIEW”. Who do you think you are?</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/08/18/fuck-u-wechat/banner.jpg&quot;&gt;
+&lt;p&gt;Since everyone knows Wechat mini program has very very limited categories, you could do less when your program is categorized as “personal”. Form early 2018 when I launch my mini program, I obey the operation rules and developing code, it always passed after first review.&lt;/p&gt;
+&lt;p&gt;But I don’t know the wrong with that guys now, they unapproved my code for FOURTH tims. WHAT? The unapproved reason says: your contents involve with “Entertainment - News” which does allow in personal category. NEWS? Excuse me? The contents show in the index page are the content generated form my program with the pictures form movie or series, they are DEMONSTRATION. It has nothing to do with NEWS.&lt;/p&gt;
+&lt;p&gt;WTF? Same code, Same behavior, just fixed some bugs and it says no. The last version with the NEWS contents they think has runing for half a year, now they told me no? I have my patience lost entirely, FUCK u reviewer!&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
+    
+      <category term="Review" scheme="https://blog.decay.fun/en/tags/Review/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>戏词的下一步</title>
+    <link href="https://blog.decay.fun/en/2019/08/16/xicis-next-step/"/>
+    <id>https://blog.decay.fun/en/2019/08/16/xicis-next-step/</id>
+    <published>2019-08-16T15:15:25.000Z</published>
+    <updated>2019-09-24T08:21:44.849Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/08/16/xicis-next-step/banner.jpg"><p>『戏词』的下一步就是网页版，而且是支持 PWA 的网页。</p><p>其实网页版已经偷偷在线上一段时间了，多亏<a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">知晓云</a>提供的多平台 SDK 支持，迁移起来非常方便。但是还没有广而告之的一个原因就是，作为一个做拼图出身的工具，只提供了在线内容浏览而不提供工具好像有点说不过去，于是便一直拖拖拖。但是关于线上版的功能和逻辑基本上都想全了，只差<del>一个程序员</del>匀出时间来实现就好。</p><a id="more"></a><p>『戏词』运行一阶段后，就有用户发来网页版的建议。这点我自己都深有感触，因为一开始的『戏词』也只有小程序版的，导致我自己在电脑上截的图要用微信发到手机上，然后再用小程序拼起来（这中间还少了一步“一张张的点击加载原图，再一张张的点击下载”的步骤，当然这个痛点在上一个版本的更新中已经被我用“从聊天记录里选择”解决了）。但无论如何，在电脑上的截图还需要发到手机上才能拼这点始终是过于麻烦，于是开发网页版很早就在 roadmap 中。</p><p>后面的也开始有用户在问 App 的事情，但是因为觉得同时开发安卓和 iOS 时间太长，而且开发成本也高就被我回绝了。不过我也知道，相对于让用户每次访问都要输入一个网址来说，直接点开 App 的图标就可以使用当然是更方便的。那么有什么东西能只做一次开发，就能在安卓、iOS 上运行，而且还不需要用户输入网址呢？答案当然是小程序了，这也是为什么我一开始选择小程序的原因。做了个表格对比：</p><table><thead><tr><th></th><th>网页</th><th>App</th><th>小程序</th></tr></thead><tbody><tr><td>优势</td><td>一个网址，一次开发全平台通用</td><td>打开方便，更底层的接口，能实现更好的效果</td><td>微信流量红利，一次开发全平台通用</td></tr><tr><td>劣势</td><td>需要用户记忆网址</td><td>不同平台需要单独开发。时间长，成本高</td><td>严重依赖于微信，受控严重</td></tr></tbody></table><p>而 PWA 可以看做是小程序的强化版，有着更原生的 js 支持。除了无法依赖微信提供的平台和桥接的接口，但总体来说依靠正统（相对于魔改）的内核，做出来的东西可以更加通用。而且相较于需要审核的小程序，PWA 的一切都由自己进行控制，这点让我感觉很舒服。而且，PWA 提供的一些原来要原生 App 才能提供的特性（应该说是新的 Web 接口）给我带来了新的灵感，希望能在上面一一实现。</p><p>想起了在第一篇《<a href="https://blog.decay.fun/2019/03/06/Init/">Init()</a>》中写下的，希望能<strong>好好的作为 Open 和 Decentralized 的一员</strong>。</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/08/16/xicis-next-step/banner.jpg&quot;&gt;
+&lt;p&gt;『戏词』的下一步就是网页版，而且是支持 PWA 的网页。&lt;/p&gt;
+&lt;p&gt;其实网页版已经偷偷在线上一段时间了，多亏&lt;a href=&quot;https://cloud.minapp.com/?invitation=ffbpqq&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;知晓云&lt;/a&gt;提供的多平台 SDK 支持，迁移起来非常方便。但是还没有广而告之的一个原因就是，作为一个做拼图出身的工具，只提供了在线内容浏览而不提供工具好像有点说不过去，于是便一直拖拖拖。但是关于线上版的功能和逻辑基本上都想全了，只差&lt;del&gt;一个程序员&lt;/del&gt;匀出时间来实现就好。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
+    
+      <category term="Thinking" scheme="https://blog.decay.fun/en/categories/Trivia/Thinking/"/>
+    
+      <category term="PWA" scheme="https://blog.decay.fun/en/categories/Front-End/PWA/"/>
+    
+    
+      <category term="互联网" scheme="https://blog.decay.fun/en/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+      <category term="PWA" scheme="https://blog.decay.fun/en/tags/PWA/"/>
+    
+      <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客站点接入了 Google adsense</title>
+    <link href="https://blog.decay.fun/en/2019/08/14/blog-site-with-google-adsense-now/"/>
+    <id>https://blog.decay.fun/en/2019/08/14/blog-site-with-google-adsense-now/</id>
+    <published>2019-08-14T12:21:45.000Z</published>
+    <updated>2019-09-24T08:21:44.119Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/08/14/blog-site-with-google-adsense-now/banner.jpg"><p>我第一次切身体会能用广告来维持一个项目运营的时候，也是从『戏词』开始的。那个时候只是抱着试试看的态度，扭扭捏捏地加在几个我觉得不影响体验流程的地方。虽然每天的收入不多，也能支撑稿费、后台还有活动费用等等，但是知道能有这么一份收入来源，运营项目的时候就会多一分安心。</p><p>这次在博客这边加了 Google Adsense，一个目的是看看这边情况如何，第二个是学学 Adsense。</p><a id="more"></a><p>广告最基本的逻辑，就是增加曝光量。就和老罗说过的那句话，“酒香不怕巷子深，那也得是整条巷子就你一家卖酒的。大家都卖酒，谁知道味道是你家的”是一个道理。通过扩大曝光量，提高知名度，从而提升自家产品的购买转化。类似于 Google Adsense 这类的广告平台，我知道的也只有百度联盟和 360 联盟了。选择 Google 也是基于价值观的选择吧，虽说 Google 这几年的风评也是逐年下降……</p><p>Anyway，先看看情况。之后的项目如果能依赖于广告就能提供服务，那也是对用户和开发者来说都是一件好事。</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/08/14/blog-site-with-google-adsense-now/banner.jpg&quot;&gt;
+&lt;p&gt;我第一次切身体会能用广告来维持一个项目运营的时候，也是从『戏词』开始的。那个时候只是抱着试试看的态度，扭扭捏捏地加在几个我觉得不影响体验流程的地方。虽然每天的收入不多，也能支撑稿费、后台还有活动费用等等，但是知道能有这么一份收入来源，运营项目的时候就会多一分安心。&lt;/p&gt;
+&lt;p&gt;这次在博客这边加了 Google Adsense，一个目的是看看这边情况如何，第二个是学学 Adsense。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+    
+      <category term="Google" scheme="https://blog.decay.fun/en/tags/Google/"/>
+    
+      <category term="Adsense" scheme="https://blog.decay.fun/en/tags/Adsense/"/>
+    
+      <category term="恰饭" scheme="https://blog.decay.fun/en/tags/%E6%81%B0%E9%A5%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>知晓云两周年生日快乐！【以及戏词的心路历程</title>
+    <link href="https://blog.decay.fun/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/"/>
+    <id>https://blog.decay.fun/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/</id>
+    <published>2019-08-06T13:46:28.000Z</published>
+    <updated>2019-09-24T08:21:44.780Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/banner.jpg" title="知晓云两周年生日快乐！【以及戏词的心路历程"><p>8 月 8 号就是我安利过很多次的<a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">知晓云</a> 2 周年的生日啦~首先先提前祝知晓云生日快乐，越办越好~今天收到他们产品经理 Musk 的问题，想让我说说『戏词』的诞生和接入知晓的经历。之前的文章有提到过，会专门写一篇来介绍下我的宝贝戏词，那么就这个机会来说一说做『戏词』这段时间的心路历程，还有它和知晓云的爱恨纠葛吧哈哈哈哈。</p><a id="more"></a><h2 id="戏词是怎么诞生的"><a href="#戏词是怎么诞生的" class="headerlink" title="戏词是怎么诞生的"></a>戏词是怎么诞生的</h2><p>其实再过两个月，戏词的生日也就快到了。两年前的国庆假期，看了一席的某个视频后突然想截图保存。因为当时只熟悉 PS，截出了 30 多张图片后，导入到电脑中，再通过 PS 中艰难的调整图层顺序和间距，痛苦地折腾了十几分钟后才终于拼出了一张较为满意的图片。当时的我刚用两天时间上线了我的第一个小程序『展信如面』，所以自然而然地想到了：“为什么不用小程序解决这个问题呢？”，于是在假期的尾巴，我画出了『戏词』最一开始的原型图：</p><img src="/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/xici-alpha.jpg" title="戏词alpha"><p>我周围也有许多的朋友是电影、剧集的爱好者，时不时的会在朋友圈内看到他们发的字幕拼图。问过之后，才知道他们也没有什么方便的拼图工具，所以当时的目的其实只是为了做一个自己和朋友能方便拼图的小程序，连名字也没有定好。</p><p>因为上一个小程序是字符计算，而新的小程序偏向图片，两者没有什么交集，所以也算是从零开始再学习了一遍小程序。而且，彼时的小程序还不够完善，bug 比现在多，涉及到 canvas 的很多表现在调试工具和真机上表现得非常不一致，提供的接口也与网页 js 版本相差许多。许多想做的功能发现无法实现，这种挫败感导致了开发的过程中不断放弃是常有的事儿。</p><p>就这样不断地写写停停，终于在 18 年的 2 月份，在确定了名字叫『戏词』——我认为的用“戏”和“词”两个字最少的字数能概括这个小程序的功能——后，上线了 1.0 的版本。当时的功能还十分的简陋，只包含了拼带水印的台词拼图。但即使这样，拼一开始说的 30 张图，原先痛苦的十几分钟，也被压缩成了短暂的十几秒。『戏词』的目的达到了。</p><img src="/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/xici-1.0.jpg" title="戏词 1.0"><p>上线后，看着用户不断的增长、收到用户发来反馈，心态也从起初“做给自己和朋友用”变成了“希望能让更多的人用上”。于是在不断修复 bug、优化体验后，我开始学习如何增加『戏词』的曝光度，也就是在那段时间，我知道了<a href="https://minapp.com/miniapp/" target="_blank" rel="noopener"><strong>知晓程序</strong></a>。</p><h2 id="专业的小程序市场——知晓程序"><a href="#专业的小程序市场——知晓程序" class="headerlink" title="专业的小程序市场——知晓程序"></a>专业的小程序市场——知晓程序</h2><p>知晓程序是个小程序市场。在微信说不提供小程序市场后，同类的产品如雨后春笋般出现。选择知晓是因为他们的网站做的比友商的好看太多，还有我是爱范儿的粉丝（哈哈哈哈）。知晓上有非常详尽的类别，首页上也可以看到不断更新的精品推荐和专题介绍，还有他们自己的排行榜和奖项，每个地方都看得出编辑们对待小程序们的专业与用心。于是，在修复了一些 bug 并新增了设置入口后，我抱着试试看的态度，在知晓程序上<a href="https://minapp.com/miniapp/6040/" target="_blank" rel="noopener">提交了『戏词』</a>。而就在上线后的不久，后台访问量的陡然升高让我注意到，戏词在那天获得了知晓的“编辑推荐”。在此由衷地感谢编辑大大，让我为了能做出更好的戏词提供了一份新的力量。</p><img src="/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/xici-recommanded.jpg" title="知晓推荐"><p>但是，当时的『戏词』还是一个单机工具，虽然写过一篇<a href="https://mp.weixin.qq.com/s/HluGgE2YQa7TCWcmfIVy6A" target="_blank" rel="noopener">使用教程</a>，但是可玩度也并没有多大的提升空间。如何吸引用户，如何留住用户，如何让用户有不断使用的欲望使我不得不考虑，戏词的动态化。</p><p>用户为什么拼图？去掉那些反复图像的目的，是因为他们想用更少的空间留住他们认为重要的东西：触动到 ta 的台词。拼图能压缩他们冗余的图片，提高他们分享内容的效率。不能说拼图的目的是为了分享，但分享一定占据了绝大多数场景。这么说，『戏词』的下一个功能应该是分享图片了。</p><p>不过小程序自身的限制就很多，个人小程序更是如此。个人小程序无法做 UGC 是遇到的无法避免的问题，而这直接锁死了用户分享的路。那有什么方法可以绕过吗？有，人工。用户通过投稿的方式将内容提交给客服，客服再上线到线上。这种方式可以规避一些风险，带来的问题也是显而易见的：效率过低。然而这是我当时想到的唯一出路，作为曲线救国的一种方法。但是路子是想好了，编写后台接口、搭建数据库、架设服务器等等这一系列糟心的问题又令我望而却步：业余时间写这些得花多久时间，大半年的时间应该要吧？又是几乎快放弃的时候，我在知晓程序的首页上第一次接触到了 BaaS(Backend as a service) 这个概念，也是我第一次接触<a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">知晓云</a>。</p><h2 id="初识知晓云"><a href="#初识知晓云" class="headerlink" title="初识知晓云"></a>初识知晓云</h2><p>我很羡慕很“全能”的人，业内他们被称作“全栈”，这个词也是我曾经一直奋斗的目标。我觉得他们可以自己一人就做得好一款产品：从功能安排到界面设计、从数据库搭建到服务器部署等等等等，他们都能轻松搞定。我也曾经试过，但发现没有足够的积累就想在短时间内到达这种高度是不现实的。站在现在回想起来，有点像在看一本 n 天搞定派的垃圾书——什么都有，什么都泛，什么都学不到。</p><p>我也是从做『戏词』开始体会到了：对于一款软件来说，它能表达的功能才是关键。界面和数据库的设计，都是尽可能的为产品提供表达的基础。用户选择的是你提供的功能，而不是你使用多么超前的语言或技术框架。前后台需要在意的，只有效率。</p><p>而知晓云无疑给我实现这个目的提供了高效便捷的工具。我重新设计了整个『戏词』，优化了图片生成，新增了配词功能。基于知晓，我也实现了专题文章和一刻拼图这两个动态内容的存储和展示，这是我打算提供用户分享的新入口。而这一切我只用了不到两个月的业余时间。</p><img src="/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/xici-2.0.jpg" title="戏词基于知晓云的动态数据"><p>这期间也让我深刻的体会到，知晓的优势所在。</p><h3 id="上手方便"><a href="#上手方便" class="headerlink" title="上手方便"></a>上手方便</h3><p>登录后台后的界面布局清晰，很快就知道了自己下一步应该做什么。创建好自己的第一个程序后，知晓云详尽的操作指引让你明白每一步需要做什么，该怎么做。跟着几步步奏操作完成后，小程序也就自然而然的完成好了对接需要做的全部工作。知晓云一开始主打的方向就是微信小程序，后期才慢慢扩展到全品类，包括 Native APP，小程序还有 Web。从对接的上手体验上看，目前我没发现比它更方便的服务商了。</p><h3 id="专注于自身"><a href="#专注于自身" class="headerlink" title="专注于自身"></a>专注于自身</h3><p>BaaS，后端即服务。可以简单地理解为知晓云为前端的开发人员提供好了服务器与数据库，还有对接的 SDK。开发者需要做的，只是根据自己的需要在网页上配置好自己的数据库就可以了，再通过 SDK 就可以方便地从自己的应用链接到配置好的数据库中。作为一个前端开发者，“选择什么样的服务器，选择哪一个数据库”不再是困扰我的问题，我的注意力可以始终保持在我的产品上。</p><h3 id="异常划算的套餐"><a href="#异常划算的套餐" class="headerlink" title="异常划算的套餐"></a>异常划算的套餐</h3><p>为什么说异常？现在各大服务器市场上服务器的能稳定运行一定流量的差不多要 1000 起，还不算搭建后台和配置服务器需要的时间成本。知晓提供的套餐根据自己的需要进行选配，『戏词』初期选择的是每天 3 元的个人版，应对流量算是绰绰有余的了。对于实验中或是刚起步的应用来说是个能节省开发成本的好方法。</p><p><strong>而且生日那天还有充值优惠。诸位，我先充为敬！</strong></p><h3 id="平台间数据互通"><a href="#平台间数据互通" class="headerlink" title="平台间数据互通"></a>平台间数据互通</h3><p>戏词在前段时间受邀上线了自己的 QQ 小程序。得益于知晓云的跨平台支持，使我的迁移过程非常的畅快。只用了半天时间不到，界面和后台对接就已经转移完毕。现在在 QQ 中搜索『戏词拼台词』就可以直接体验。</p><img src="/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/xici-qq.jpg" title="QQ小程序 戏词拼台词"><p>当然了，知晓提供的平台支持不止局限于微信与 QQ 间，他们还提供了包括支付宝小程序、iOS 端、Android 端和 Web 端在内的 6 种平台。在不同平台上使用相同的数据不再是繁琐和痛苦的事情了。『戏词』的网页版也在开发中，我希望能在这里提供一个方便用户登录分享的入口。</p><h3 id="不断完善中的产品"><a href="#不断完善中的产品" class="headerlink" title="不断完善中的产品"></a>不断完善中的产品</h3><p>从一开始的只支持微信小程序，到后来的支付宝、Web，到现在的<strong>全平台支持</strong>；从菜单中只有生成小程序码，到<strong>客服接入</strong>，再到现在有了自己的<strong>知晓推送</strong>服务。虽然使用的过程中不全是一路通畅，但是有着<strong>工单和社群</strong>的支持和反馈，可以时刻知道事情的进展，让我知道了知晓在不断地完善中。也随着他们的不断进步，『戏词』也有了进一步提升的空间。</p><h2 id="Fin"><a href="#Fin" class="headerlink" title="Fin"></a>Fin</h2><p>做『戏词』这么一年多以来，很高兴能认识来自知晓的朋友，Theo，Musk，Ernest，小晓云还有 0g，感谢你们的解答，很感谢你们能喜欢和支持『戏词』；也很高兴在微信群里能遇到志同道合的朋友，很喜欢大家在群里互相研究问题和互相帮助；感谢支持过『戏词』的朋友，橙子、<a href="https://weibo.com/robinflw" target="_blank" rel="noopener">冯立文先生</a>、<a href="https://weibo.com/cmzyk" target="_blank" rel="noopener">传媒老跟班</a>、<a href="https://www.weibo.com/superapp2333" target="_blank" rel="noopener">迪仔 Dizzz</a>等等，你们的支持才让『戏词』能走得更好；也感谢我的好朋友<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwNDE5NjI5Nw==&amp;scene=124#wechat_redirect" target="_blank" rel="noopener">快乐的陈先生</a>，作为<a href="https://weibo.com/u/6793817086" target="_blank" rel="noopener">戏词官微</a>的运营她的才华和积累都令我羡慕。也感谢所有支持、分享、喜欢『戏词』的人，在这里说声谢谢！</p><p>当然不会忘了今天的主角，哈哈哈，在这里『戏词』想对知晓说声谢谢，祝愿知晓生日快乐，越办越好！</p><p>以上。</p><blockquote><p>头图来自 <a href="https://unsplash.com/photos/k5b9J3OzQMo" target="_blank" rel="noopener">Kelly Sikkema</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/banner.jpg&quot; title=&quot;知晓云两周年生日快乐！【以及戏词的心路历程&quot;&gt;
+&lt;p&gt;8 月 8 号就是我安利过很多次的&lt;a href=&quot;https://cloud.minapp.com/?invitation=ffbpqq&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;知晓云&lt;/a&gt; 2 周年的生日啦~首先先提前祝知晓云生日快乐，越办越好~今天收到他们产品经理 Musk 的问题，想让我说说『戏词』的诞生和接入知晓的经历。之前的文章有提到过，会专门写一篇来介绍下我的宝贝戏词，那么就这个机会来说一说做『戏词』这段时间的心路历程，还有它和知晓云的爱恨纠葛吧哈哈哈哈。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
+    
+      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+    
+      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/Wechat-Mini-Program/"/>
+    
+      <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
+    
+    
+      <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
+    
+      <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/tags/QQ-Mini-Program/"/>
+    
+      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
+    
+      <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+    
+      <category term="SDK" scheme="https://blog.decay.fun/en/tags/SDK/"/>
+    
+      <category term="知晓程序" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="BaaS" scheme="https://blog.decay.fun/en/tags/BaaS/"/>
+    
+      <category term="心路历程" scheme="https://blog.decay.fun/en/tags/%E5%BF%83%E8%B7%AF%E5%8E%86%E7%A8%8B/"/>
+    
+      <category term="开发" scheme="https://blog.decay.fun/en/tags/%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>通过 Twitter 卡片分享博客</title>
+    <link href="https://blog.decay.fun/en/2019/07/25/share-my-blog-by-twitter-card/"/>
+    <id>https://blog.decay.fun/en/2019/07/25/share-my-blog-by-twitter-card/</id>
+    <published>2019-07-25T10:33:03.000Z</published>
+    <updated>2019-09-24T08:21:44.716Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/07/25/share-my-blog-by-twitter-card/banner.jpg"><p>心血来潮试了试文章页下面的“分享到 Twitter”的按钮，发现分享出去的是干巴巴的文字，觉得不是很美观。虽然没怎么去用 Twitter 但是还是知道在时间线上有不同的推文样式。抱着试试看的心态去找了找，还真找到了：<a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html" target="_blank" rel="noopener">Twitter Card</a>。</p><a id="more"></a><p>看上去并不难，只需要在<code>&lt;head&gt;</code>中配置一些<code>&lt;meta&gt;</code>标签。但是我的博客是用 hexo 生成的，所以用的是 pug 的语法：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">meta(name=&apos;twitter:card&apos; content=&apos;summary_large_image&apos;)</span><br><span class="line">//- 必填，可选 “summary”, “summary_large_image”, “app”, or “player”</span><br><span class="line"></span><br><span class="line">meta(name=&apos;twitter:site&apos; content=&apos;@DecayQ&apos;)\</span><br><span class="line">//- 非必填，在卡片 footer 显示的站点@username</span><br><span class="line"></span><br><span class="line">meta(name=&apos;twitter:creator&apos; content=&apos;@DecayQ&apos;)</span><br><span class="line">//- 非必填，内容创作者@username</span><br><span class="line"></span><br><span class="line">meta(name=&apos;twitter:title&apos; content=page.title)</span><br><span class="line">//- 必填，站点标题</span><br><span class="line"></span><br><span class="line">meta(name=&apos;twitter:image&apos; content=&apos;https://blog.decay.fun/:article/banner.jpg&apos;)</span><br><span class="line">//- 非必填，卡片显示的图片</span><br></pre></td></tr></table></figure><p>但是，页面设置完了点击分享仍然是纯文本的样式。在<a href="https://stackoverflow.com/questions/21478891/twitter-card-share-button" target="_blank" rel="noopener">Stackoverflow</a>找到了答案：需要去 Twitter 的<a href="https://cards-dev.twitter.com/validator" target="_blank" rel="noopener">卡片验证器</a>地址验证网址即可：</p><p><img src="./validator.png" class="no-shadow nofancybox"></p><p>之后，通过分享地址：<code>//twitter.com/intent/tweet?text=title&amp;url=url</code>即可跳转到相对应的页面，点击分享后时间线上出现的就是选择的卡片模式了。</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/07/25/share-my-blog-by-twitter-card/banner.jpg&quot;&gt;
+&lt;p&gt;心血来潮试了试文章页下面的“分享到 Twitter”的按钮，发现分享出去的是干巴巴的文字，觉得不是很美观。虽然没怎么去用 Twitter 但是还是知道在时间线上有不同的推文样式。抱着试试看的心态去找了找，还真找到了：&lt;a href=&quot;https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Twitter Card&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Log" scheme="https://blog.decay.fun/en/categories/Product/Log/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+      <category term="HTML" scheme="https://blog.decay.fun/en/categories/Front-End/HTML/"/>
+    
+    
+      <category term="分享推文" scheme="https://blog.decay.fun/en/tags/%E5%88%86%E4%BA%AB%E6%8E%A8%E6%96%87/"/>
+    
+      <category term="推特卡片" scheme="https://blog.decay.fun/en/tags/%E6%8E%A8%E7%89%B9%E5%8D%A1%E7%89%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QQ 小程序版『戏词』现已上线</title>
+    <link href="https://blog.decay.fun/en/2019/07/24/introducing-xici-in-qq-mini-program/"/>
+    <id>https://blog.decay.fun/en/2019/07/24/introducing-xici-in-qq-mini-program/</id>
+    <published>2019-07-24T15:28:20.000Z</published>
+    <updated>2019-09-24T08:21:44.482Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/07/24/introducing-xici-in-qq-mini-program/banner.jpg"><p><a href="https://blog.decay.fun/">上文</a>末说到『戏词』已提交审核已经是一个礼拜前的事儿了，过了一个礼拜，经过了 5 次修改，终于过审了。审了那么多次，不通过的理由，也顺便在这儿汇总一下：</p><a id="more"></a><ol><li>名称不能是通用词汇；（戏词 -&gt; 戏词丨台词字幕拼图制作器（与微信同名，说中间的丨(shu)是特殊字符再次被拒 -&gt; 戏词拼台词（成功））</li><li>不能含有微信的联系方式；（之前微信小程序版因为客服系统时效不高，所以统一换成了个人微信，移植过去 QQ 后没有做修改。取消获取入口后，成功）</li><li>页面需要含有 button[type=share] 类型的分享出口；（其实有，但在第二级页面，提醒审核人员后成功）</li></ol><p>不知道其他人会不会有这种感受：**，我在微信弄的好好的，怎么你们这儿那么多事啊，还让我改名字？做的又没微信好，审核条件还一大堆，而且感觉 QQ 小程序这边人审多于机审。比如名称中的丨，这个是汉字，音同树。在微信中如果是符号：| 页面上就会报错，提示说不合法的字符，能正常提交的一般没有什么大问题就都过了。QQ 这边已经正常提交了，然后审核再告诉你说这个是非法字符，我就很？？？？？还有一个是上面的第三点，机器跑测试的话直接就可以判断出小程序内包不包含分享的按钮组件，但是需要我提醒他们才有注意到，这说明这部分的检查还是主要靠人眼。唉，兴，开发苦，换，开发苦啊。</p><p>新平台有新平台的好，也有新平台的糟，不知道后续会怎么发展，还有，广告接入的权限不知道什么时候才可以通过。求求了，这边还有服务费要养着呢。</p><p>最后，各位可以下方的 QQ 小程序码打开体验。</p><p><img src="./xici-qq.jpg" class="nofancybox no-shadow" title="戏词QQ小程序码" alt="戏词QQ小程序码"></p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/07/24/introducing-xici-in-qq-mini-program/banner.jpg&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.decay.fun/&quot;&gt;上文&lt;/a&gt;末说到『戏词』已提交审核已经是一个礼拜前的事儿了，过了一个礼拜，经过了 5 次修改，终于过审了。审了那么多次，不通过的理由，也顺便在这儿汇总一下：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
+    
+      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+    
+      <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
+    
+    
+      <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
+    
+      <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/tags/QQ-Mini-Program/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Migrating XICI to QQ Mini Program</title>
+    <link href="https://blog.decay.fun/en/2019/07/17/migrating-xici-to-qq-mini-program/"/>
+    <id>https://blog.decay.fun/en/2019/07/17/migrating-xici-to-qq-mini-program/</id>
+    <published>2019-07-17T15:23:35.000Z</published>
+    <updated>2019-09-24T08:21:44.586Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/07/17/migrating-xici-to-qq-mini-program/banner.jpg"><p>上周五的时候，我的微信小程序『戏词』收到了来自<a href="http://aldzs.com/" target="_blank" rel="noopener">阿拉丁指数</a>关于 QQ 小程序的内测邀请，虽说已经好久没用 QQ 了不知道现在上面的生态是怎么样的，但觉得新平台的话还是可以试试的，于是周末就看了下文档做了修改。</p><a id="more"></a><h2 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h2><p>改起来其实挺容易的，目录结构部分只要把后缀名 <code>.wxml</code> 改成 <code>.qml</code>、<code>.wxss</code> 改成 <code>.qss</code> 就好。QQ 小程序内用全局对象 <code>qq</code> 取代了 <code>wx</code>，<code>.qml</code> 和 <code>.js</code> 部分中含有 wx 的部分都改成 qq 即可。不过 QQ 小程序的开发者工具不提供代码编辑功能，用 vscode 全局搜一下替换调就完事。【这个不提供编辑器功能让我一开始以为自己下错安装包了，卸了一次重装发现还是这样就放弃了……</p><p>转换的过程也不算麻烦，但是好歹是自家的程序迁移，都不做个一键迁移的功能。你看看人家百度，开发工具做的那么烂还不是有个一键迁移微信小程序的功能？希望官方能重视一下。</p><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="文档不全"><a href="#文档不全" class="headerlink" title="文档不全"></a>文档不全</h3><p>过程中比较糟糕的体验是分包部分。这部分官方的文档并不全，而且也只是草草的给个接口，示例代码都没有。直接从微信小程序迁移过来的<code>app.json</code>格式无法正确加载，导致我只能把『戏词』较为无关的功能删除，并对页面结构进行修改。</p><blockquote><p>刚去看了一眼，发现文档已经更新了，现在跟微信的大致相同，唉，又是修改的一天，不过也算是好事儿。<br>07-24 更新，文档是一样了，但是还是不行。</p></blockquote><h3 id="生态暂不完善"><a href="#生态暂不完善" class="headerlink" title="生态暂不完善"></a>生态暂不完善</h3><p>因为目前 QQ 小程序还处于起步阶段，生态环境还没有完全成型，很多在微信平台上的小程序并没有迁移过来，程序间跳转无法和微信保持一致——例如『戏词』内用户接受用户赞赏的“给赞”——还有很多微信上用到的第三方插件在 QQ 这里没法用，页面上调用相关组件的时候无法直接使用——比如用到的富文本显示的 wxParser。这些都需要在迁移的时候做相对应的调整。</p><h2 id="后台服务"><a href="#后台服务" class="headerlink" title="后台服务"></a>后台服务</h2><p>『戏词』的后台使用的是<a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">知晓云</a>提供的 BaaS 服务。他们的接口提供包括微信、QQ 小程序在内的全平台 SDK，这部分的迁移并没有多少难度，只要根据他们的文档在初始化的时候配置一下就可以了。</p><h2 id="用？发电"><a href="#用？发电" class="headerlink" title="用？发电"></a>用？发电</h2><p>『戏词』目前的支出主要是后台服务的费用，收入的大部分是靠小程序内的流量主。现在在微信上的收益基本能维持基础版的运行。新增了平台入口之后，流量请求也会增加，但是 QQ 内的还没有看到对开发者比较友好的措施。从客服提供的文档中看到了，现在 QQ 小程序的流量主是需要通过自己申请才可能获得资格。希望后期能慢慢完善，毕竟靠爱发电总是不会长久。如果能匹配这部分的资格的话，我也愿意在上面投入更多的时间实现更多的功能。</p><p>『戏词』QQ 版已经提交审核，应该 1-3 天内就能知道结果。看似简单的迁移过程也是路上皆坑，不过也希望 QQ 小程序也能越做越好。</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/07/17/migrating-xici-to-qq-mini-program/banner.jpg&quot;&gt;
+&lt;p&gt;上周五的时候，我的微信小程序『戏词』收到了来自&lt;a href=&quot;http://aldzs.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;阿拉丁指数&lt;/a&gt;关于 QQ 小程序的内测邀请，虽说已经好久没用 QQ 了不知道现在上面的生态是怎么样的，但觉得新平台的话还是可以试试的，于是周末就看了下文档做了修改。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
+    
+      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+    
+      <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
+    
+    
+      <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
+    
+      <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/tags/QQ-Mini-Program/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/tags/XICI/"/>
+    
+      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>做了一个 LOGO</title>
+    <link href="https://blog.decay.fun/en/2019/07/09/lighto-logo/"/>
+    <id>https://blog.decay.fun/en/2019/07/09/lighto-logo/</id>
+    <published>2019-07-09T14:27:24.000Z</published>
+    <updated>2019-09-24T08:21:44.550Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/07/09/lighto-logo/banner.jpg" title="Lighto LOGO"><p>宝贝做的是亚马逊的运营，所以之前的工具也多半是为她写的。生活中经常吐槽她们公司美工如何如何的不靠谱，图我看了，确实做得很糟糕。但是因为那个美工也算是他们公司的老员工了，老板非常地欣赏他。各种丑图在他面前都能挑出优点，仿佛看着的是自己刚出生的亲儿子。</p><p>而她负责的类目又是那个品类最好的，导致同行们纷纷模仿这“第一”……不禁感慨，这么丑还能这么吃香，这个世界真的是不以人的意志为转移的。</p><p>所以时常在想，如果是我来做这个产品的相关设计的话，我会怎么去做这样的设计呢？</p><a id="more"></a><p>要跟现在的“直接、粗犷”的风格分隔开的话，我的设想是“精致、优雅”。所以线条的粗细和字体的选择都在这方面做了调整，用更细的线条来体现“精致”，用大量的留白来表现“优雅”。因为他们的类目和“光”有关系，所以起了个“Lighto”的名字（念起来像是日语 hhh），再结合上相关的图像，这个 LOGO 也算像模像样的做出来了。因为对它还算是满意，也想到之前说的在兴隆下搭建的电商平台，一时兴起把 LOGO 放到了页面上想作为之后电商网站的效果图。但是做的匆匆忙忙，所以并没有理想中的那么成功，所以效果图就不放了。</p><p>把 LOGO 发给宝贝看后她也觉得好看哈哈哈哈（相对于之前每次都会说一下“我觉得那个还要再调整一下”），而且不小心被她们主管看到了，胡扯了是友商的 LOGO 后，主管表示“还蛮好看的”。唉，你有这眼神，怎么就看不出自家的东西哪里不对劲呢？</p><p>电商这块我还没有接触，兴趣倒是一直都有。只知道网站的搭建方法，其他的还是一无所知。尤其是跨境电商，总感觉这里面竞争十分激烈，却蕴含着更多的机会。知道学习的东西还需要很多，选品、支付、物流，每一块单独拆出来都是一个大课题。支付的话因为看到前段时间 Facebook 出的 Libra，我觉得跨境电商是个非常合适的使用场景，所以也想趁着这个机会好好学习一下这些内容。</p><p>有机会的话，独立商城见~</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/07/09/lighto-logo/banner.jpg&quot; title=&quot;Lighto LOGO&quot;&gt;
+&lt;p&gt;宝贝做的是亚马逊的运营，所以之前的工具也多半是为她写的。生活中经常吐槽她们公司美工如何如何的不靠谱，图我看了，确实做得很糟糕。但是因为那个美工也算是他们公司的老员工了，老板非常地欣赏他。各种丑图在他面前都能挑出优点，仿佛看着的是自己刚出生的亲儿子。&lt;/p&gt;
+&lt;p&gt;而她负责的类目又是那个品类最好的，导致同行们纷纷模仿这“第一”……不禁感慨，这么丑还能这么吃香，这个世界真的是不以人的意志为转移的。&lt;/p&gt;
+&lt;p&gt;所以时常在想，如果是我来做这个产品的相关设计的话，我会怎么去做这样的设计呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+      <category term="E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/"/>
+    
+      <category term="Cross-Border E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/Cross-Border-E-Commerce/"/>
+    
+      <category term="Amazon" scheme="https://blog.decay.fun/en/categories/E-Commerce/Amazon/"/>
+    
+    
+      <category term="E-Commerce" scheme="https://blog.decay.fun/en/tags/E-Commerce/"/>
+    
+      <category term="LOGO" scheme="https://blog.decay.fun/en/tags/LOGO/"/>
+    
+      <category term="想法" scheme="https://blog.decay.fun/en/tags/%E6%83%B3%E6%B3%95/"/>
+    
+      <category term="设计" scheme="https://blog.decay.fun/en/tags/%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="思考" scheme="https://blog.decay.fun/en/tags/%E6%80%9D%E8%80%83/"/>
+    
+      <category term="思路" scheme="https://blog.decay.fun/en/tags/%E6%80%9D%E8%B7%AF/"/>
+    
+      <category term="亚马逊" scheme="https://blog.decay.fun/en/tags/%E4%BA%9A%E9%A9%AC%E9%80%8A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>公众号新 LOGO</title>
+    <link href="https://blog.decay.fun/en/2019/07/02/new-wechat-offcial-account-logo/"/>
+    <id>https://blog.decay.fun/en/2019/07/02/new-wechat-offcial-account-logo/</id>
+    <published>2019-07-02T07:31:01.000Z</published>
+    <updated>2019-09-24T08:21:44.693Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/07/02/new-wechat-offcial-account-logo/banner.jpg"><p>给公众号做了一个新 LOGO，名字也换成了『DecayQ』。</p><p>微信搜索『decayq』即可。</p><p>至于啥时候会更新，我也不知道。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/en/2019/07/02/new-wechat-offcial-account-logo/banner.jpg&quot;&gt;
+&lt;p&gt;给公众号做了一个新 LOGO，名字也换成了『DecayQ』。&lt;/p&gt;
+&lt;p&gt;微信搜索『decayq』即可。&lt;/p&gt;
+&lt;p&gt;至于啥时候会
+      
+    
+    </summary>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+    
+      <category term="LOGO" scheme="https://blog.decay.fun/en/tags/LOGO/"/>
+    
+      <category term="微信" scheme="https://blog.decay.fun/en/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+      <category term="公众号" scheme="https://blog.decay.fun/en/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
+    
+      <category term="decayq" scheme="https://blog.decay.fun/en/tags/decayq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于兴隆 CMS 的一些想法</title>
+    <link href="https://blog.decay.fun/en/2019/06/28/some-thoughts-about-sing-long-cms/"/>
+    <id>https://blog.decay.fun/en/2019/06/28/some-thoughts-about-sing-long-cms/</id>
+    <published>2019-06-28T09:11:05.000Z</published>
+    <updated>2019-09-24T08:21:44.750Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/06/28/some-thoughts-about-sing-long-cms/banner.jpg" title="关于兴隆 CMS 的一些想法"><p>我在微博的小号里面发了条：</p><blockquote><p>接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。</p></blockquote><p>本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。</p><p>作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款通用型 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。</p><a id="more"></a><h2 id="兴隆-CMS-将会是一个基于组件开发的框架系统。"><a href="#兴隆-CMS-将会是一个基于组件开发的框架系统。" class="headerlink" title="兴隆 CMS 将会是一个基于组件开发的框架系统。"></a>兴隆 CMS 将会是一个基于组件开发的框架系统。</h2><p>设计中会有：页面设计器、组件市场、关联数据管理。</p><p>[未完成]</p><!-- ## CMS (Content Management System)内容管理系统（英语：content management system，缩写为 CMS）是指在一个合作模式下，用于管理工作流程的一套制度。该系统可应用于手工操作中，也可以应用到计算机或网络里。作为一种中央储存器（central repository），内容管理系统可将相关内容集中储存并具有群组管理、版本控制等功能。版本控制是内容管理系统的一个主要优势。[2]### 权限内容管理系统的核心在**管理**上。那么由谁来管理？自然就是管理员了。但是当所有的操作权限都集中在一个管理员手中的时候，就是一个巨大的安全隐患。所以，我们会将不同的操作独立开来，按不同的角色进行分类，最后再给用户分配对应的角色。不同的用户拥有自己的角色；不同的角色有对应着不同的操作权限。那么由管理引出了该系统子系统——用户角色权限控制系统（RBAC: Role-Based Access Control）：**用户**-**角色**-**权限**。一般来说，站点会有一个拥有所有权限的管理员。用于管理所有用户和角色。但作为一个目标是通用型 CMS，只有一个管理员来维护权限和角色似乎效率过低。我从这篇[《角色权限设计的 100 种解法》][1]中知道了：可以通过添加某个角色的子管理员，由 ta 来管理自身权限下的角色和权限，并且操作的范围不超过自身权限范围即可。### 用户界面设计界面[1]: https://mp.weixin.qq.com/s/MKljuxfDMmopr_MrnYljGw[2]: https://zh.wikipedia.org/wiki/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F -->]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/06/28/some-thoughts-about-sing-long-cms/banner.jpg&quot; title=&quot;关于兴隆 CMS 的一些想法&quot;&gt;
+&lt;p&gt;我在微博的小号里面发了条：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。&lt;/p&gt;
+&lt;p&gt;作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款通用型 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+      <category term="Thinking" scheme="https://blog.decay.fun/en/categories/Trivia/Thinking/"/>
+    
+    
+      <category term="想法" scheme="https://blog.decay.fun/en/tags/%E6%83%B3%E6%B3%95/"/>
+    
+      <category term="思考" scheme="https://blog.decay.fun/en/tags/%E6%80%9D%E8%80%83/"/>
+    
+      <category term="思路" scheme="https://blog.decay.fun/en/tags/%E6%80%9D%E8%B7%AF/"/>
+    
+      <category term="CMS" scheme="https://blog.decay.fun/en/tags/CMS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>做了一个亚马逊上保存买家秀中返图的工具</title>
+    <link href="https://blog.decay.fun/en/2019/06/26/amazon-operation-tool-1/"/>
+    <id>https://blog.decay.fun/en/2019/06/26/amazon-operation-tool-1/</id>
+    <published>2019-06-26T07:16:02.000Z</published>
+    <updated>2019-09-24T08:21:43.704Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/06/26/amazon-operation-tool-1/banner.jpg"><p><a href="https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/">上文</a>提到，“高频词分析工具”是为了我那美丽可爱的女友做的。然而昨天生气的她今天好像并没有消太多的气，今天又提出了新问题。这是致命且危险的一分。</p><blockquote><p>怎样才能快速保存亚马逊页面中买家秀的图</p></blockquote><p>在给出的<code>直接右键保存/复制图片</code>操作无效、<code>通过在控制台输入选择器</code>觉得要背诵太过麻烦，这两个我最常用的方案都被否决后，我在思考还有什么更方便的方法吗？</p><a id="more"></a><p>有，肯定有，到底用哪个只不过是一个时间成本问题。</p><img src="/en/2019/06/26/amazon-operation-tool-1/1.jpg" title="无法保存图片"><p>最快捷的右键保存，由于点击的时候是作用到亚马逊的轮播控件而不是图片，所以无效。那么在页面上如何还能控制到页面的元素呢，我第一想法是 Chrome 的扩展插件。但因为暂时还没点这部分的技能树，所以从零开始的写的话到发送给她用我估计这一分也早已远去了。这个方案也被排除。那么我所知道的剩下的方法就只剩一个了。</p><h2 id="通过书签栏的快捷方式操控页面！"><a href="#通过书签栏的快捷方式操控页面！" class="headerlink" title="通过书签栏的快捷方式操控页面！"></a>通过书签栏的快捷方式操控页面！</h2><p>书签栏听上去就和操控页面内容风马牛不相及，那如何用它来达成我的目的呢？答案在于修改书签的地址。先随便收藏一个页面之后，右键修改网址栏为:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">javascript: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// logic goes here</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><img src="/en/2019/06/26/amazon-operation-tool-1/2.jpg" title="修改书签"><p>这样一来，我们在页面中点击这个书签的按钮后，刚才写在网址栏中的脚本就会在当前网页执行。只要在脚本内控制好操作的逻辑，就可以实现想要的功能。为了快速解决领导的问题，简陋地写了插入打开当前图片的超链接。打开弹窗后，点击一下书签栏，按钮就会自动添加到代码中所制定的位置，点击后即可快速打开当前图片：</p><img src="/en/2019/06/26/amazon-operation-tool-1/3.gif" title="操作演示"><p>点击后再调节 DOM 结构的方式意味着，重新打开弹窗显示新图片后，按钮的跳转地址仍然是旧图片，需要重新点击书签才能生成新地址的按钮。虽然这步的用户体验还是差，但是能快速解决需求比什么都来的重要。</p><img src="/en/2019/06/26/amazon-operation-tool-1/4.jpg"><p>以上。</p><p>=========</p><p><strong>2019 年 7 月 2 日 更新：</strong> 傻了，当初为啥要生成按钮再点击打开呢？获取到当前图片的地址后直接在新页面打开就可以啦 😂</p><img src="/en/2019/06/26/amazon-operation-tool-1/5.gif"><blockquote><p>头图来自 <a href="https://unsplash.com/@helloimnik?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener">Hello I’m Nik 🇬🇧</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/06/26/amazon-operation-tool-1/banner.jpg&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.decay.fun/2019/06/25/new-site-called-sing-long-fun/&quot;&gt;上文&lt;/a&gt;提到，“高频词分析工具”是为了我那美丽可爱的女友做的。然而昨天生气的她今天好像并没有消太多的气，今天又提出了新问题。这是致命且危险的一分。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;怎样才能快速保存亚马逊页面中买家秀的图&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在给出的&lt;code&gt;直接右键保存/复制图片&lt;/code&gt;操作无效、&lt;code&gt;通过在控制台输入选择器&lt;/code&gt;觉得要背诵太过麻烦，这两个我最常用的方案都被否决后，我在思考还有什么更方便的方法吗？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
+    
+      <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
+    
+      <category term="E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/"/>
+    
+      <category term="Amazon" scheme="https://blog.decay.fun/en/categories/E-Commerce/Amazon/"/>
+    
+    
+      <category term="E-Commerce" scheme="https://blog.decay.fun/en/tags/E-Commerce/"/>
+    
+      <category term="Amazon" scheme="https://blog.decay.fun/en/tags/Amazon/"/>
+    
+      <category term="Tool" scheme="https://blog.decay.fun/en/tags/Tool/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新站興隆，开张</title>
+    <link href="https://blog.decay.fun/en/2019/06/25/new-site-called-sing-long-fun/"/>
+    <id>https://blog.decay.fun/en/2019/06/25/new-site-called-sing-long-fun/</id>
+    <published>2019-06-25T14:39:59.000Z</published>
+    <updated>2019-09-24T08:21:44.624Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/06/25/new-site-called-sing-long-fun/banner.jpg" title="興隆LOGO"><p>自从重新熟悉了 nginx 和服务器配置后，上线新网站成了轻而易举的事情。</p><p>这不，介绍一下我站点群（哈哈哈哈哈哈哈）今天的新成员：『<a href="http://tool.singlong.fun" target="_blank" rel="noopener">興隆工具</a>』。</p><a id="more"></a><p>去年底的时候接了外单后，由于客户域名方面的问题导致上线过程中被卡住了。所以我就有了“先注册个域名，测试或者上线前可以先临时顶替一下”的想法。想到这个域名负责的业务场景主要是用在商单上，所以名字想要“喜庆”一些（哈哈哈），于是就有了这个读音为“兴隆”，写法为“Sing Long（传唱久远）”的域名，也照着这个名字的感觉顺便做了一下 Logo。<del>可真是个全能的小天才呢哈哈哈哈。</del></p><hr><p>说到这儿刚想起来，当前这个域名 decay.fun 和 singlong.fun 这俩从单词上看两者的意思完全相反的域名，居然是差不多时间注册的，也不知道当初是怎么想的。</p><hr><p>这次上线的是一个“高频词分析”的工具。前台依旧是用 <a href="https://vue.ant.design/" target="_blank" rel="noopener">Ant Design Vue</a> 框架进行搭建（说实话我已经爱上它了，实现速度真的是快，在这里再次诚心安利），功能是统计和分析输入的段落中，英文单词的出现次数与频率。</p><p>老实说并没什么难点，思路是先把多段落合利用</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STRING = STRING.split(<span class="string">"\n"</span>).join(<span class="string">" "</span>);</span><br></pre></td></tr></table></figure><p>合并成一行字符串，再通过</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">STRING.split(<span class="string">" "</span>).forEach(<span class="function"><span class="params">word</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (word.trim()) &#123;</span><br><span class="line">    word = word.toLowerCase();</span><br><span class="line">    <span class="keyword">if</span> (result[word]) &#123;</span><br><span class="line">      result[word] = ++result[word];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result[word] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>方法，以每个单词（这边的例子没有大小写敏感）为对象的一个 key，值为该单词的出现次数，这样就可以获取输入内容的单词和次数的关系 <code>Object</code>，再之后根据自己需要转换成 <code>Array</code> 即可。</p><p>这个项目最早的客户是我美丽可爱的女票（虽然现在正在和她闹变扭）。她在做亚马逊运营的时候有些关键词要进行分析，问我有没有什么方法可以统计她收集的关键词的出现次数，我想了想挺容易的东西，就花半小时做了个最简单（陋）的版本，就发给了她：</p><img src="/en/2019/06/25/new-site-called-sing-long-fun/ver-1.jpg" title="高频词统计第一版"><p>前两天她说和她的同事安利了这个工具，同事都想要，她就把文件发给了他们。我想，用发文件这么原始的方式还不如我上线到线上方便，而且之后如果会出问题修改的话也好解决。所以就有了第一个版本的興隆工具。也顺便改了一下界面：</p><img src="/en/2019/06/25/new-site-called-sing-long-fun/ver-2.jpg" title="高频词统计第二版"><p>Feeling Better~</p><p>我对『興隆』一开始的构想是在上面实现一些跟商业有关的东西，无论是外单也好，服务、工具也罢。比如上文提到的为客户挂的网站；用 hexo 搭建这个站点后想到可以实现一套 CMS；在日常项目中做成的一些工具服务可以开放到这个域名下等等等等。当然构想不需要花费力气，罗马也不是一天就建成的，积跬步以致千里就好。</p><p>从这个工具开始，慢慢整理总结自己的一些小轮子也是一个不错的开始。希望和各位一起“興隆”，哈哈哈！</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/06/25/new-site-called-sing-long-fun/banner.jpg&quot; title=&quot;興隆LOGO&quot;&gt;
+&lt;p&gt;自从重新熟悉了 nginx 和服务器配置后，上线新网站成了轻而易举的事情。&lt;/p&gt;
+&lt;p&gt;这不，介绍一下我站点群（哈哈哈哈哈哈哈）今天的新成员：『&lt;a href=&quot;http://tool.singlong.fun&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;興隆工具&lt;/a&gt;』。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
+    
+      <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
+    
+      <category term="Vue" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/Vue/"/>
+    
+      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/Vue/Ant-Design/"/>
+    
+    
+      <category term="Vue" scheme="https://blog.decay.fun/en/tags/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/en/tags/Ant-Design/"/>
+    
+      <category term="建站" scheme="https://blog.decay.fun/en/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>上线了一个优惠券网站：趣优选</title>
+    <link href="https://blog.decay.fun/en/2019/06/20/new-site-called-you-xuan-fun/"/>
+    <id>https://blog.decay.fun/en/2019/06/20/new-site-called-you-xuan-fun/</id>
+    <published>2019-06-20T08:37:59.000Z</published>
+    <updated>2019-09-24T08:21:44.669Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/en/2019/06/20/new-site-called-you-xuan-fun/banner.jpg" title="趣优选 LOGO"><p>我曾在这个网站的第一篇文章《<a href="https://blog.decay.fun/2019/03/06/Init/">Init()</a>》中就这么写道：</p><blockquote><p>…现在微博和朋友圈也发得很少，更不用说我的那个公众号了。现在居然还人模人样地弄了一个专门的博客网站，想顺上个时代的大潮好像晚的也太过分了些……可能需要考虑风格、面向的读者等等杂七杂八的琐事，想要记录零零碎碎的一些东西可能因为这些的原因，刚开热的“新建文章”页面就关了下来。</p></blockquote><p>果不其然，影响我更新的最主要因素并不是这些七七八八，而单纯只是因为我懒……得记录，干活的时候还是很愿意花时间的。这次就做了一个新网站：<a href="http://youxuan.fun?utm_source=blog_decay_fun" target="_blank" rel="noopener">趣优选</a>。</p><a id="more"></a><hr><p><a href="http://youxuan.fun?utm_source=blog_decay_fun" target="_blank" rel="noopener">趣优选</a>的所有商品数据都来自于<a href="https://www.taobao.com/" target="_blank" rel="noopener">淘宝官方</a>，我们是一个中立的、为广大网友消费者提供丰富优质优惠券的网站 😁。</p><hr><p>其实以前被这类网站的微博广告刷得心烦，当时还好奇过这类的优惠是怎么来的，但并没有深究。直到去年年底参加大学舍友的婚礼，现场和另外一个舍友聊了几句说到这个，发现他也在做而且好像做的还不错我才知道这些都是有 API 可以取的，只不过等级不同能拿到的优惠力度也不一样罢了。但是当时刚忙完『戏词』新版本的我也没想过往这方面“拓展业务”，只是提议说如果他愿意的话我可以开个广告位入驻进来，之后便不了了之了。</p><p>后来在家里跟州官说起这件事，她说之前有个账号，但是一直没怎么用。我一想，诶这机会（账号也不是什么难事……只是因为我懒）不就在身边吗？就准备自己动手做一个，但是一没经验，二没方向，只凭着一腔激动无处发泄。跟州官讨论了好久起啥名字好，最后买了个 youxuan.fun 的域名后不知道该干啥就搁置了。再次证明了那句话：</p><blockquote><p>万事起名难，然后中间难，然后后面难</p></blockquote><p>搁置之后因为和朋友有另外一个项目开工，这件事就无限期的往后推迟了。真正动手做也就 6 月 17 号那天。</p><p>因为 618 铺天盖地的广告宣传，我觉得是时候开始了解一下流程了。正好项目阶段性完成，留出了个小空挡，当做是放松自己的一种方式，我决定开始进行尝试。原本的预想是现在先了解，为之后双 11 做好准备（企业家的深谋远虑【笑，结果接口对接起来比我想象中的要容易，没想到一个小半天就搭了个大概起来。</p><p>当天晚上 11 点多，着着急急地部署了第一个版本的网站，只有搜索和领券的功能。Express 做后台 API 处理，前台用 Vue-AntD 直接搭建，快速搭建不愁人。现在完善了类目推荐，感觉像模像样，算是阶段性完工啦！（意思是可以放着不用怎么管了嘻嘻）</p><p>分销是个挺好的商业模式，可以大幅度的降低获客成本。最近微博上特别火的大 V 广告某某家的电动牙刷用的其实也是这种模式。尤其是后者，通过更精确地入口定位，更能判断出微博大 V 分别的价值，以方便下一步的营销计划（参考自：<a href="https://weibo.com/ttarticle/p/show?id=2309404368612675687376" target="_blank" rel="noopener">《没有一个大 V，逃得过电动牙刷》</a>）。我在新的项目中也加入这个思考，希望能帮助到接下来的工作。</p><p>之前有看到别人说过“自动化获客脚本”的事情，我估计下一步的计划就是了解一下这个，然后还有了解 SEO 和在双十一前的版本里加入 SSR。</p><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/en/2019/06/20/new-site-called-you-xuan-fun/banner.jpg&quot; title=&quot;趣优选 LOGO&quot;&gt;
+&lt;p&gt;我曾在这个网站的第一篇文章《&lt;a href=&quot;https://blog.decay.fun/2019/03/06/Init/&quot;&gt;Init()&lt;/a&gt;》中就这么写道：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;…现在微博和朋友圈也发得很少，更不用说我的那个公众号了。现在居然还人模人样地弄了一个专门的博客网站，想顺上个时代的大潮好像晚的也太过分了些……可能需要考虑风格、面向的读者等等杂七杂八的琐事，想要记录零零碎碎的一些东西可能因为这些的原因，刚开热的“新建文章”页面就关了下来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;果不其然，影响我更新的最主要因素并不是这些七七八八，而单纯只是因为我懒……得记录，干活的时候还是很愿意花时间的。这次就做了一个新网站：&lt;a href=&quot;http://youxuan.fun?utm_source=blog_decay_fun&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;趣优选&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
+    
+      <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
+    
+    
+      <category term="建站" scheme="https://blog.decay.fun/en/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+      <category term="优惠券" scheme="https://blog.decay.fun/en/tags/%E4%BC%98%E6%83%A0%E5%88%B8/"/>
+    
+      <category term="趣优选" scheme="https://blog.decay.fun/en/tags/%E8%B6%A3%E4%BC%98%E9%80%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决了在 Ant Design Pro Vue 中使用 vuedraggable 时的 bug</title>
+    <link href="https://blog.decay.fun/en/2019/03/22/fixed-a-weird-bug-when-using-ant-design-pro-vue-with-vue-draggable/"/>
+    <id>https://blog.decay.fun/en/2019/03/22/fixed-a-weird-bug-when-using-ant-design-pro-vue-with-vue-draggable/</id>
+    <published>2019-03-22T01:54:51.000Z</published>
+    <updated>2019-09-24T08:21:44.386Z</updated>
+    
+    <content type="html"><![CDATA[<p>前段时间 clone 了 <a href="https://github.com/sendya/ant-design-pro-vue" target="_blank" rel="noopener">Ant Design Pro Vue</a> 下来试着搭一个中后台来玩玩。今天因为添加了用于拖动排序的新组件 <a href="https://github.com/SortableJS/Vue.Draggable" target="_blank" rel="noopener">Vue.Draggable</a> 后，页面中一直报错，页面也无法正常显示。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TypeError: window.Vue.component is not a function</span><br><span class="line">  at Module.fb15(vuedraggable.umd.min.js)</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure><p>网上查了报错，没有相同的情况，于是就开了他们的源码看了看。</p><a id="more"></a><p>在 <code>vuedraggable/src</code> 的最后找到了这次报错的出处：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefined"</span> &amp;&amp; <span class="string">"Vue"</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">  <span class="built_in">window</span>.Vue.component(<span class="string">"draggable"</span>, draggableComponent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>说来奇怪，用的是 import 方式引入的 <code>vuedraggable</code> 为什么提示的 <code>window.Vue</code> 下的报错。照理说使用 <a href="https://leohxj.gitbooks.io/front-end-database/javascript-modules/about-umd.html" target="_blank" rel="noopener">UMD</a> 的话，优先判断的应该是 node 中的 export，然后是 require 最后才是 window。而且 window 下应该没有挂载 Vue 实例才对，那为什么判断的表达式为<code>true</code>了呢。</p><p>既然已经报错了，说明说 window.Vue 存在，并且是一个不同于 Vue.js 的同名对象。那么原先的 Vue 有可能不存在或者是被覆盖了。于是直接在控制台试了一下</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.Vue);</span><br></pre></td></tr></table></figure><p>结果输出了一个 DOM 对象……</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">g</span> <span class="attr">id</span>=<span class="string">"Vue"</span> <span class="attr">stroke</span>=<span class="string">"none"</span> <span class="attr">stroke-width</span>=<span class="string">"1"</span> <span class="attr">fill</span>=<span class="string">"none"</span> <span class="attr">fill-rule</span>=<span class="string">"evenodd"</span>&gt;</span>…<span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br></pre></td></tr></table></figure><p>我特么……这个 <code>&lt;g&gt;</code> 是一开始提到的 <a href="https://github.com/sendya/ant-design-pro-vue" target="_blank" rel="noopener">Ant Design Pro Vue</a> 中 header 用到的 logo.svg……<a href="http://2ality.com/2012/08/ids-are-global.html" target="_blank" rel="noopener">页面元素的 id 会自动挂载到 window 对象下</a>……</p><p>有别于官方的 <a href="https://vue.ant.design" target="_blank" rel="noopener">Ant Design Vue</a> 在 header 中用到的是 src 为该 svg 的 base64 的 <code>&lt;img&gt;</code>，也有别于这个项目的<a href="https://pro.loacg.com/" target="_blank" rel="noopener">落地页</a>的 header 中直接用的一张 png，他在项目里面用到的是 svg 源文件……所以这个 <code>id=&quot;vue&quot;</code> 的元素影响了引入脚本的判断，导致报错。这个也太那啥了吧……</p><p>解决方法就是把这个 id 改成 AntVue 就解决了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前段时间 clone 了 &lt;a href=&quot;https://github.com/sendya/ant-design-pro-vue&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Ant Design Pro Vue&lt;/a&gt; 下来试着搭一个中后台来玩玩。今天因为添加了用于拖动排序的新组件 &lt;a href=&quot;https://github.com/SortableJS/Vue.Draggable&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Vue.Draggable&lt;/a&gt; 后，页面中一直报错，页面也无法正常显示。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;TypeError: window.Vue.component is not a function&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  at Module.fb15(vuedraggable.umd.min.js)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  ...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;网上查了报错，没有相同的情况，于是就开了他们的源码看了看。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
+    
+      <category term="Vue" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/Vue/Ant-Design/"/>
+    
+    
+      <category term="Vue" scheme="https://blog.decay.fun/en/tags/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/en/tags/Ant-Design/"/>
+    
+      <category term="vuedraggable" scheme="https://blog.decay.fun/en/tags/vuedraggable/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>知晓云 Web SDK 淌坑指南</title>
+    <link href="https://blog.decay.fun/en/2019/03/15/xici-web-with-minapp-web-sdk-beta/"/>
+    <id>https://blog.decay.fun/en/2019/03/15/xici-web-with-minapp-web-sdk-beta/</id>
+    <published>2019-03-15T09:37:12.000Z</published>
+    <updated>2019-09-24T08:21:44.774Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">知晓云</a>在上周推送了 Web SDK 的内测报名。因为我的小程序『戏词』的缘故，我在第一时间便提交了申请。前几天通过审核后，就赶紧地试了起来。在把『戏词』网页端的内容获取基本完成后，来说说这个 Web SDK 吧。</p><a id="more"></a><blockquote><p>这篇还是主要谈下这几天的使用体验。关于小程序『戏词』之后再写篇详细的吧，不过这里先简单提一下。</p><p>戏词是我在去年 2 月份上线的小程序，<a href="https://mp.weixin.qq.com/s/8YLGCuulafSLlJeH6FdI3Q" target="_blank" rel="noopener">起初的功能</a>只有一个，那就是能把台词的截图方便快速拼接成一张。下半年上线了<a href="https://mp.weixin.qq.com/s/-YUCrST0THjqGcsz0VuKPw" target="_blank" rel="noopener">新版本</a>，新增了任意图片添加自定义字幕的功能。并且使用知晓云 BaaS 作为数据存储，增加了『一刻』『一期』功能用于拼图分享。</p></blockquote><p>其实网页版本的『戏词』在刚上线新版本的时候就有用户在提。但是因为时间安排，只能让这个需求一直在 TODO 里面静静躺着。由于微信对个人版的小程序限制非常严格，用户没办法在小程序内做提交自定义内容的动作。而且新版本伤心后随着投稿数的增加，靠用户添加客服微信后发图，再由我整理图片上线的做法效率实在是低得惊人。所以这件事情的紧迫性也不断地提高。</p><p>在这个 Web SDK 出现之前，知晓很贴心地提供了 <a href="https://doc.minapp.com/open-api/" target="_blank" rel="noopener">Open API</a>，让开发者可以在小程序以外的程序也可以继续访问其数据库，照着官方的例子就能做好。我就搭了一套 Express 作为 API 供网页版使用。Open API 的问题是参数的设置比较麻烦，尤其是设置查询 <code>where</code> 的那里，参数名和对应的格式，最后还要 <code>JSON.stringify</code>，像我这种经常忘东忘西的，经常是出了问题再去找文档再以一比对真的是觉得人生就这么废掉了……【当然可以自己多封装一层再调用，不过因为后面听说有 Web 版的消息了，自己就没再继续封装 API 了。</p><p>Web SDK 的出现，无疑给了网页的快速开发注入了新的动力。从调用方式上到返回的数据结构都与小程序端保持一致，跨平台的友好性满分。</p><p>我的实践是封装一个用于页面调用接口的 <code>api.js</code> 文件。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zhixiao <span class="keyword">from</span> <span class="string">"minapp-sdk"</span>;</span><br><span class="line">zhixiao.init(<span class="string">'clientId'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getSpecials = <span class="function">(<span class="params">size, page = <span class="number">0</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> Special = getTable(<span class="string">'special'</span>);</span><br><span class="line">  <span class="keyword">return</span> Special</span><br><span class="line">          .limit(size)</span><br><span class="line">          .offset(size * page)</span><br><span class="line">          .orderBy(<span class="string">'-created_at'</span>)</span><br><span class="line">          .find();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getSepcial = <span class="function"><span class="params">id</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> Special = getTable(<span class="string">'special'</span>);</span><br><span class="line">  <span class="keyword">return</span> Special.get(id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTable</span>(<span class="params">tableName</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> table = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">switch</span>(tableName.toLowerCase())&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'special'</span>:</span><br><span class="line">    table = <span class="keyword">new</span> zhixiao.TableObject(SPECIAL_TABLE_ID);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> table;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样一来，只要在页面中引入相关的 api 方法就可以调用了：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getSpecials &#125; <span class="keyword">from</span> <span class="string">"@/api"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    getSpecials().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// Handle res.data.objects</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>因为知晓在 2.x 的新版本中增加了与平台无关的用户登录注册模块，所以在权限上有“匿名用户”与“登录用户”的区别。在使用 Web SDK 的时候，需要在相关应用的设置页中间打开数据表匿名读写的开关<img src="http://cdn.decay.fun/minapp-setting-sdk.png" alt="知晓云 - 设置"></p><p>之前的数据表虽然新设置了 <a href="https://doc.minapp.com/2.x/dashboard/acl.html" target="_blank" rel="noopener">ACL</a> 为“匿名用户可读，登录用户可写”的权限，但是旧数据行的 ACL 权限并没有根据数据表的 ACL 变化而变化，仍需要自己进行调整。可能是官方出于安全性的考虑吧，就我这种情况的话还是会觉得：“既然整张表格已经调整了权限，而且新录入的数据权限情况也是跟表格保持一致的，那么旧数据也应该自动更新”。这点我保持意见。（因为当时以为调完表的 ACL 后以为就都 OK 了的，调了半天还是返回 401，一开始还以为是 init 方式不对，折腾了大半天还是不行，已经冒出“我特么都自己架 API 了，用的好好的为啥还要搞这个”的念头，然后发了个工单，收起了想砸电脑的手。）</p><p>还有一点是，如果之前在小程序中已经是用过知晓的朋友应该知道，插件版的（因为我用的是插件版的，小程序 SDK 版的不清楚，不过应该都一样）知晓在每个请求的时候都会在控制台打印一句 Log。这个行为在小程序中我觉得没问题，毕竟普通用户在使用小程序的过程中是没办法开启调试的，所以有没有 Log 无所谓。但是在 Web 端不一样的是，控制台是可以被随时开启的。有太多的 Log 会导致开发者无法更合理地使用控制台，例如自己 <code>console.log</code> 的内容被一大堆 Log 推到最上面（当然只是我猜测的极端行为）。Log 在开发过程中是可以给调试带来便利，但是并不适用于生产环境中，所以我给的方案是，按 dev 下显示，在 prod 下隐藏。而且现在初始插件的 <code>init</code> 方法也可以带 <code>options</code> 了，虽然现在只提供了一个 <code>autoLogin</code>，我觉得可以再增加一个参数作为是否打印 Log 的控制:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zhixiao <span class="keyword">from</span> <span class="string">"minapp-sdk"</span>;</span><br><span class="line">zhixiao.init(<span class="string">"clientId"</span>, &#123;</span><br><span class="line">  printLog: process.env.NODE_ENV === <span class="string">"production"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>这次的 SDK 中发现了一个安全性问题，不过他们已经解决了就不提了。</p><p>最后还有一个，其实并不是问题，只是因为第一次碰到觉得挺有意思就在这儿记下来。上面提到的工单中我问了一个问题，我发现在控制台中可以看到，每次获取数据都会发起两个请求，一个 method=OPTIONS，一个 method=GET。第一个请求没有返回数据，但是返回了一串 method 的字符串：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET,POST,PUT,DELETE</span><br></pre></td></tr></table></figure><p>第二个请求才有返回我需要的数据。一开始以为是 bug 在工单里问了，客服的回答是：“这个是正常的，你可以查看这里：<a href="https://blog.csdn.net/cc1314_/article/details/78272329" target="_blank" rel="noopener">https://blog.csdn.net/cc1314_/article/details/78272329</a>”。受益匪浅。【等等，那这个请求是算套餐内的请求吗 Σ(っ °Д °;)っ</p><p>目前使用的还都是数据的获取，等做到用户注册登录、提交和更新数据的时候再来看看有没有什么新的坑吧。</p><blockquote><p>最后，再安利一波知晓云。【身为一名专业知吹</p><p>因为他们一开始的定位是微信小程序开发的 Serverless，所以从开发新版『戏词』开始就先选择了它试试。虽然戏词是一个 Side project，前后花在搭建上面的时间也只用了不到一礼拜的时间。在我熟练之后，曾花了一个周末（2 天）用他们搭建了一个类微博的小程序，可以实现微博的发送、评论、点赞、数据统计用户角色与权限（这个项目之后再考虑放出来），操作体验十分流畅便捷。这归功于他们专业的后台设计和稳定的服务质量，而且还有这太良心的定价（便宜到哭泣），是『戏词』能做到今天的关键。</p><p>如果你也有小程序想要快速上线，又苦于自己得购买域名服务器、申请备案、配置服务器数据库……那么<del>可以找我</del>点击<a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">这里</a>注册，可以获取<code>90元</code>的体验券。3 天就能上线的小程序何苦要等上 3 个月呢？【一天 3 毛的话可以用快一年了都（嘻嘻</p></blockquote><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://cloud.minapp.com/?invitation=ffbpqq&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;知晓云&lt;/a&gt;在上周推送了 Web SDK 的内测报名。因为我的小程序『戏词』的缘故，我在第一时间便提交了申请。前几天通过审核后，就赶紧地试了起来。在把『戏词』网页端的内容获取基本完成后，来说说这个 Web SDK 吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
+    
+    
+      <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
+    
+      <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+    
+      <category term="SDK" scheme="https://blog.decay.fun/en/tags/SDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给 Ant Design Vue 中的弹窗内的表单动态赋值的一种方法</title>
+    <link href="https://blog.decay.fun/en/2019/03/14/ant-design-vue-dynamic-form-in-the-modal/"/>
+    <id>https://blog.decay.fun/en/2019/03/14/ant-design-vue-dynamic-form-in-the-modal/</id>
+    <published>2019-03-14T07:37:21.000Z</published>
+    <updated>2019-09-24T08:21:44.070Z</updated>
+    
+    <content type="html"><![CDATA[<p>刚刚解决了 <a href="https://vue.ant.design/docs/vue/introduce/" target="_blank" rel="noopener">Ant Design Vue</a> 中，出现弹窗内的表单动态赋值的问题。</p><a id="more"></a><p>需求大概是这样，页面中的 Table 放置了 Key 与 Value 对应的列表。每行的右侧有个编辑按钮，点击『编辑』后弹出编辑窗口，并把该行的 Key, Value 赋值到弹窗中相对应的表单项中。</p><p>按照 Ant Design Vue 的文档写好了弹窗的结构：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-modal</span> <span class="attr">title</span>=<span class="string">"Edit"</span> <span class="attr">:visible</span>=<span class="string">"visible"</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-form</span> <span class="attr">:form</span>=<span class="string">"form"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-form-item</span> <span class="attr">label</span>=<span class="string">"Key"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-input</span> <span class="attr">placeholder</span>=<span class="string">"Key name"</span> <span class="attr">required</span> <span class="attr">v-decorator</span>=<span class="string">"formConfig.key"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-form-item</span> <span class="attr">label</span>=<span class="string">"Value"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-input</span></span></span><br><span class="line"><span class="tag">        <span class="attr">placeholder</span>=<span class="string">"Value name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">required</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-decorator</span>=<span class="string">"formConfig.value"</span></span></span><br><span class="line"><span class="tag">      /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-form-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-modal</span>&gt;</span></span><br></pre></td></tr></table></figure><p>与处理逻辑：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  watch: &#123;</span><br><span class="line">    visible(isShow) &#123;</span><br><span class="line">      <span class="keyword">if</span> (isShow) &#123;</span><br><span class="line">        <span class="keyword">this</span>.form.setFieldsValue(&#123;</span><br><span class="line">          [<span class="string">"key"</span>]: <span class="keyword">this</span>.key,</span><br><span class="line">          [<span class="string">"value"</span>]: <span class="keyword">this</span>.value</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但是每次点击按钮后弹出窗口后，相对应的值并没有设置进表单中，而且控制台报了这个错：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: You cannot set a form field before rendering a field associated with the value.</span><br></pre></td></tr></table></figure><p>查看 DOM 树后发现，当 visible 第一次为 <code>true</code> 时，&lt;a-modal&gt; 运用单例模式被渲染为 body 的最后一个子元素。所以怀疑是在 form 还没被渲染的时候，就已经调用了 <code>setFieldsValue</code> 的方法。【有别于 React 版的 Ant-Design，其 Modal 提供了 <code>forceRender</code> 参数可供强制渲染。】</p><p>所以把方法调整为：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line">  visible(isShow) &#123;</span><br><span class="line">    <span class="keyword">if</span> (isShow) &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.isRendered)&#123;</span><br><span class="line">        <span class="keyword">this</span>.setValue(<span class="keyword">this</span>.key, <span class="keyword">this</span>.value);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.isRendered = <span class="literal">true</span>;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">          <span class="keyword">this</span>.setValue(<span class="keyword">this</span>.key, <span class="keyword">this</span>.value);</span><br><span class="line">        &#125;,<span class="number">100</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">methods:&#123;</span><br><span class="line">  setValue(k,v)&#123;</span><br><span class="line">    <span class="keyword">this</span>.form.setFieldsValue(&#123;</span><br><span class="line">      [<span class="string">"key"</span>]: k,</span><br><span class="line">      [<span class="string">"value"</span>]: v</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样一来，通过使用 <code>setTimeout</code> 的方式转化为异步赋值。其中这个 100ms 的时间差是一开始为了验证“是不是由于渲染时序的原因导致的无法赋值”的问题。验证通过后，发现去掉时间也是可以的。至于 <code>setTimeout(fn, 0)</code> 之所以有效，先放两篇链接。</p><ol><li><a href="https://www.quora.com/What-does-setTimeout-with-a-0ms-delay-do-Is-this-some-trick-to-spawn-a-new-thread-but-why" target="_blank" rel="noopener">What does setTimeout with a 0ms delay do? Is this some trick to spawn a new thread, but why?</a></li><li><a href="https://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful" target="_blank" rel="noopener">Why is setTimeout(fn, 0) sometimes useful?</a></li></ol><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;刚刚解决了 &lt;a href=&quot;https://vue.ant.design/docs/vue/introduce/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Ant Design Vue&lt;/a&gt; 中，出现弹窗内的表单动态赋值的问题。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
+    
+      <category term="Vue" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/Vue/Ant-Design/"/>
+    
+    
+      <category term="Vue" scheme="https://blog.decay.fun/en/tags/Vue/"/>
+    
+      <category term="Ant Design" scheme="https://blog.decay.fun/en/tags/Ant-Design/"/>
+    
+  </entry>
+  
+</feed>
