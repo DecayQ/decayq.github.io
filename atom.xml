@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/"/>
-  <updated>2019-09-24T08:49:50.573Z</updated>
+  <updated>2019-10-17T06:36:07.437Z</updated>
   <id>https://blog.decay.fun/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>“新”的小程序——聊文字丨ChatMOJI</title>
+    <link href="https://blog.decay.fun/2019/10/17/new-minapp-chatmoji/"/>
+    <id>https://blog.decay.fun/2019/10/17/new-minapp-chatmoji/</id>
+    <published>2019-10-17T06:04:52.000Z</published>
+    <updated>2019-10-17T06:36:07.437Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/10/17/new-minapp-chatmoji/banner.jpg" title="聊文字"><p>上个礼拜代码荒，想写点东西练练手。愁着不知道该干什么好，正好看到了微博有人在发的花体字。</p><p>因为之前也稍微知道其实这就是 unicode ，但是也没深入去了解。反正闲着也是闲着，而且这玩意儿跟我第一个小程序『展信如面』用到的制表符也是同一个东西，所以就觉得多看看。</p><a id="more"></a><p>本是想把那个博主发的那几个字母收集完全套，没想到发现了更多的宝藏：总共收集了 19 套英文字符，11 套数字字符，总计 30 套。过程中也发现了一些好看的字符，但是因为凑不齐一套字母表就只能算了。</p><p>素材也有了，接下来就是简单的编码了。逻辑其实也很简单：</p><ol><li>通过获取用户输入的内容，拆分后对内容和当前选中的字体进行比对；</li><li>匹配中当前字体的进行替换，不匹配的保留原字符；</li><li>合并生成的内容并输出展示；</li></ol><p>相对来说比较麻烦的是后台的设计。因为微信的审核是在是又长又臭，我不希望每发现一款字体都需要提交接受审核，所以如何设计字体的数据表是下一个问题。</p><p>表的设计主要还是包括了：</p><ol><li>展示用的字体名</li><li>字体原名称</li><li>字体类型</li><li>字体内容</li></ol><p>这些是最基本的字段，因为展示的需要我又加上了长预览和短预览两个字段，用做用户在选择的时候可以观看的效果。这样一来，一个基本可用的前后台就算是完工了。</p><p>因为也是 unicode 应用，与我之前的『展信如面』有着相似的功能特性。所以我决定把『展信』做一次更新：把原来只有单一功能的『展信』作为更新后的一个子功能，保留名称作为功能名；再增加这个用于英数字符美化的功能，不过专属的功能名称没有想好。想到本意是想让他们扩展聊天时的花样，于是把两个功能打了个包，把这个更新后的新应用叫做『聊文字丨 ChatMOJI』就提交了审核。</p><p>接下来迎接他们的，就是那令人烦心的微信审核了……</p><p>以上。</p><blockquote><p>P.S. 在这儿发几个年费会员的激活码，感谢你来到我的博客：</p><ul><li>KGsjvr5jMCglYY0Afi_7GGyU</li><li>SyFTVgG1-jGkYUr23VQTo5KX</li><li>f03vtLB8SmPqpY-f1lWBu4kx</li><li>dJ8bODRVDYTIGCSQ8Gao3Ng</li><li>zp9Akm83MiFZ5YhxPy-SIXyH</li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2019/10/17/new-minapp-chatmoji/banner.jpg&quot; title=&quot;聊文字&quot;&gt;
+&lt;p&gt;上个礼拜代码荒，想写点东西练练手。愁着不知道该干什么好，正好看到了微博有人在发的花体字。&lt;/p&gt;
+&lt;p&gt;因为之前也稍微知道其实这就是 unicode ，但是也没深入去了解。反正闲着也是闲着，而且这玩意儿跟我第一个小程序『展信如面』用到的制表符也是同一个东西，所以就觉得多看看。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
+    
+      <category term="小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="QQ小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="聊文字" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E8%81%8A%E6%96%87%E5%AD%97/"/>
+    
+      <category term="微信小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+    
+      <category term="小程序" scheme="https://blog.decay.fun/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="审核" scheme="https://blog.decay.fun/tags/%E5%AE%A1%E6%A0%B8/"/>
+    
+      <category term="展信如面" scheme="https://blog.decay.fun/tags/%E5%B1%95%E4%BF%A1%E5%A6%82%E9%9D%A2/"/>
+    
+      <category term="unicode" scheme="https://blog.decay.fun/tags/unicode/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 Array.from 创建连续自然数数组</title>
@@ -39,6 +81,46 @@
       <category term="Javascript" scheme="https://blog.decay.fun/tags/Javascript/"/>
     
       <category term="学习笔记" scheme="https://blog.decay.fun/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>『戏词抽奖机』上线</title>
+    <link href="https://blog.decay.fun/2019/08/24/xicis-new-feature-xici-lottery-machine/"/>
+    <id>https://blog.decay.fun/2019/08/24/xicis-new-feature-xici-lottery-machine/</id>
+    <published>2019-08-24T13:25:33.000Z</published>
+    <updated>2019-09-26T03:23:06.012Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/08/24/xicis-new-feature-xici-lottery-machine/banner.jpg"><p>前段时间花了半个月左右的时间，在『戏词』内实现了自己的抽奖功能。管理员可以在后台配置并发布抽奖，到达开奖时间后后台自动开奖。</p><p>数据表和后台逻辑都是基于知晓云搭建的。这次用到了新的内容的是，使用触发器做定时任务检查还有用云函数实现了活动的自动开奖，整体来说难度并不高。</p><a id="more"></a><p>从小游戏中获取的灵感实现在了这次的功能上，作为一次实验。抽奖机还能根据定位（精确到市）进行抽奖，本意是为了给线下的影院提供更精确的抽奖方式，但是至于能找到哪些影院合作，就要看之后的运行情况了。</p><p>测试的话其实也花了将近半个多月的时间，自我感觉良好后才正式放出。以为各种情况都进行了考虑，没想到昨晚刚上线，就发现激励视频的接口因为没有做任何的限制，导致没多久就有用户的戏值已经窜到 300 多分了。唉，真的是线上环境没人知道用户会干什么……现在真的担心微信流量主被封了。这次的当做教训吧，当做 bug 下一次活动上线之前改掉。</p><p>说了这么多，如果有兴趣的话拿出微信扫一扫下方的小程序码来抽奖吧~</p><img src="/2019/08/24/xicis-new-feature-xici-lottery-machine/poster.jpg"><p>以上。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2019/08/24/xicis-new-feature-xici-lottery-machine/banner.jpg&quot;&gt;
+&lt;p&gt;前段时间花了半个月左右的时间，在『戏词』内实现了自己的抽奖功能。管理员可以在后台配置并发布抽奖，到达开奖时间后后台自动开奖。&lt;/p&gt;
+&lt;p&gt;数据表和后台逻辑都是基于知晓云搭建的。这次用到了新的内容的是，使用触发器做定时任务检查还有用云函数实现了活动的自动开奖，整体来说难度并不高。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
+    
+      <category term="戏词" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E6%88%8F%E8%AF%8D/"/>
+    
+      <category term="项目" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E9%A1%B9%E7%9B%AE/"/>
+    
+      <category term="小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="QQ小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="微信小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
+    
+      <category term="小程序" scheme="https://blog.decay.fun/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="抽奖" scheme="https://blog.decay.fun/tags/%E6%8A%BD%E5%A5%96/"/>
     
   </entry>
   
@@ -76,9 +158,9 @@
     <link href="https://blog.decay.fun/2019/08/20/exercise-record-in-august/"/>
     <id>https://blog.decay.fun/2019/08/20/exercise-record-in-august/</id>
     <published>2019-08-20T01:50:23.000Z</published>
-    <updated>2019-09-24T08:21:45.665Z</updated>
+    <updated>2019-09-26T03:23:06.003Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/08/20/exercise-record-in-august/banner.jpg"><p>最近真的是胖得人尽皆知了，奉馆长之命记录一下每天的运动情况。</p><p>每日打卡更新（19 号开始），有运动的那天会记上一个 ✔。</p><table><thead><tr><th style="text-align:center">日</th><th style="text-align:center">一</th><th style="text-align:center">二</th><th style="text-align:center">三</th><th style="text-align:center">四</th><th style="text-align:center">五</th><th style="text-align:center">六</th></tr></thead><tbody><tr><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center">1</td><td style="text-align:center">2</td><td style="text-align:center">3</td></tr><tr><td style="text-align:center">4</td><td style="text-align:center">5</td><td style="text-align:center">6</td><td style="text-align:center">7</td><td style="text-align:center">8</td><td style="text-align:center">9</td><td style="text-align:center">10</td></tr><tr><td style="text-align:center">11</td><td style="text-align:center">12</td><td style="text-align:center">13</td><td style="text-align:center">14</td><td style="text-align:center">15</td><td style="text-align:center">16</td><td style="text-align:center">17</td></tr><tr><td style="text-align:center">18</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">23</td><td style="text-align:center">24</td></tr><tr><td style="text-align:center">25</td><td style="text-align:center">26</td><td style="text-align:center">27</td><td style="text-align:center">28</td><td style="text-align:center">29</td><td style="text-align:center">30</td><td style="text-align:center">31</td></tr></tbody></table>]]></content>
+    <content type="html"><![CDATA[<img src="/2019/08/20/exercise-record-in-august/banner.jpg"><p>最近真的是胖得人尽皆知了，奉馆长之命记录一下每天的运动情况。</p><p>每日打卡更新（19 号开始），有运动的那天会记上一个 ✔。</p><table><thead><tr><th style="text-align:center">日</th><th style="text-align:center">一</th><th style="text-align:center">二</th><th style="text-align:center">三</th><th style="text-align:center">四</th><th style="text-align:center">五</th><th style="text-align:center">六</th></tr></thead><tbody><tr><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center">1</td><td style="text-align:center">2</td><td style="text-align:center">3</td></tr><tr><td style="text-align:center">4</td><td style="text-align:center">5</td><td style="text-align:center">6</td><td style="text-align:center">7</td><td style="text-align:center">8</td><td style="text-align:center">9</td><td style="text-align:center">10</td></tr><tr><td style="text-align:center">11</td><td style="text-align:center">12</td><td style="text-align:center">13</td><td style="text-align:center">14</td><td style="text-align:center">15</td><td style="text-align:center">16</td><td style="text-align:center">17</td></tr><tr><td style="text-align:center">18</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td></tr><tr><td style="text-align:center">✔</td><td style="text-align:center">26</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">✔</td><td style="text-align:center">30</td><td style="text-align:center">31</td></tr></tbody></table>]]></content>
     
     <summary type="html">
     
@@ -181,15 +263,15 @@
     
       <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
-    
       <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
+    
+      <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
     
       <category term="戏词" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E6%88%8F%E8%AF%8D/"/>
     
-      <category term="思路" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/%E6%80%9D%E8%B7%AF/"/>
-    
       <category term="PWA" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/PWA/"/>
+    
+      <category term="思路" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/%E6%80%9D%E8%B7%AF/"/>
     
     
       <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
@@ -299,9 +381,9 @@
     
       <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
-    
       <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
+    
+      <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
     
       <category term="博客" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E5%8D%9A%E5%AE%A2/"/>
     
@@ -412,9 +494,9 @@
     
       <category term="电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/"/>
     
-      <category term="跨境电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/%E8%B7%A8%E5%A2%83%E7%94%B5%E5%95%86/"/>
-    
       <category term="亚马逊" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/%E4%BA%9A%E9%A9%AC%E9%80%8A/"/>
+    
+      <category term="跨境电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/%E8%B7%A8%E5%A2%83%E7%94%B5%E5%95%86/"/>
     
     
       <category term="电商" scheme="https://blog.decay.fun/tags/%E7%94%B5%E5%95%86/"/>
@@ -527,9 +609,9 @@
     
       <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
     
-      <category term="电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/"/>
-    
       <category term="工具" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="电商" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/"/>
     
       <category term="亚马逊" scheme="https://blog.decay.fun/categories/%E7%94%B5%E5%95%86/%E4%BA%9A%E9%A9%AC%E9%80%8A/"/>
     
@@ -563,11 +645,11 @@
     
       <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
     
+      <category term="工具" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B7%A5%E5%85%B7/"/>
+    
       <category term="Vue" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/"/>
     
       <category term="项目" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E9%A1%B9%E7%9B%AE/"/>
-    
-      <category term="工具" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="Ant Design" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/Ant-Design/"/>
     
@@ -646,68 +728,6 @@
       <category term="Ant Design" scheme="https://blog.decay.fun/tags/Ant-Design/"/>
     
       <category term="vuedraggable" scheme="https://blog.decay.fun/tags/vuedraggable/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>知晓云 Web SDK 淌坑指南</title>
-    <link href="https://blog.decay.fun/2019/03/15/xici-web-with-minapp-web-sdk-beta/"/>
-    <id>https://blog.decay.fun/2019/03/15/xici-web-with-minapp-web-sdk-beta/</id>
-    <published>2019-03-15T09:37:12.000Z</published>
-    <updated>2019-07-19T10:48:54.970Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">知晓云</a>在上周推送了 Web SDK 的内测报名。因为我的小程序『戏词』的缘故，我在第一时间便提交了申请。前几天通过审核后，就赶紧地试了起来。在把『戏词』网页端的内容获取基本完成后，来说说这个 Web SDK 吧。</p><a id="more"></a><blockquote><p>这篇还是主要谈下这几天的使用体验。关于小程序『戏词』之后再写篇详细的吧，不过这里先简单提一下。</p><p>戏词是我在去年 2 月份上线的小程序，<a href="https://mp.weixin.qq.com/s/8YLGCuulafSLlJeH6FdI3Q" target="_blank" rel="noopener">起初的功能</a>只有一个，那就是能把台词的截图方便快速拼接成一张。下半年上线了<a href="https://mp.weixin.qq.com/s/-YUCrST0THjqGcsz0VuKPw" target="_blank" rel="noopener">新版本</a>，新增了任意图片添加自定义字幕的功能。并且使用知晓云 BaaS 作为数据存储，增加了『一刻』『一期』功能用于拼图分享。</p></blockquote><p>其实网页版本的『戏词』在刚上线新版本的时候就有用户在提。但是因为时间安排，只能让这个需求一直在 TODO 里面静静躺着。由于微信对个人版的小程序限制非常严格，用户没办法在小程序内做提交自定义内容的动作。而且新版本伤心后随着投稿数的增加，靠用户添加客服微信后发图，再由我整理图片上线的做法效率实在是低得惊人。所以这件事情的紧迫性也不断地提高。</p><p>在这个 Web SDK 出现之前，知晓很贴心地提供了 <a href="https://doc.minapp.com/open-api/" target="_blank" rel="noopener">Open API</a>，让开发者可以在小程序以外的程序也可以继续访问其数据库，照着官方的例子就能做好。我就搭了一套 Express 作为 API 供网页版使用。Open API 的问题是参数的设置比较麻烦，尤其是设置查询 <code>where</code> 的那里，参数名和对应的格式，最后还要 <code>JSON.stringify</code>，像我这种经常忘东忘西的，经常是出了问题再去找文档再以一比对真的是觉得人生就这么废掉了……【当然可以自己多封装一层再调用，不过因为后面听说有 Web 版的消息了，自己就没再继续封装 API 了。</p><p>Web SDK 的出现，无疑给了网页的快速开发注入了新的动力。从调用方式上到返回的数据结构都与小程序端保持一致，跨平台的友好性满分。</p><p>我的实践是封装一个用于页面调用接口的 <code>api.js</code> 文件。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zhixiao <span class="keyword">from</span> <span class="string">"minapp-sdk"</span>;</span><br><span class="line">zhixiao.init(<span class="string">'clientId'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getSpecials = <span class="function">(<span class="params">size, page = <span class="number">0</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> Special = getTable(<span class="string">'special'</span>);</span><br><span class="line">  <span class="keyword">return</span> Special</span><br><span class="line">          .limit(size)</span><br><span class="line">          .offset(size * page)</span><br><span class="line">          .orderBy(<span class="string">'-created_at'</span>)</span><br><span class="line">          .find();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getSepcial = <span class="function"><span class="params">id</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> Special = getTable(<span class="string">'special'</span>);</span><br><span class="line">  <span class="keyword">return</span> Special.get(id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTable</span>(<span class="params">tableName</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> table = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">switch</span>(tableName.toLowerCase())&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'special'</span>:</span><br><span class="line">    table = <span class="keyword">new</span> zhixiao.TableObject(SPECIAL_TABLE_ID);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> table;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样一来，只要在页面中引入相关的 api 方法就可以调用了：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getSpecials &#125; <span class="keyword">from</span> <span class="string">"@/api"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    getSpecials().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// Handle res.data.objects</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>因为知晓在 2.x 的新版本中增加了与平台无关的用户登录注册模块，所以在权限上有“匿名用户”与“登录用户”的区别。在使用 Web SDK 的时候，需要在相关应用的设置页中间打开数据表匿名读写的开关<img src="http://cdn.decay.fun/minapp-setting-sdk.png" alt="知晓云 - 设置"></p><p>之前的数据表虽然新设置了 <a href="https://doc.minapp.com/2.x/dashboard/acl.html" target="_blank" rel="noopener">ACL</a> 为“匿名用户可读，登录用户可写”的权限，但是旧数据行的 ACL 权限并没有根据数据表的 ACL 变化而变化，仍需要自己进行调整。可能是官方出于安全性的考虑吧，就我这种情况的话还是会觉得：“既然整张表格已经调整了权限，而且新录入的数据权限情况也是跟表格保持一致的，那么旧数据也应该自动更新”。这点我保持意见。（因为当时以为调完表的 ACL 后以为就都 OK 了的，调了半天还是返回 401，一开始还以为是 init 方式不对，折腾了大半天还是不行，已经冒出“我特么都自己架 API 了，用的好好的为啥还要搞这个”的念头，然后发了个工单，收起了想砸电脑的手。）</p><p>还有一点是，如果之前在小程序中已经是用过知晓的朋友应该知道，插件版的（因为我用的是插件版的，小程序 SDK 版的不清楚，不过应该都一样）知晓在每个请求的时候都会在控制台打印一句 Log。这个行为在小程序中我觉得没问题，毕竟普通用户在使用小程序的过程中是没办法开启调试的，所以有没有 Log 无所谓。但是在 Web 端不一样的是，控制台是可以被随时开启的。有太多的 Log 会导致开发者无法更合理地使用控制台，例如自己 <code>console.log</code> 的内容被一大堆 Log 推到最上面（当然只是我猜测的极端行为）。Log 在开发过程中是可以给调试带来便利，但是并不适用于生产环境中，所以我给的方案是，按 dev 下显示，在 prod 下隐藏。而且现在初始插件的 <code>init</code> 方法也可以带 <code>options</code> 了，虽然现在只提供了一个 <code>autoLogin</code>，我觉得可以再增加一个参数作为是否打印 Log 的控制:</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zhixiao <span class="keyword">from</span> <span class="string">"minapp-sdk"</span>;</span><br><span class="line">zhixiao.init(<span class="string">"clientId"</span>, &#123;</span><br><span class="line">  printLog: process.env.NODE_ENV === <span class="string">"production"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>这次的 SDK 中发现了一个安全性问题，不过他们已经解决了就不提了。</p><p>最后还有一个，其实并不是问题，只是因为第一次碰到觉得挺有意思就在这儿记下来。上面提到的工单中我问了一个问题，我发现在控制台中可以看到，每次获取数据都会发起两个请求，一个 method=OPTIONS，一个 method=GET。第一个请求没有返回数据，但是返回了一串 method 的字符串：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET,POST,PUT,DELETE</span><br></pre></td></tr></table></figure><p>第二个请求才有返回我需要的数据。一开始以为是 bug 在工单里问了，客服的回答是：“这个是正常的，你可以查看这里：<a href="https://blog.csdn.net/cc1314_/article/details/78272329" target="_blank" rel="noopener">https://blog.csdn.net/cc1314_/article/details/78272329</a>”。受益匪浅。【等等，那这个请求是算套餐内的请求吗 Σ(っ °Д °;)っ</p><p>目前使用的还都是数据的获取，等做到用户注册登录、提交和更新数据的时候再来看看有没有什么新的坑吧。</p><blockquote><p>最后，再安利一波知晓云。【身为一名专业知吹</p><p>因为他们一开始的定位是微信小程序开发的 Serverless，所以从开发新版『戏词』开始就先选择了它试试。虽然戏词是一个 Side project，前后花在搭建上面的时间也只用了不到一礼拜的时间。在我熟练之后，曾花了一个周末（2 天）用他们搭建了一个类微博的小程序，可以实现微博的发送、评论、点赞、数据统计用户角色与权限（这个项目之后再考虑放出来），操作体验十分流畅便捷。这归功于他们专业的后台设计和稳定的服务质量，而且还有这太良心的定价（便宜到哭泣），是『戏词』能做到今天的关键。</p><p>如果你也有小程序想要快速上线，又苦于自己得购买域名服务器、申请备案、配置服务器数据库……那么<del>可以找我</del>点击<a href="https://cloud.minapp.com/?invitation=ffbpqq" target="_blank" rel="noopener">这里</a>注册，可以获取<code>90元</code>的体验券。3 天就能上线的小程序何苦要等上 3 个月呢？【一天 3 毛的话可以用快一年了都（嘻嘻</p></blockquote><p>以上。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://cloud.minapp.com/?invitation=ffbpqq&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;知晓云&lt;/a&gt;在上周推送了 Web SDK 的内测报名。因为我的小程序『戏词』的缘故，我在第一时间便提交了申请。前几天通过审核后，就赶紧地试了起来。在把『戏词』网页端的内容获取基本完成后，来说说这个 Web SDK 吧。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
-    
-      <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
-    
-      <category term="戏词" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E6%88%8F%E8%AF%8D/"/>
-    
-    
-      <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
-    
-      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
-    
-      <category term="SDK" scheme="https://blog.decay.fun/tags/SDK/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>给 Ant Design Vue 中的弹窗内的表单动态赋值的一种方法</title>
-    <link href="https://blog.decay.fun/2019/03/14/ant-design-vue-dynamic-form-in-the-modal/"/>
-    <id>https://blog.decay.fun/2019/03/14/ant-design-vue-dynamic-form-in-the-modal/</id>
-    <published>2019-03-14T07:37:21.000Z</published>
-    <updated>2019-06-26T08:46:05.827Z</updated>
-    
-    <content type="html"><![CDATA[<p>刚刚解决了 <a href="https://vue.ant.design/docs/vue/introduce/" target="_blank" rel="noopener">Ant Design Vue</a> 中，出现弹窗内的表单动态赋值的问题。</p><a id="more"></a><p>需求大概是这样，页面中的 Table 放置了 Key 与 Value 对应的列表。每行的右侧有个编辑按钮，点击『编辑』后弹出编辑窗口，并把该行的 Key, Value 赋值到弹窗中相对应的表单项中。</p><p>按照 Ant Design Vue 的文档写好了弹窗的结构：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-modal</span> <span class="attr">title</span>=<span class="string">"Edit"</span> <span class="attr">:visible</span>=<span class="string">"visible"</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a-form</span> <span class="attr">:form</span>=<span class="string">"form"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-form-item</span> <span class="attr">label</span>=<span class="string">"Key"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-input</span> <span class="attr">placeholder</span>=<span class="string">"Key name"</span> <span class="attr">required</span> <span class="attr">v-decorator</span>=<span class="string">"formConfig.key"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-form-item</span> <span class="attr">label</span>=<span class="string">"Value"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-input</span></span></span><br><span class="line"><span class="tag">        <span class="attr">placeholder</span>=<span class="string">"Value name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">required</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-decorator</span>=<span class="string">"formConfig.value"</span></span></span><br><span class="line"><span class="tag">      /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-form-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">a-form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-modal</span>&gt;</span></span><br></pre></td></tr></table></figure><p>与处理逻辑：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  watch: &#123;</span><br><span class="line">    visible(isShow) &#123;</span><br><span class="line">      <span class="keyword">if</span> (isShow) &#123;</span><br><span class="line">        <span class="keyword">this</span>.form.setFieldsValue(&#123;</span><br><span class="line">          [<span class="string">"key"</span>]: <span class="keyword">this</span>.key,</span><br><span class="line">          [<span class="string">"value"</span>]: <span class="keyword">this</span>.value</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但是每次点击按钮后弹出窗口后，相对应的值并没有设置进表单中，而且控制台报了这个错：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: You cannot set a form field before rendering a field associated with the value.</span><br></pre></td></tr></table></figure><p>查看 DOM 树后发现，当 visible 第一次为 <code>true</code> 时，&lt;a-modal&gt; 运用单例模式被渲染为 body 的最后一个子元素。所以怀疑是在 form 还没被渲染的时候，就已经调用了 <code>setFieldsValue</code> 的方法。【有别于 React 版的 Ant-Design，其 Modal 提供了 <code>forceRender</code> 参数可供强制渲染。】</p><p>所以把方法调整为：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line">  visible(isShow) &#123;</span><br><span class="line">    <span class="keyword">if</span> (isShow) &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.isRendered)&#123;</span><br><span class="line">        <span class="keyword">this</span>.setValue(<span class="keyword">this</span>.key, <span class="keyword">this</span>.value);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.isRendered = <span class="literal">true</span>;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">          <span class="keyword">this</span>.setValue(<span class="keyword">this</span>.key, <span class="keyword">this</span>.value);</span><br><span class="line">        &#125;,<span class="number">100</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">methods:&#123;</span><br><span class="line">  setValue(k,v)&#123;</span><br><span class="line">    <span class="keyword">this</span>.form.setFieldsValue(&#123;</span><br><span class="line">      [<span class="string">"key"</span>]: k,</span><br><span class="line">      [<span class="string">"value"</span>]: v</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样一来，通过使用 <code>setTimeout</code> 的方式转化为异步赋值。其中这个 100ms 的时间差是一开始为了验证“是不是由于渲染时序的原因导致的无法赋值”的问题。验证通过后，发现去掉时间也是可以的。至于 <code>setTimeout(fn, 0)</code> 之所以有效，先放两篇链接。</p><ol><li><a href="https://www.quora.com/What-does-setTimeout-with-a-0ms-delay-do-Is-this-some-trick-to-spawn-a-new-thread-but-why" target="_blank" rel="noopener">What does setTimeout with a 0ms delay do? Is this some trick to spawn a new thread, but why?</a></li><li><a href="https://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful" target="_blank" rel="noopener">Why is setTimeout(fn, 0) sometimes useful?</a></li></ol><p>以上。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;刚刚解决了 &lt;a href=&quot;https://vue.ant.design/docs/vue/introduce/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Ant Design Vue&lt;/a&gt; 中，出现弹窗内的表单动态赋值的问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="Javascript" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/"/>
-    
-      <category term="Vue" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/"/>
-    
-      <category term="Ant Design" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/Javascript/Vue/Ant-Design/"/>
-    
-    
-      <category term="Vue" scheme="https://blog.decay.fun/tags/Vue/"/>
-    
-      <category term="Ant Design" scheme="https://blog.decay.fun/tags/Ant-Design/"/>
     
   </entry>
   
