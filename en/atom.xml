@@ -267,9 +267,9 @@
     
       <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
-      <category term="Thinking" scheme="https://blog.decay.fun/en/categories/Trivia/Thinking/"/>
-    
       <category term="PWA" scheme="https://blog.decay.fun/en/categories/Front-End/PWA/"/>
+    
+      <category term="Thinking" scheme="https://blog.decay.fun/en/categories/Trivia/Thinking/"/>
     
     
       <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
@@ -494,9 +494,9 @@
     
       <category term="E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/"/>
     
-      <category term="Amazon" scheme="https://blog.decay.fun/en/categories/E-Commerce/Amazon/"/>
-    
       <category term="Cross-Border E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/Cross-Border-E-Commerce/"/>
+    
+      <category term="Amazon" scheme="https://blog.decay.fun/en/categories/E-Commerce/Amazon/"/>
     
     
       <category term="E-Commerce" scheme="https://blog.decay.fun/en/tags/E-Commerce/"/>
@@ -609,9 +609,9 @@
     
       <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
     
-      <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
-    
       <category term="E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/"/>
+    
+      <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
     
       <category term="Amazon" scheme="https://blog.decay.fun/en/categories/E-Commerce/Amazon/"/>
     
