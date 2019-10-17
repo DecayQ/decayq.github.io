@@ -6,7 +6,7 @@
   <link href="/en/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/en/"/>
-  <updated>2019-10-17T07:01:07.790Z</updated>
+  <updated>2019-10-17T07:02:49.126Z</updated>
   <id>https://blog.decay.fun/en/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://blog.decay.fun/en/2019/10/17/new-minapp-chatmoji/"/>
     <id>https://blog.decay.fun/en/2019/10/17/new-minapp-chatmoji/</id>
     <published>2019-10-17T06:04:52.000Z</published>
-    <updated>2019-10-17T07:01:07.790Z</updated>
+    <updated>2019-10-17T07:02:49.126Z</updated>
     
-    <content type="html"><![CDATA[<img src="/en/2019/10/17/new-minapp-chatmoji/banner.jpg" title="ChatMOJI"><p>I had a little depression last week and want to write some code to distract my attention but have no idea at all. While I was looking my Weibo I noticed someone post some SPECIAL character.</p><p>I know that stuff, it’s unicode. My first mini-programe uses unicode’s tab to generate a pure-text vertical layout. However I didn’t know it well, so I decided to look into it and see what I can achieve.</p><a id="more"></a><p>I was collecting these characters that the poster posted and I discoverd there is more than I think. I have collected 19 sets of English alphabet and 11 sets of digital alphabet! That’s 30 sets in total! During collecting I also found same beautiful characters unbelong to any alphabet, so I have to ignore them. PITY.</p><p>Now I have the resources, time to coding. The logic is simple:</p><ol><li>Acquiring users’ input and sperate the input and then compare to current sets char by char;</li><li>Replacing if the char is matched, of keep it that way；</li><li>Put the result char together and display；</li></ol><p>I’m using a BAAS as my backend. The reason why I decide to implement backend is because I don’t want my code reviewing by wechat each time I update. So the table I designed has these fields:</p><ol><li>Label for display;</li><li>Name of the set</li><li>Type of the set</li><li>Content of the set 字体内容</li></ol><p>That’s the basic fields. For further purpose I added preview_long &amp; preview_short for display.</p><p>Because it’s a unicode program, so I decide to integrate with my first mini-program “ZhanXin” which makes the horizontal text vertical, and make Zhan a sub feature as well as the new Char-Digit feature and I called this new updated mini program ChatMOJI! Hope it will bring moji more fun while you’re chating.</p><p>#EOF</p>]]></content>
+    <content type="html"><![CDATA[<img src="/en/2019/10/17/new-minapp-chatmoji/banner.jpg" title="ChatMOJI"><p>I had a little depression last week and want to write some code to distract my attention but have no idea at all. While I was looking my Weibo I noticed someone post some SPECIAL character.</p><p>I know that stuff, it’s unicode. My first mini-programe uses unicode’s tab to generate a pure-text vertical layout. However I didn’t know it well, so I decided to look into it and see what I can achieve.</p><a id="more"></a><p>I was collecting these characters that the poster posted and I discoverd there is more than I think. I have collected 19 sets of English alphabet and 11 sets of digital alphabet! That’s 30 sets in total! During collecting I also found same beautiful characters unbelong to any alphabet, so I have to ignore them. PITY.</p><p>Now I have the resources, time to coding. The logic is simple:</p><ol><li>Acquiring users’ input and sperate the input and then compare to current sets char by char;</li><li>Replacing if the char is matched, of keep it that way；</li><li>Put the result char together and display；</li></ol><p>I’m using a BAAS as my backend. The reason why I decide to implement backend is because I don’t want my code reviewing by wechat each time I update. So the table I designed has these fields:</p><ol><li>Label for display;</li><li>Name of the set</li><li>Type of the set</li><li>Content of the set</li></ol><p>That’s the basic fields. For further purpose I added preview_long &amp; preview_short for display.</p><p>Because it’s a unicode program, so I decide to integrate with my first mini-program “ZhanXin” which makes the horizontal text vertical, and make Zhan a sub feature as well as the new Char-Digit feature and I called this new updated mini program ChatMOJI! Hope it will bring moji more fun while you’re chating.</p><p>#EOF</p>]]></content>
     
     <summary type="html">
     
@@ -46,9 +46,9 @@
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
     
     
-      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
-    
       <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
     
       <category term="Reviewing" scheme="https://blog.decay.fun/en/tags/Reviewing/"/>
     
@@ -105,13 +105,13 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
     
-      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
       <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/Wechat-Mini-Program/"/>
+    
+      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
     
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
     
@@ -259,9 +259,9 @@
     
     </summary>
     
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
       <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
@@ -328,26 +328,26 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
     
-      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
       <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/Wechat-Mini-Program/"/>
     
+      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+    
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
     
+    
+      <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
     
       <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
     
-      <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
     
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/tags/QQ-Mini-Program/"/>
-    
-      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
     
       <category term="SDK" scheme="https://blog.decay.fun/en/tags/SDK/"/>
     
@@ -377,9 +377,9 @@
     
     </summary>
     
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
       <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
@@ -414,9 +414,9 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
       <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
     
@@ -451,9 +451,9 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
       <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
     
@@ -464,11 +464,11 @@
     
       <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
     
+      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
+    
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/tags/QQ-Mini-Program/"/>
     
       <category term="XICI" scheme="https://blog.decay.fun/en/tags/XICI/"/>
-    
-      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
     
   </entry>
   
@@ -494,9 +494,9 @@
     
       <category term="E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/"/>
     
-      <category term="Cross-Border E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/Cross-Border-E-Commerce/"/>
-    
       <category term="Amazon" scheme="https://blog.decay.fun/en/categories/E-Commerce/Amazon/"/>
+    
+      <category term="Cross-Border E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/Cross-Border-E-Commerce/"/>
     
     
       <category term="E-Commerce" scheme="https://blog.decay.fun/en/tags/E-Commerce/"/>
@@ -609,9 +609,9 @@
     
       <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
     
-      <category term="E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/"/>
-    
       <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
+    
+      <category term="E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/"/>
     
       <category term="Amazon" scheme="https://blog.decay.fun/en/categories/E-Commerce/Amazon/"/>
     
@@ -682,9 +682,9 @@
     
     </summary>
     
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
       <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
     
       <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
     
