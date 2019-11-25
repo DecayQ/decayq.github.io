@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0"><link rel="manifest" href="/manifest.json">
 	<meta charset="UTF-8">
 	<title>Donate-Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui"><!--禁止缩放-->
@@ -24,5 +24,10 @@
 	</div>
 	<!-- Bitcoin 账号 -->
 	<input id="btc-key" type="text" value readonly="readonly">
-</body>
+<script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1574652939419')
+    .then(function () {console.log('ServiceWorker Register Successfully.')})
+    .catch(function (e) {console.error(e)});
+}
+</script></body>
 </html>

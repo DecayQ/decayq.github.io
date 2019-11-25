@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.decay.fun/en/2019/11/25/a-way-to-save-large-image-from-canvas/</loc>
+    
+    <lastmod>2019-11-25T03:34:43.542Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.decay.fun/en/2019/08/21/implementing-multilingual-in-hexo/</loc>
+    
+    <lastmod>2019-11-04T10:54:09.511Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.decay.fun/en/2019/10/17/new-minapp-chatmoji/</loc>
     
     <lastmod>2019-10-17T07:02:49.126Z</lastmod>
@@ -103,13 +117,6 @@
     <loc>https://blog.decay.fun/en/2019/07/24/introducing-xici-in-qq-mini-program/</loc>
     
     <lastmod>2019-09-24T08:21:44.482Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.decay.fun/en/2019/08/21/implementing-multilingual-in-hexo/</loc>
-    
-    <lastmod>2019-09-24T08:21:44.447Z</lastmod>
     
   </url>
   
