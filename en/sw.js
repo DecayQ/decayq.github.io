@@ -24,13 +24,13 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
-  precacheUrls.push('/2019/07/09/lighto-logo/');
+  precacheUrls.push('/2019/03/22/fixed-a-weird-bug-when-using-ant-design-pro-vue-with-vue-draggable/');
+
+  precacheUrls.push('/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/');
 
   precacheUrls.push('/2019/11/25/a-way-to-save-large-image-from-canvas/');
 
-  precacheUrls.push('/2019/07/17/migrating-xici-to-qq-mini-program/');
-
-  precacheUrls.push('/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/');
+  precacheUrls.push('/2019/08/16/xicis-next-step/');
 
   precacheUrls.push('/2019/08/14/blog-site-with-google-adsense-now/');
 
