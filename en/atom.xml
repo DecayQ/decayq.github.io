@@ -70,16 +70,16 @@
     
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
     
-      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/Wechat-Mini-Program/"/>
-    
       <category term="ChatMOJI" scheme="https://blog.decay.fun/en/categories/Product/ChatMOJI/"/>
+    
+      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/Wechat-Mini-Program/"/>
     
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
     
     
-      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
-    
       <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
     
       <category term="Reviewing" scheme="https://blog.decay.fun/en/tags/Reviewing/"/>
     
@@ -290,9 +290,9 @@
     
     </summary>
     
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
       <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
@@ -370,11 +370,11 @@
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
     
     
+      <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+    
       <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
-    
-      <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
     
       <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
     
@@ -408,9 +408,9 @@
     
     </summary>
     
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
       <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
@@ -676,9 +676,9 @@
     
       <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
     
-      <category term="Vue" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/Vue/"/>
-    
       <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
+    
+      <category term="Vue" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/Vue/"/>
     
       <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
     
@@ -713,9 +713,9 @@
     
     </summary>
     
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
       <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
+    
+      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
     
       <category term="Tool" scheme="https://blog.decay.fun/en/categories/Front-End/Tool/"/>
     
