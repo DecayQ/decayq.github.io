@@ -24,7 +24,7 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
-  precacheUrls.push('/2019/07/09/lighto-logo/');
+  precacheUrls.push('/2019/09/24/learning-javascript-api-array-from/');
 
   precacheUrls.push('/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/');
 
@@ -32,7 +32,7 @@ var precacheUrls = [];
 
   precacheUrls.push('/2019/08/16/xicis-next-step/');
 
-  precacheUrls.push('/2019/08/24/xicis-new-feature-xici-lottery-machine/');
+  precacheUrls.push('/2019/08/14/blog-site-with-google-adsense-now/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":20};
