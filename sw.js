@@ -24,15 +24,15 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
-  precacheUrls.push('/2019/07/09/lighto-logo/');
+  precacheUrls.push('/2019/07/24/introducing-xici-in-qq-mini-program/');
 
   precacheUrls.push('/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/');
 
-  precacheUrls.push('/2019/11/25/a-way-to-save-large-image-from-canvas/');
-
-  precacheUrls.push('/2019/10/17/new-minapp-chatmoji/');
-
   precacheUrls.push('/2019/08/16/xicis-next-step/');
+
+  precacheUrls.push('/2019/08/19/enhance-hexo-with-pwa-in-three-steps/');
+
+  precacheUrls.push('/2019/08/24/xicis-new-feature-xici-lottery-machine/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":20};
