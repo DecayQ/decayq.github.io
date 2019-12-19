@@ -30,9 +30,9 @@ var precacheUrls = [];
 
   precacheUrls.push('/2019/08/24/xicis-new-feature-xici-lottery-machine/');
 
-  precacheUrls.push('/2019/11/25/a-way-to-save-large-image-from-canvas/');
-
   precacheUrls.push('/2019/08/16/xicis-next-step/');
+
+  precacheUrls.push('/2019/08/14/blog-site-with-google-adsense-now/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":20};
