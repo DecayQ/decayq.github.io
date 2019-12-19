@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.decay.fun/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/</loc>
+    
+    <lastmod>2019-12-19T07:32:56.950Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.decay.fun/2019/12/14/misc-2019-12-14/</loc>
     
     <lastmod>2019-12-14T07:04:26.455Z</lastmod>
@@ -37,14 +44,14 @@
   </url>
   
   <url>
-    <loc>https://blog.decay.fun/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/</loc>
+    <loc>https://blog.decay.fun/2019/07/17/migrating-xici-to-qq-mini-program/</loc>
     
     <lastmod>2019-11-26T01:32:48.009Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.decay.fun/2019/07/17/migrating-xici-to-qq-mini-program/</loc>
+    <loc>https://blog.decay.fun/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/</loc>
     
     <lastmod>2019-11-26T01:32:48.009Z</lastmod>
     
