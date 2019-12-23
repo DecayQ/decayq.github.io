@@ -6,7 +6,7 @@
   <link href="/en/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/en/"/>
-  <updated>2019-12-19T07:33:26.892Z</updated>
+  <updated>2019-12-23T06:22:45.563Z</updated>
   <id>https://blog.decay.fun/en/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>set-multiple-access-control-allow-origin</title>
+    <link href="https://blog.decay.fun/en/2019/12/23/set-multiple-access-control-allow-origin/"/>
+    <id>https://blog.decay.fun/en/2019/12/23/set-multiple-access-control-allow-origin/</id>
+    <published>2019-12-23T06:22:30.000Z</published>
+    <updated>2019-12-23T06:22:45.563Z</updated>
+    
+    <content type="html"><![CDATA[<p>Will translate it later.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Will translate it later.&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>using-javascript-to-get-product-review-counts-within-amazon</title>
@@ -100,9 +122,9 @@
     
       <category term="Front End" scheme="https://blog.decay.fun/en/categories/Front-End/"/>
     
-      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
-    
       <category term="Javascript" scheme="https://blog.decay.fun/en/categories/Front-End/Javascript/"/>
+    
+      <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
       <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
@@ -371,9 +393,9 @@
     
       <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
     
-      <category term="互联网" scheme="https://blog.decay.fun/en/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
-    
       <category term="PWA" scheme="https://blog.decay.fun/en/tags/PWA/"/>
+    
+      <category term="互联网" scheme="https://blog.decay.fun/en/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
@@ -643,42 +665,6 @@
       <category term="公众号" scheme="https://blog.decay.fun/en/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
     
       <category term="decayq" scheme="https://blog.decay.fun/en/tags/decayq/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于兴隆 CMS 的一些想法</title>
-    <link href="https://blog.decay.fun/en/2019/06/28/some-thoughts-about-sing-long-cms/"/>
-    <id>https://blog.decay.fun/en/2019/06/28/some-thoughts-about-sing-long-cms/</id>
-    <published>2019-06-28T09:11:05.000Z</published>
-    <updated>2019-09-24T08:21:44.750Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/en/2019/06/28/some-thoughts-about-sing-long-cms/banner.jpg" title="关于兴隆 CMS 的一些想法"><p>我在微博的小号里面发了条：</p><blockquote><p>接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。</p></blockquote><p>本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。</p><p>作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款通用型 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。</p><a id="more"></a><h2 id="兴隆-CMS-将会是一个基于组件开发的框架系统。"><a href="#兴隆-CMS-将会是一个基于组件开发的框架系统。" class="headerlink" title="兴隆 CMS 将会是一个基于组件开发的框架系统。"></a>兴隆 CMS 将会是一个基于组件开发的框架系统。</h2><p>设计中会有：页面设计器、组件市场、关联数据管理。</p><p>[未完成]</p><!-- ## CMS (Content Management System)内容管理系统（英语：content management system，缩写为 CMS）是指在一个合作模式下，用于管理工作流程的一套制度。该系统可应用于手工操作中，也可以应用到计算机或网络里。作为一种中央储存器（central repository），内容管理系统可将相关内容集中储存并具有群组管理、版本控制等功能。版本控制是内容管理系统的一个主要优势。[2]### 权限内容管理系统的核心在**管理**上。那么由谁来管理？自然就是管理员了。但是当所有的操作权限都集中在一个管理员手中的时候，就是一个巨大的安全隐患。所以，我们会将不同的操作独立开来，按不同的角色进行分类，最后再给用户分配对应的角色。不同的用户拥有自己的角色；不同的角色有对应着不同的操作权限。那么由管理引出了该系统子系统——用户角色权限控制系统（RBAC: Role-Based Access Control）：**用户**-**角色**-**权限**。一般来说，站点会有一个拥有所有权限的管理员。用于管理所有用户和角色。但作为一个目标是通用型 CMS，只有一个管理员来维护权限和角色似乎效率过低。我从这篇[《角色权限设计的 100 种解法》][1]中知道了：可以通过添加某个角色的子管理员，由 ta 来管理自身权限下的角色和权限，并且操作的范围不超过自身权限范围即可。### 用户界面设计界面[1]: https://mp.weixin.qq.com/s/MKljuxfDMmopr_MrnYljGw[2]: https://zh.wikipedia.org/wiki/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F -->]]></content>
-    
-    <summary type="html">
-    
-      &lt;img src=&quot;/en/2019/06/28/some-thoughts-about-sing-long-cms/banner.jpg&quot; title=&quot;关于兴隆 CMS 的一些想法&quot;&gt;
-&lt;p&gt;我在微博的小号里面发了条：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;接下来会在兴隆上完善一些个人练手项目，目标是是一个 CMS 和 电商网站。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;本质上，这俩除了差一个支付并没有太大的区别，而个人又绕不开支付资质的问题，虽说有个可能的解决途径但因为还没验证过，所以电商就暂缓实行了。&lt;/p&gt;
-&lt;p&gt;作为一个一毕业没多久就开始在公司做某 CMS，做外包的时候也做过几个企业站点的。这几年下来也了解了一些不足，积攒了不少经验。所以我也常常在思考：如果由我来开发一款通用型 CMS，那么我会把它想象成什么样？我在这也顺便总结一下这么一段时间以来的想法，有新内容的话会持续更新在这儿。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
-      <category term="Thinking" scheme="https://blog.decay.fun/en/categories/Trivia/Thinking/"/>
-    
-    
-      <category term="想法" scheme="https://blog.decay.fun/en/tags/%E6%83%B3%E6%B3%95/"/>
-    
-      <category term="思考" scheme="https://blog.decay.fun/en/tags/%E6%80%9D%E8%80%83/"/>
-    
-      <category term="思路" scheme="https://blog.decay.fun/en/tags/%E6%80%9D%E8%B7%AF/"/>
-    
-      <category term="CMS" scheme="https://blog.decay.fun/en/tags/CMS/"/>
     
   </entry>
   
