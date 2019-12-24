@@ -47,9 +47,9 @@
     <link href="https://blog.decay.fun/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/"/>
     <id>https://blog.decay.fun/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/</id>
     <published>2019-12-19T06:41:57.000Z</published>
-    <updated>2019-12-19T09:22:01.431Z</updated>
+    <updated>2019-12-24T05:38:40.606Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/banner.jpg"><p>上一次写给女友写的书签脚本已经过去了快半年了，可以参考这篇<a href="https://blog.decay.fun/2019/06/26/amazon-operation-tool-1/">文章</a>。其实中间断断续续地又写了三四个，只不过差别不大就没有记录。今天中午的时候给了一个新的需求，刚一看蛮有挑战性的就做了。顺便在这里记录一下思路。</p><p>题目是这样，作为运营的女友需要从商品网页上获取商品的评价数量，但是每个商品页里面又有不同的 pack（姑且先这么叫），那不同的 pack 下的 review 数量也不相同。她现在的做法是点开某个具体的 pack 后拉动到页面下方点击跳转到评论页后选中当前 format 后才能看到当前 pack 下的评论数。那怎样才能快速获取呢？</p><a id="more"></a><p>第一个想法是：既然每个 pack 都需要跳转到评论页才能看，那么有多少个 pack 就打开多少个对应的评论页好了，用空间换时间。而且选中下方的过滤条件后 url 也是有变化的，所以我们只要拿到包含了过滤条件的 url，那么一打开就能直接显示当前 pack 的评论数据。</p><p>分析评论页的 url 后，我分成这么几个部分：</p><ol><li>HOST:<br><a href="https://www.amazon.com/" target="_blank" rel="noopener">https://www.amazon.com/</a></li><li>商品名称：<br>Product-Name/</li><li>商品评价：<br>product-reviews/</li><li>ASIN:<br>asin-code/</li><li>过滤和其他参数：<br>ref=cm_cr_arp_d_viewopt_fmt?formatType=current_format&amp;pageNumber=1</li></ol><p>其中只有商品名称和 ASIN 是相关字段，其他的都可以硬编码。那么接下来就是如何获取这两个参数的过程。</p><p>现在所有的流程都是从商品详情页开始的，而我们可以在当前详情页的 url 中获取到商品名称，加上前面固定的 HOST，可以直接用下面的代码获取：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> urlPrefix = location.href.split(<span class="string">"/dp"</span>)[<span class="number">0</span>];</span><br></pre></td></tr></table></figure><p>接下来就是获取这个商品下面不同 pack 的 ASIN 了。通过调用控制台，可以知道调用的 <code>$</code> 并不是 jQuery 的命名对象，如果需要调用到 jQuery 则需要直接使用<code>jQuery</code> 进行调用。通过查看 DOM 结构，可以用下面的代码获取到所有的 ASIN：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> asins = [];</span><br><span class="line">jQuery(</span><br><span class="line">  <span class="string">".a-unordered-list.a-nostyle.a-button-list.a-declarative.a-button-toggle-group.a-horizontal.a-spacing-top-micro.swatches.swatchesSquare"</span></span><br><span class="line">)</span><br><span class="line">  .children()</span><br><span class="line">  .each(<span class="function"><span class="keyword">function</span>(<span class="params">_, el</span>) </span>&#123;</span><br><span class="line">    asins.push(jQuery(el).attr(<span class="string">"data-defaultasin"</span>));</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure><p>因为后续需要用到 ASIN 所以先用一个数组缓存起来。</p><p>接下来就是打开指定页面了：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">asins.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">asin</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> url =</span><br><span class="line">    urlPrefix +</span><br><span class="line">    <span class="string">"/product-reviews/"</span> +</span><br><span class="line">    asin +</span><br><span class="line">    <span class="string">"/ref=cm_cr_arp_d_viewopt_fmt?formatType=current_format&amp;pageNumber=1#"</span>;</span><br><span class="line">  <span class="built_in">window</span>.open(url);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>这样，页面中存在几个 pack 就会打开几个 pack 的窗口。</p><p>解法到这里……算是及格了。</p><p>因为这样其实也只是比之前操作快而已，麻烦的点在于需要切换 tab 后再找到那个写着一共多少条评论的地方。所以我的第二个想法是，当新页面打开后，自动弹出一个窗口写着评论数……这当然不太可能，因为打开的页面也是亚马逊自己的页面，插入脚本执行始终还是需要一个点击的操作。所以想法更新成了：第一个脚本负责打开页面，第二个脚本负责弹窗显示，但是总觉得还是太麻烦。</p><p>这时候女友提出了“能不能在一开始的页面就显示”的想法。</p><p>如果只在当前页面就显示其他内容，是一定需要用到 AJAX 的，但是 AJAX 又不允许跨域……等等，跨域？哪儿来的跨域？商品详情和评价页都是同个域啊，直接在当前页面动态请求评价页的数据不就可以了吗？</p><p>于是把上段代码打开窗口的句子换成了：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> res = jQuery.ajax(&#123;</span><br><span class="line">  url: url,</span><br><span class="line">  dataType: <span class="string">"html"</span>,</span><br><span class="line">  <span class="keyword">async</span>: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> body = res.responseText;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> reviewCounts = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// 如果没有评价的话</span></span><br><span class="line"><span class="keyword">if</span> (body.indexOf(<span class="string">"Showing 1-10"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">  reviewCounts = body.split(<span class="string">"Showing 1-10 of "</span>)[<span class="number">1</span>].split(<span class="string">" reviews"</span>)[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取到条数后，再插入到页面对应 pack 按钮里面</span></span><br><span class="line"><span class="keyword">var</span> targetDom = jQuery(</span><br><span class="line">  <span class="string">".a-size-mini.twisterSwatchPrice"</span>,</span><br><span class="line">  jQuery(<span class="string">'[data-defaultasin="'</span> + asin + <span class="string">'"]'</span>)</span><br><span class="line">);</span><br><span class="line">targetDom.text(targetDom.text() + <span class="string">" ("</span> + reviewCounts + <span class="string">" reviews)"</span>);</span><br></pre></td></tr></table></figure><p>这样一来，皆大欢喜。</p><img src="/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/compare.jpg">]]></content>
+    <content type="html"><![CDATA[<img src="/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/banner.jpg"><p>上一次写给女友写的书签脚本已经过去了快半年了，可以参考这篇<a href="https://blog.decay.fun/2019/06/26/amazon-operation-tool-1/">文章</a>。其实中间断断续续地又写了三四个，只不过差别不大就没有记录。今天中午的时候给了一个新的需求，刚一看蛮有挑战性的就做了。顺便在这里记录一下思路。</p><p>题目是这样，作为运营的女友需要从商品网页上获取商品的评价数量，但是每个商品页里面又有不同的 pack（姑且先这么叫），那不同的 pack 下的 review 数量也不相同。她现在的做法是点开某个具体的 pack 后拉动到页面下方点击跳转到评论页后选中当前 format 后才能看到当前 pack 下的评论数。那怎样才能快速获取呢？</p><a id="more"></a><p>第一个想法是：既然每个 pack 都需要跳转到评论页才能看，那么有多少个 pack 就打开多少个对应的评论页好了，用空间换时间。而且选中下方的过滤条件后 url 也是有变化的，所以我们只要拿到包含了过滤条件的 url，那么一打开就能直接显示当前 pack 的评论数据。</p><p>分析评论页的 url 后，我分成这么几个部分：</p><ol><li>HOST:<br><a href="https://www.amazon.com/" target="_blank" rel="noopener">https://www.amazon.com/</a></li><li>商品名称：<br>Product-Name/</li><li>商品评价：<br>product-reviews/</li><li>ASIN:<br>asin-code/</li><li>过滤和其他参数：<br>ref=cm_cr_arp_d_viewopt_fmt?formatType=current_format&amp;pageNumber=1</li></ol><p>其中只有商品名称和 ASIN 是相关字段，其他的都可以硬编码。那么接下来就是如何获取这两个参数的过程。</p><p>现在所有的流程都是从商品详情页开始的，而我们可以在当前详情页的 url 中获取到商品名称，加上前面固定的 HOST，可以直接用下面的代码获取：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> urlPrefix = location.href.split(<span class="string">"/dp"</span>)[<span class="number">0</span>];</span><br></pre></td></tr></table></figure><p>接下来就是获取这个商品下面不同 pack 的 ASIN 了。通过调用控制台，可以知道调用的 <code>$</code> 并不是 jQuery 的命名对象，如果需要调用到 jQuery 则需要直接使用<code>jQuery</code> 进行调用。通过查看 DOM 结构，可以用下面的代码获取到所有的 ASIN：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> asins = [];</span><br><span class="line">jQuery(</span><br><span class="line">  <span class="string">".a-unordered-list.a-nostyle.a-button-list.a-declarative.a-button-toggle-group.a-horizontal.a-spacing-top-micro.swatches.swatchesSquare"</span></span><br><span class="line">)</span><br><span class="line">  .children()</span><br><span class="line">  .each(<span class="function"><span class="keyword">function</span>(<span class="params">_, el</span>) </span>&#123;</span><br><span class="line">    asins.push(jQuery(el).attr(<span class="string">"data-defaultasin"</span>));</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure><p>因为后续需要用到 ASIN 所以先用一个数组缓存起来。</p><p>接下来就是打开指定页面了：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">asins.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">asin</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> url =</span><br><span class="line">    urlPrefix +</span><br><span class="line">    <span class="string">"/product-reviews/"</span> +</span><br><span class="line">    asin +</span><br><span class="line">    <span class="string">"/ref=cm_cr_arp_d_viewopt_fmt?formatType=current_format&amp;pageNumber=1#"</span>;</span><br><span class="line">  <span class="built_in">window</span>.open(url);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>这样，页面中存在几个 pack 就会打开几个 pack 的窗口。</p><p>解法到这里……算是及格了。</p><p>因为这样其实也只是比之前操作快而已，麻烦的点在于需要切换 tab 后再找到那个写着一共多少条评论的地方。所以我的第二个想法是，当新页面打开后，自动弹出一个窗口写着评论数……这当然不太可能，因为打开的页面也是亚马逊自己的页面，插入脚本执行始终还是需要一个点击的操作。所以想法更新成了：第一个脚本负责打开页面，第二个脚本负责弹窗显示，但是总觉得还是太麻烦。</p><p>这时候女友提出了“能不能在一开始的页面就显示”的想法。</p><p>如果只在当前页面就显示其他内容，是一定需要用到 AJAX 的，但是 AJAX 又不允许跨域……等等，跨域？哪儿来的跨域？商品详情和评价页都是同个域啊，直接在当前页面动态请求评价页的数据不就可以了吗？</p><p>于是把上段代码打开窗口的句子换成了：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> res = jQuery.ajax(&#123;</span><br><span class="line">  url: url,</span><br><span class="line">  dataType: <span class="string">"html"</span>,</span><br><span class="line">  <span class="keyword">async</span>: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> body = res.responseText;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> reviewCounts = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// 如果没有评价的话</span></span><br><span class="line"><span class="keyword">if</span> (body.indexOf(<span class="string">"Showing 1-10"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">  reviewCounts = body.split(<span class="string">"Showing 1-10 of "</span>)[<span class="number">1</span>].split(<span class="string">" reviews"</span>)[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取到条数后，再插入到页面对应 pack 按钮里面</span></span><br><span class="line"><span class="keyword">var</span> targetDom = jQuery(</span><br><span class="line">  <span class="string">".a-size-mini.twisterSwatchPrice"</span>,</span><br><span class="line">  jQuery(<span class="string">'[data-defaultasin="'</span> + asin + <span class="string">'"]'</span>)</span><br><span class="line">);</span><br><span class="line">targetDom.text(targetDom.text() + <span class="string">" ("</span> + reviewCounts + <span class="string">" reviews)"</span>);</span><br></pre></td></tr></table></figure><p>这样一来，皆大欢喜。</p><img src="/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/compare.jpg"><h3 id="12-24-更新"><a href="#12-24-更新" class="headerlink" title="[12.24 更新]"></a>[12.24 更新]</h3><p>修复了两个 bug：</p><ol><li><p>并不是所有的商品 pack 都有文字的情况。这时候 targetDom 会找不到，所以针对于这种情况进行了优化。</p><img src="/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/screenshot-20191224133345.png"></li><li><p>评价数少于 10 的情况。现在获取评价数是通过简单的字符串匹配来实现的，因为每页的默认条数是 10 所以用了写死的<code>Showing 1-10</code>，这么做并不通用。针对于这种情况，通过正则匹配字符串。</p></li></ol><p>最终完整版的代码：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> asins = [];</span><br><span class="line">jQuery(</span><br><span class="line">  <span class="string">".a-unordered-list.a-nostyle.a-button-list.a-declarative.a-button-toggle-group.a-horizontal.a-spacing-top-micro.swatches.swatchesSquare"</span></span><br><span class="line">)</span><br><span class="line">  .children()</span><br><span class="line">  .each(<span class="function"><span class="keyword">function</span>(<span class="params">_, el</span>) </span>&#123;</span><br><span class="line">    asins.push(jQuery(el).attr(<span class="string">"data-defaultasin"</span>));</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="keyword">var</span> urlPrefix = location.href.split(<span class="string">"/dp"</span>)[<span class="number">0</span>];</span><br><span class="line">asins.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">asin</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> url =</span><br><span class="line">    urlPrefix +</span><br><span class="line">    <span class="string">"/product-reviews/"</span> +</span><br><span class="line">    asin +</span><br><span class="line">    <span class="string">"/ref=cm_cr_arp_d_viewopt_fmt?formatType=current_format&amp;pageNumber=1#"</span>;</span><br><span class="line">  <span class="keyword">var</span> res = jQuery.ajax(&#123; <span class="attr">url</span>: url, <span class="attr">dataType</span>: <span class="string">"html"</span>, <span class="attr">async</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">  <span class="keyword">var</span> body = res.responseText;</span><br><span class="line">  <span class="keyword">var</span> reviewCounts = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (body.indexOf(<span class="string">"Showing 1-"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">    reviewCounts = body.split(<span class="regexp">/Showing 1-\d* of /</span>)[<span class="number">1</span>].split(<span class="string">" reviews"</span>)[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> targetDom = jQuery(</span><br><span class="line">    <span class="string">".a-size-mini.twisterSwatchPrice"</span>,</span><br><span class="line">    jQuery(<span class="string">'[data-defaultasin="'</span> + asin + <span class="string">'"]'</span>)</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">if</span> (targetDom.length) &#123;</span><br><span class="line">    targetDom.text(targetDom.text() + <span class="string">" ("</span> + reviewCounts + <span class="string">" reviews)"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    targetDom = jQuery(</span><br><span class="line">      <span class="string">"img.imgSwatch"</span>,</span><br><span class="line">      jQuery(<span class="string">'[data-defaultasin="'</span> + asin + <span class="string">'"]'</span>)</span><br><span class="line">    );</span><br><span class="line">    targetDom</span><br><span class="line">      .parent()</span><br><span class="line">      .append(</span><br><span class="line">        <span class="string">"&lt;span style='line-height: 36px;'&gt; ("</span> +</span><br><span class="line">          reviewCounts +</span><br><span class="line">          <span class="string">" reviews)&lt;/span&gt;"</span></span><br><span class="line">      );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>以上。</p>]]></content>
     
     <summary type="html">
     
@@ -181,16 +181,16 @@
     
       <category term="小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="微信小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
       <category term="QQ小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="微信小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
     
       <category term="小程序" scheme="https://blog.decay.fun/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
-    
       <category term="审核" scheme="https://blog.decay.fun/tags/%E5%AE%A1%E6%A0%B8/"/>
+    
+      <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
     
       <category term="展信如面" scheme="https://blog.decay.fun/tags/%E5%B1%95%E4%BF%A1%E5%A6%82%E9%9D%A2/"/>
     
@@ -254,9 +254,9 @@
       <category term="微信小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
     
-      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
-    
       <category term="小程序" scheme="https://blog.decay.fun/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="抽奖" scheme="https://blog.decay.fun/tags/%E6%8A%BD%E5%A5%96/"/>
     
@@ -399,24 +399,24 @@
     
     </summary>
     
-      <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
-    
       <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
     
-      <category term="戏词" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E6%88%8F%E8%AF%8D/"/>
+      <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
     
-      <category term="PWA" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/PWA/"/>
+      <category term="戏词" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="思路" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/%E6%80%9D%E8%B7%AF/"/>
     
+      <category term="PWA" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/PWA/"/>
     
-      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="互联网" scheme="https://blog.decay.fun/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
     
       <category term="PWA" scheme="https://blog.decay.fun/tags/PWA/"/>
+    
+      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
     
   </entry>
   
@@ -474,20 +474,20 @@
     
       <category term="小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="微信小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
       <category term="QQ小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
+      <category term="微信小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="小程序" scheme="https://blog.decay.fun/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
+    
+      <category term="QQ小程序" scheme="https://blog.decay.fun/tags/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
       <category term="微信小程序" scheme="https://blog.decay.fun/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="QQ小程序" scheme="https://blog.decay.fun/tags/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+      <category term="知晓云" scheme="https://blog.decay.fun/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
     
       <category term="SDK" scheme="https://blog.decay.fun/tags/SDK/"/>
     
@@ -517,11 +517,11 @@
     
     </summary>
     
-      <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
-    
       <category term="前端" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="产品" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/"/>
+    
+      <category term="杂事" scheme="https://blog.decay.fun/categories/%E6%9D%82%E4%BA%8B/"/>
     
       <category term="博客" scheme="https://blog.decay.fun/categories/%E4%BA%A7%E5%93%81/%E5%8D%9A%E5%AE%A2/"/>
     
@@ -563,9 +563,9 @@
       <category term="QQ小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
     
-      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
-    
       <category term="小程序" scheme="https://blog.decay.fun/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="QQ小程序" scheme="https://blog.decay.fun/tags/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
@@ -600,13 +600,13 @@
       <category term="QQ小程序" scheme="https://blog.decay.fun/categories/%E5%89%8D%E7%AB%AF/%E5%B0%8F%E7%A8%8B%E5%BA%8F/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
     
-      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
-    
       <category term="小程序" scheme="https://blog.decay.fun/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="微信小程序" scheme="https://blog.decay.fun/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+      <category term="戏词" scheme="https://blog.decay.fun/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="QQ小程序" scheme="https://blog.decay.fun/tags/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="微信小程序" scheme="https://blog.decay.fun/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   

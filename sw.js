@@ -24,15 +24,15 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
-  precacheUrls.push('/2019/06/25/new-site-called-sing-long-fun/');
-
-  precacheUrls.push('/2019/08/06/xicis-journey-and-happy-birthday-minapp-cloud/');
+  precacheUrls.push('/2019/12/14/misc-2019-12-14/');
 
   precacheUrls.push('/2019/08/16/xicis-next-step/');
 
-  precacheUrls.push('/2019/08/14/blog-site-with-google-adsense-now/');
+  precacheUrls.push('/2019/08/24/xicis-new-feature-xici-lottery-machine/');
 
-  precacheUrls.push('/2019/08/19/enhance-hexo-with-pwa-in-three-steps/');
+  precacheUrls.push('/2019/12/19/using-javascript-to-get-product-review-counts-within-amazon/');
+
+  precacheUrls.push('/2019/12/05/recent-misc-2019-12-05/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":20};
