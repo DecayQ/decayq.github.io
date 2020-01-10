@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.decay.fun/en/2019/06/26/amazon-operation-tool-1/</loc>
+    
+    <lastmod>2020-01-10T07:25:06.645Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.decay.fun/en/2020/01/10/using-javascript-to-get-product-review-counts-by-month-within-amazon/</loc>
+    
+    <lastmod>2020-01-10T06:28:54.682Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.decay.fun/en/2020/01/08/recent-misc-2020-01-08/</loc>
+    
+    <lastmod>2020-01-09T06:36:34.098Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.decay.fun/en/2019/12/23/set-multiple-access-control-allow-origin/</loc>
     
     <lastmod>2019-12-23T06:22:45.563Z</lastmod>
@@ -180,13 +201,6 @@
     <loc>https://blog.decay.fun/en/2019/03/14/ant-design-vue-dynamic-form-in-the-modal/</loc>
     
     <lastmod>2019-09-24T08:21:44.070Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.decay.fun/en/2019/06/26/amazon-operation-tool-1/</loc>
-    
-    <lastmod>2019-09-24T08:21:43.704Z</lastmod>
     
   </url>
   

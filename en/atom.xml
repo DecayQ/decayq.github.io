@@ -6,7 +6,7 @@
   <link href="/en/atom.xml" rel="self"/>
   
   <link href="https://blog.decay.fun/en/"/>
-  <updated>2019-12-23T06:22:45.563Z</updated>
+  <updated>2020-01-10T06:28:54.682Z</updated>
   <id>https://blog.decay.fun/en/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>using-javascript-to-get-product-review-counts-by-month-within-amazon</title>
+    <link href="https://blog.decay.fun/en/2020/01/10/using-javascript-to-get-product-review-counts-by-month-within-amazon/"/>
+    <id>https://blog.decay.fun/en/2020/01/10/using-javascript-to-get-product-review-counts-by-month-within-amazon/</id>
+    <published>2020-01-10T06:28:54.000Z</published>
+    <updated>2020-01-10T06:28:54.682Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>recent-misc-2020-01-08</title>
+    <link href="https://blog.decay.fun/en/2020/01/08/recent-misc-2020-01-08/"/>
+    <id>https://blog.decay.fun/en/2020/01/08/recent-misc-2020-01-08/</id>
+    <published>2020-01-08T13:59:57.000Z</published>
+    <updated>2020-01-09T06:36:34.098Z</updated>
+    
+    <content type="html"><![CDATA[<p>Will translate it later.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Will translate it later.&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>set-multiple-access-control-allow-origin</title>
@@ -156,18 +192,18 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="ChatMOJI" scheme="https://blog.decay.fun/en/categories/Product/ChatMOJI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
+    
+      <category term="ChatMOJI" scheme="https://blog.decay.fun/en/categories/Product/ChatMOJI/"/>
     
       <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/Wechat-Mini-Program/"/>
     
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
     
     
-      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
-    
       <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
+    
+      <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
     
       <category term="Reviewing" scheme="https://blog.decay.fun/en/tags/Reviewing/"/>
     
@@ -224,13 +260,13 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
     
-      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
       <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/Wechat-Mini-Program/"/>
+    
+      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
     
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
     
@@ -391,11 +427,11 @@
       <category term="PWA" scheme="https://blog.decay.fun/en/categories/Front-End/PWA/"/>
     
     
-      <category term="PWA" scheme="https://blog.decay.fun/en/tags/PWA/"/>
-    
       <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="互联网" scheme="https://blog.decay.fun/en/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+      <category term="PWA" scheme="https://blog.decay.fun/en/tags/PWA/"/>
     
   </entry>
   
@@ -447,26 +483,26 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
     
-      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
       <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/Wechat-Mini-Program/"/>
     
+      <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
+    
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/QQ-Mini-Program/"/>
     
+    
+      <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
     
       <category term="戏词" scheme="https://blog.decay.fun/en/tags/%E6%88%8F%E8%AF%8D/"/>
     
       <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
     
-      <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/tags/QQ-Mini-Program/"/>
-    
-      <category term="知晓云" scheme="https://blog.decay.fun/en/tags/%E7%9F%A5%E6%99%93%E4%BA%91/"/>
-    
       <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
+    
+      <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/tags/QQ-Mini-Program/"/>
     
       <category term="SDK" scheme="https://blog.decay.fun/en/tags/SDK/"/>
     
@@ -533,9 +569,9 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
       <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
     
@@ -570,9 +606,9 @@
     
       <category term="Product" scheme="https://blog.decay.fun/en/categories/Product/"/>
     
-      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
-    
       <category term="Mini Program" scheme="https://blog.decay.fun/en/categories/Front-End/Mini-Program/"/>
+    
+      <category term="XICI" scheme="https://blog.decay.fun/en/categories/Product/XICI/"/>
     
       <category term="Project" scheme="https://blog.decay.fun/en/categories/Front-End/Project/"/>
     
@@ -583,88 +619,11 @@
     
       <category term="Mini Program" scheme="https://blog.decay.fun/en/tags/Mini-Program/"/>
     
+      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
+    
       <category term="QQ Mini Program" scheme="https://blog.decay.fun/en/tags/QQ-Mini-Program/"/>
     
       <category term="XICI" scheme="https://blog.decay.fun/en/tags/XICI/"/>
-    
-      <category term="Wechat Mini Program" scheme="https://blog.decay.fun/en/tags/Wechat-Mini-Program/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>做了一个 LOGO</title>
-    <link href="https://blog.decay.fun/en/2019/07/09/lighto-logo/"/>
-    <id>https://blog.decay.fun/en/2019/07/09/lighto-logo/</id>
-    <published>2019-07-09T14:27:24.000Z</published>
-    <updated>2019-09-24T08:21:44.550Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/en/2019/07/09/lighto-logo/banner.jpg" title="Lighto LOGO"><p>宝贝做的是亚马逊的运营，所以之前的工具也多半是为她写的。生活中经常吐槽她们公司美工如何如何的不靠谱，图我看了，确实做得很糟糕。但是因为那个美工也算是他们公司的老员工了，老板非常地欣赏他。各种丑图在他面前都能挑出优点，仿佛看着的是自己刚出生的亲儿子。</p><p>而她负责的类目又是那个品类最好的，导致同行们纷纷模仿这“第一”……不禁感慨，这么丑还能这么吃香，这个世界真的是不以人的意志为转移的。</p><p>所以时常在想，如果是我来做这个产品的相关设计的话，我会怎么去做这样的设计呢？</p><a id="more"></a><p>要跟现在的“直接、粗犷”的风格分隔开的话，我的设想是“精致、优雅”。所以线条的粗细和字体的选择都在这方面做了调整，用更细的线条来体现“精致”，用大量的留白来表现“优雅”。因为他们的类目和“光”有关系，所以起了个“Lighto”的名字（念起来像是日语 hhh），再结合上相关的图像，这个 LOGO 也算像模像样的做出来了。因为对它还算是满意，也想到之前说的在兴隆下搭建的电商平台，一时兴起把 LOGO 放到了页面上想作为之后电商网站的效果图。但是做的匆匆忙忙，所以并没有理想中的那么成功，所以效果图就不放了。</p><p>把 LOGO 发给宝贝看后她也觉得好看哈哈哈哈（相对于之前每次都会说一下“我觉得那个还要再调整一下”），而且不小心被她们主管看到了，胡扯了是友商的 LOGO 后，主管表示“还蛮好看的”。唉，你有这眼神，怎么就看不出自家的东西哪里不对劲呢？</p><p>电商这块我还没有接触，兴趣倒是一直都有。只知道网站的搭建方法，其他的还是一无所知。尤其是跨境电商，总感觉这里面竞争十分激烈，却蕴含着更多的机会。知道学习的东西还需要很多，选品、支付、物流，每一块单独拆出来都是一个大课题。支付的话因为看到前段时间 Facebook 出的 Libra，我觉得跨境电商是个非常合适的使用场景，所以也想趁着这个机会好好学习一下这些内容。</p><p>有机会的话，独立商城见~</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;img src=&quot;/en/2019/07/09/lighto-logo/banner.jpg&quot; title=&quot;Lighto LOGO&quot;&gt;
-&lt;p&gt;宝贝做的是亚马逊的运营，所以之前的工具也多半是为她写的。生活中经常吐槽她们公司美工如何如何的不靠谱，图我看了，确实做得很糟糕。但是因为那个美工也算是他们公司的老员工了，老板非常地欣赏他。各种丑图在他面前都能挑出优点，仿佛看着的是自己刚出生的亲儿子。&lt;/p&gt;
-&lt;p&gt;而她负责的类目又是那个品类最好的，导致同行们纷纷模仿这“第一”……不禁感慨，这么丑还能这么吃香，这个世界真的是不以人的意志为转移的。&lt;/p&gt;
-&lt;p&gt;所以时常在想，如果是我来做这个产品的相关设计的话，我会怎么去做这样的设计呢？&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
-      <category term="E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/"/>
-    
-      <category term="Cross-Border E-Commerce" scheme="https://blog.decay.fun/en/categories/E-Commerce/Cross-Border-E-Commerce/"/>
-    
-      <category term="Amazon" scheme="https://blog.decay.fun/en/categories/E-Commerce/Amazon/"/>
-    
-    
-      <category term="E-Commerce" scheme="https://blog.decay.fun/en/tags/E-Commerce/"/>
-    
-      <category term="LOGO" scheme="https://blog.decay.fun/en/tags/LOGO/"/>
-    
-      <category term="想法" scheme="https://blog.decay.fun/en/tags/%E6%83%B3%E6%B3%95/"/>
-    
-      <category term="设计" scheme="https://blog.decay.fun/en/tags/%E8%AE%BE%E8%AE%A1/"/>
-    
-      <category term="思考" scheme="https://blog.decay.fun/en/tags/%E6%80%9D%E8%80%83/"/>
-    
-      <category term="思路" scheme="https://blog.decay.fun/en/tags/%E6%80%9D%E8%B7%AF/"/>
-    
-      <category term="亚马逊" scheme="https://blog.decay.fun/en/tags/%E4%BA%9A%E9%A9%AC%E9%80%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>公众号新 LOGO</title>
-    <link href="https://blog.decay.fun/en/2019/07/02/new-wechat-offcial-account-logo/"/>
-    <id>https://blog.decay.fun/en/2019/07/02/new-wechat-offcial-account-logo/</id>
-    <published>2019-07-02T07:31:01.000Z</published>
-    <updated>2019-09-24T08:21:44.693Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/en/2019/07/02/new-wechat-offcial-account-logo/banner.jpg"><p>给公众号做了一个新 LOGO，名字也换成了『DecayQ』。</p><p>微信搜索『decayq』即可。</p><p>至于啥时候会更新，我也不知道。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;img src=&quot;/en/2019/07/02/new-wechat-offcial-account-logo/banner.jpg&quot;&gt;
-&lt;p&gt;给公众号做了一个新 LOGO，名字也换成了『DecayQ』。&lt;/p&gt;
-&lt;p&gt;微信搜索『decayq』即可。&lt;/p&gt;
-&lt;p&gt;至于啥时候会
-      
-    
-    </summary>
-    
-      <category term="Trivia" scheme="https://blog.decay.fun/en/categories/Trivia/"/>
-    
-    
-      <category term="LOGO" scheme="https://blog.decay.fun/en/tags/LOGO/"/>
-    
-      <category term="微信" scheme="https://blog.decay.fun/en/tags/%E5%BE%AE%E4%BF%A1/"/>
-    
-      <category term="公众号" scheme="https://blog.decay.fun/en/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
-    
-      <category term="decayq" scheme="https://blog.decay.fun/en/tags/decayq/"/>
     
   </entry>
   
